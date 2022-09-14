@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
+<head>
+  <title>User List</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+  <h1>Manage User</h1>
+  <table class="table table-active">
+    <tr>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.getEmail()}"></td>
+      <td th:text="${user.password}"></td>
+      <td th:text="${user.role}"></td>
+      <td>
+        <a th:href="@{/quizuser/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/quizuser/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+  </table>
+  <a href="/quizuser/add" class="btn btn-success">Add User</a>
+</div>
+</body>
+</html>
