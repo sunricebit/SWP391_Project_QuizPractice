@@ -13,40 +13,5 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/quizuser")
 public class QuizUserController {
-    @Autowired
-    private IUserService iUserService;
 
-    @RequestMapping(value = "/add")
-    public String addUser(Model model) {
-        model.addAttribute("user", new QuizUser());
-        return "addUser";
-    }
-
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editUser(@RequestParam("id") Long userId, Model model) {
-        Optional<QuizUser> userEdit = iUserService.getUser(userId);
-        userEdit.ifPresent(user -> model.addAttribute("user", user));
-        return "editUser";
-    }
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(QuizUser user) {
-        iUserService.saveUser(user);
-        return "redirect:/quizuser/";
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteUser(@RequestParam("id") Long userId, Model model) {
-        iUserService.deleteUser(userId);
-        return "redirect:/quizuser/";
-    }
-    //API show list
-    @RequestMapping("/")
-    public String index(Model model) {
-        List<QuizUser> users = iUserService.getAllUser();
-
-        model.addAttribute("users", users);
-
-        return "index";
-    }
 }

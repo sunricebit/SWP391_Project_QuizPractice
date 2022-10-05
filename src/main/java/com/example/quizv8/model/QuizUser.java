@@ -10,7 +10,7 @@ public class QuizUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
-    @Column(name = "email", nullable = false)
+    @Column(name = "_email", nullable = false)
 
     private String email;
     @Column(name = "_password", nullable = false)
