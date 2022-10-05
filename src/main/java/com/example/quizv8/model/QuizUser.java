@@ -11,7 +11,7 @@ public class QuizUser {
     @Column(name = "id", nullable = false)
     private long id;
     @Column(name = "_email", nullable = false)
-
+    //this is email
     private String email;
     @Column(name = "_password", nullable = false)
 
