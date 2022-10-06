@@ -33,13 +33,13 @@ public class AdminController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(QuizUser user) {
         iUserService.saveUser(user);
-        return "redirect:/quizuser/";
+        return "redirect:/quizmanager/";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
         iUserService.deleteUser(userId);
-        return "redirect:/quizuser/";
+        return "redirect:/quizmanager/";
     }
     //API show list
     @RequestMapping("/")
