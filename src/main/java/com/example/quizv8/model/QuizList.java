@@ -13,17 +13,24 @@ public class QuizList {
     private String name;
     @Column(name = "_active", nullable = false)
     private boolean active;
-    @Column(name = "_state", nullable = false)
-    private boolean state;
+    @Column(name = "_vote", nullable = false)
+    private long vote;
+    @Column(name = "_categoryId", nullable = false)
+    private long categoryId;
+
+    @Column(name = "_stateId", nullable = false)
+    private long stateId;
 
     public QuizList() {
     }
 
-    public QuizList(long id, String name, boolean active, boolean state) {
+    public QuizList(long id, String name, boolean active, long vote, long categoryId, long stateId) {
         this.id = id;
         this.name = name;
         this.active = active;
-        this.state = state;
+        this.vote = vote;
+        this.categoryId = categoryId;
+        this.stateId = stateId;
     }
 
     public long getId() {
@@ -50,14 +57,27 @@ public class QuizList {
         this.active = active;
     }
 
-    public boolean isState() {
-        return state;
+    public long getVote() {
+        return vote;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setVote(long vote) {
+        this.vote = vote;
     }
-    //_name nvarchar(255) not null,
-    //    _active bit not null,
-    //    _state bit not null
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public long getStateId() {
+        return stateId;
+    }
+
+    public void setStateId(long stateId) {
+        this.stateId = stateId;
+    }
 }
