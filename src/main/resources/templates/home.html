@@ -107,22 +107,25 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="index.html"> Home </a>
+                                 <a class="nav-link" href="home.html"> Home </a>
                               </li>
-                              <!--<li class="nav-item">
-                                 <a class="nav-link" href="#"> ĐĂNG NHẬP </a>
-                              </li>-->
+                              <li class="nav-item">
+                                 <a class="nav-link signin-btn">ĐĂNG NHẬP</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link signup-btn">ĐĂNG KÝ</a>
+                              </li>
                            </ul>
                         </div>
                      </nav>
                   </div>
-                  <div class="col-md-3 col-sm-5 d_none">
+                  <!--<div class="col-md-3 col-sm-5 d_none">
                      <ul class="sign">
                         <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                         <li><a class="sign_btn" href="#">ĐĂNG NHẬP</a></li>
                         <li><a class="sign_btn" href="#">ĐĂNG KÝ</a></li>
                      </ul>
-                  </div>
+                  </div>-->
                </div>
             </div>
          </div>
@@ -416,6 +419,70 @@
    <!-- sidebar -->
    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
    <script src="js/custom.js"></script>
+
+<div class="modal modal--signup hide">
+   <div class="modal__overlay"></div>
+   <div class="modal__body">
+         <div class="auth-form__container">
+
+            <!--Authenticate-->
+            <div class="auth-form">
+               <div class="auth-form__header">
+                  <h3 class="auth-form__heading">Đăng ký</h3>
+                  <span class="auth-form__switch-btn auth-form__switch-btn-in">Đăng nhập</span>
+               </div>
+               <div class="auth-form__form">
+                  <div class="auth-form__group">
+                     <input type="text" class="auth-form__input" placeholder="Email" name="email">
+                  </div>
+                  <div class="auth-form__group">
+                     <input type="text" class="auth-form__input" placeholder="Mật khẩu" name="pass">
+                  </div>
+                  <div class="auth-form__group">
+                     <input type="text" class="auth-form__input" placeholder="Nhập lại mật khẩu" name="re-pass">
+                  </div>
+               </div>
+
+               <div class="auth-form__controls">
+                  <button class="btn--auth btn--auth-up">Trở lại</button>
+                  <button class="btn--auth btn--primary">Đăng ký</button>
+               </div>
+            </div>
+         </div>
+
+   </div>
+</div>
+
+<div class="modal modal--signin hide">
+   <div class="modal__overlay"></div>
+   <div class="modal__body">
+         <div class="auth-form__container">
+
+            <!--Authenticate-->
+            <div class="auth-form">
+               <div class="auth-form__header">
+                  <h3 class="auth-form__heading">Đăng nhập</h3>
+                  <span class="auth-form__switch-btn auth-form__switch-btn-up">Đăng ký</span>
+               </div>
+               <div class="auth-form__form">
+                  <div class="auth-form__group">
+                     <input type="text" class="auth-form__input" placeholder="Email" name="email">
+                  </div>
+                  <div class="auth-form__group">
+                     <input type="text" class="auth-form__input" placeholder="Mật khẩu" name="pass">
+                  </div>
+               </div>
+
+               <div class="auth-form__controls">
+                  <button class="btn--auth btn--auth-in">Trở lại</button>
+                  <button class="btn--auth btn--primary">Đăng nhập</button>
+               </div>
+            </div>
+         </div>
+
+   </div>
+</div>
+   <script src="js/Sign.js"></script>
 </body>
 
 </html>
