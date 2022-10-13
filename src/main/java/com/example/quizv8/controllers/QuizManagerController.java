@@ -1,8 +1,11 @@
 package com.example.quizv8.controllers;
 
+import com.example.quizv8.model.Category;
 import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizState;
+import com.example.quizv8.service.ICategoryService;
 import com.example.quizv8.service.IQuizService;
+import com.example.quizv8.service.IStateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -19,11 +22,19 @@ import java.util.List;
 public class QuizManagerController {
     @Autowired
     private IQuizService IQuizService;
+    @Autowired
+    private IStateService IStateService;
+    @Autowired
+    private ICategoryService ICategoryService;
     @RequestMapping("/")
     public String showAllQuizList(Model model){
         List<QuizList> qList = IQuizService.getAllQuiz();
-        List<QuizState> sList =
+        List<QuizState> sList = IStateService.getAllState();
+        List<Category> cList = ICategoryService.getAllCategory();
+
         model.addAttribute("qList",qList);
+        model.addAttribute("sList",sList);
+        model.addAttribute("cList",cList);
         return "QuizManager";
     }
 
