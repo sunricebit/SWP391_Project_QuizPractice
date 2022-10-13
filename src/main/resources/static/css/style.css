@@ -441,6 +441,9 @@ ul.conta_icon li a:hover {
 }
 
 .header_bo {
+     position: sticky;
+     top: 0;
+     z-index: 1;
      background-color: #032154;
      width: 100%;
      height: 70px;
