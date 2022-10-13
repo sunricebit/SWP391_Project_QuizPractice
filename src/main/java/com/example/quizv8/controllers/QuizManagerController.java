@@ -1,13 +1,17 @@
 package com.example.quizv8.controllers;
 
 import com.example.quizv8.model.QuizList;
+import com.example.quizv8.model.QuizState;
 import com.example.quizv8.service.IQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,7 +22,17 @@ public class QuizManagerController {
     @RequestMapping("/")
     public String showAllQuizList(Model model){
         List<QuizList> qList = IQuizService.getAllQuiz();
+        List<QuizState> sList =
         model.addAttribute("qList",qList);
         return "QuizManager";
     }
+
+    @RequestMapping("/Delete")
+    public String deleteQuiz(Model model, @RequestParam String id){
+        IQuizService.deleteQuiz(Long.parseLong(id));
+        model.addAttribute("RetMessage","Delete success!");
+        return "QuizManager";
+    }
+
+
 }
