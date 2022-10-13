@@ -30,7 +30,7 @@ public class QuizService implements IQuizService{
 
     @Override
     public boolean deleteQuiz(long id) {
-        Quizlist quiz1 = quizRepository.getById(id);
+        QuizList quiz1 = quizRepository.getById(id);
         if (quiz1!=null) quizRepository.delete(quiz1);
         return false;
     }
