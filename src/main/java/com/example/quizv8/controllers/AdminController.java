@@ -17,30 +17,30 @@ import java.util.Optional;
 public class AdminController {
     @Autowired
     private IUserService iUserService;
-    //    @RequestMapping(value = "/add")
-//    public String addUser(Model model) {
-//        model.addAttribute("user", new QuizUser());
-//        return "addUser";
-//    }
-//
-//    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-//    public String editUser(@RequestParam("id") Long userId, Model model) {
-//        Optional<QuizUser> userEdit = iUserService.getUser(userId);
-//        userEdit.ifPresent(user -> model.addAttribute("user", user));
-//        return "editUser";
-//    }
-//
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    public String save(QuizUser user) {
-//        iUserService.saveUser(user);
-//        return "redirect:/quizmanager/";
-//    }
-//
-//    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-//    public String deleteUser(@RequestParam("id") Long userId, Model model) {
-//        iUserService.deleteUser(userId);
-//        return "redirect:/quizmanager/";
-//    }
+        @RequestMapping(value = "/add")
+    public String addUser(Model model) {
+        model.addAttribute("user", new QuizUser());
+        return "addUser";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editUser(@RequestParam("id") Long userId, Model model) {
+        Optional<QuizUser> userEdit = iUserService.getUser(userId);
+        userEdit.ifPresent(user -> model.addAttribute("user", user));
+        return "editUser";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(QuizUser user) {
+        iUserService.saveUser(user);
+        return "redirect:/quizmanager/";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam("id") Long userId, Model model) {
+        iUserService.deleteUser(userId);
+        return "redirect:/quizmanager/";
+    }
     //API show list
     @RequestMapping("/")
     public String index(Model model) {

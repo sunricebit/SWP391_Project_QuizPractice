@@ -11,4 +11,5 @@ public interface IUserService {
     public List<QuizUser> getAllUser();
     public Optional<QuizUser> getUser(long id);
     public void saveUser(QuizUser user);
+    public Optional<QuizUser> getUserbyEmail(String email);
 }

@@ -1,12 +1,43 @@
 package com.example.quizv8.controllers;
 
+import com.example.quizv8.model.QuizUser;
+import com.example.quizv8.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/home")
 public class LoginController {
-    @GetMapping("/")
-    public String viewLogin(){
+    @Autowired
+    private IUserService iUserService;
+    @RequestMapping("/")
+    public String getLoginForm( Model model) {
+        model.addAttribute("user", new QuizUser());
         return "home";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@ModelAttribute(name = "QuizUser") QuizUser user, Model model) {
+        String notification = "";
+        Optional<QuizUser> u = iUserService.getUserbyEmail(user.getEmail());
+        if (u != null) {
+            if (u.get().getPassword().equals(user.getPassword())) {
+                //set cookie
+                return "redirect:/home/";
+            }
+        }
+        notification = "Wrong username or password";
+        model.addAttribute("invalidCredentials", true);
+        model.addAttribute("notification", notification);
+        return "redirect:/home/";
+
     }
 }
