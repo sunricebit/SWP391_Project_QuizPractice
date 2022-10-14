@@ -1,5 +1,6 @@
 package com.example.quizv8.service;
 
+import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface IUserService {
     public Optional<QuizUser> getUser(long id);
     public void saveUser(QuizUser user);
     public Optional<QuizUser> getUserbyEmail(String email);
+
 }

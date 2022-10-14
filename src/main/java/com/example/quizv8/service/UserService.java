@@ -1,5 +1,6 @@
 package com.example.quizv8.service;
 
+import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

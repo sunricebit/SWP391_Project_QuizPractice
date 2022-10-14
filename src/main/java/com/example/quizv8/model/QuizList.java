@@ -20,17 +20,27 @@ public class QuizList {
 
     @Column(name = "_stateId", nullable = false)
     private long stateId;
-
+    @Column(name = "_userId")
+    private long userId;
     public QuizList() {
     }
 
-    public QuizList(long id, String name, boolean active, long vote, long categoryId, long stateId) {
+    public QuizList(long id, String name, boolean active, long vote, long categoryId, long stateId, long userId) {
         this.id = id;
         this.name = name;
         this.active = active;
         this.vote = vote;
         this.categoryId = categoryId;
         this.stateId = stateId;
+        this.userId = userId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public long getId() {
