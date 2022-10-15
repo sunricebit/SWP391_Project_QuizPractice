@@ -21,23 +21,26 @@ public class LoginController {
     @RequestMapping("/")
     public String getLoginForm( Model model) {
         model.addAttribute("user", new QuizUser());
-        return "home";
+        return "DemoHomePage";
     }
 
+    @RequestMapping(value = "/demologin")
+    public String newUser(Model model) {
+        model.addAttribute("user", new QuizUser());
+        return "DemoLogin";
+    }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute(name = "QuizUser") QuizUser user, Model model) {
-        String notification = "";
-        Optional<QuizUser> u = iUserService.getUserbyEmail(user.getEmail());
-        if (u != null) {
-            if (u.get().getPassword().equals(user.getPassword())) {
+    public String login(QuizUser user, Model model, HttpServletRequest request) {
+        Optional<QuizUser> currentUser = iUserService.getUserbyEmail(user.getEmail());
+        if (currentUser.isPresent()) {
+            if (currentUser.get().getPassword().equals(user.getPassword())) {
                 //set cookie
+                model.addAttribute("currentUser", currentUser);
+
                 return "redirect:/home/";
             }
         }
-        notification = "Wrong username or password";
-        model.addAttribute("invalidCredentials", true);
-        model.addAttribute("notification", notification);
-        return "redirect:/home/";
+        return "redirect:/DemoLogin/";
 
     }
 }
