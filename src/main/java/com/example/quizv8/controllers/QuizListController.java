@@ -20,7 +20,7 @@ public class QuizListController {
     public String index(Model model){
         List<Question> ques = iQuizService.getAllQuestion();
         model.addAttribute("quizlists",ques);
-        return "quiz.html";
+        return "quiz";
     }
 
 //    Boolean submitted = false;
