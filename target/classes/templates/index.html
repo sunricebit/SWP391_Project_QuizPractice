@@ -22,12 +22,22 @@
       <td th:text="${user.password}"></td>
       <td th:text="${user.role}"></td>
       <td>
+<!--<<<<<< HEAD>>-->
         <a th:href="@{/quizmanager/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
         <a th:href="@{/quizmanager/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
       </td>
     </tr>
   </table>
   <a href="/quizmanager/add" class="btn btn-success">Add User</a>
+<!--=======-->
+        <a th:href="@{/admin/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/admin/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+        <a th:href="@{/admin/view?id={id}(id=${user.id})}" class="btn btn-primary">View Quiz List</a>
+      </td>
+    </tr>
+  </table>
+  <a href="/admin/add" class="btn btn-success">Add User</a>
+<!-- main-->
 </div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.example.quizv8.controllers;
 
+import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
+import com.example.quizv8.service.IQuizListService;
 import com.example.quizv8.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,38 @@ public class AdminController {
 //        iUserService.deleteUser(userId);
 //        return "redirect:/quizmanager/";
 //    }
+    @Autowired
+    private IQuizListService iQuizListService;
+        @RequestMapping(value = "/add")
+    public String addUser(Model model) {
+        model.addAttribute("user", new QuizUser());
+        return "addUser";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editUser(@RequestParam("id") Long userId, Model model) {
+        Optional<QuizUser> userEdit = iUserService.getUser(userId);
+        userEdit.ifPresent(user -> model.addAttribute("user", user));
+        return "editUser";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(QuizUser user) {
+        iUserService.saveUser(user);
+        return "redirect:/admin/";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam("id") Long userId, Model model) {
+        iUserService.deleteUser(userId);
+        return "redirect:/admin/";
+    }
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
+            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
+            model.addAttribute("userquiz", userquiz);
+            return "view";
+    }
     //API show list
     @RequestMapping("/")
     public String index(Model model) {
