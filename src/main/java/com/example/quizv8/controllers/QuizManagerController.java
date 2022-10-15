@@ -29,7 +29,10 @@ public class QuizManagerController {
     @RequestMapping("/")
     public String showAllQuizList(Model model){
         List<QuizList> qList = IQuizService.getAllQuiz();
-        List<QuizState> sList = IStateService.getAllState();
+        List<QuizState> sList = new ArrayList<QuizState>();
+        for (QuizList quiz:qList){
+            sList.add(IStateService.getQuizState(quiz.getStateId()));
+        }
         List<Category> cList = ICategoryService.getAllCategory();
 
         model.addAttribute("qList",qList);

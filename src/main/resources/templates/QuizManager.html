@@ -7,14 +7,52 @@
     <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
 <body>
-    <table>
+    <table border="1">
         <thead>
         <tr>
-            <td style="">Name</td>
-
+            <td style="width:14%">Name</td>
+            <td style="width:14%">Is Active</td>
+            <td style="width:14%">Vote</td>
+            <td style="width:14%">Category</td>
+            <td style="width:14%">State</td>
+            <td style="width:14%"></td>
+            <td style="width:14%"></td>
         </tr>
         </thead>
+        <tr th:each="quiz:${qList}">
+            <td th:text="${quiz.getName()}">a</td>
+            <td th:text="${quiz.isActive()}">a</td>
+            <td th:text="${quiz.getVote()}">a</td>
+            <td th:each="cate:${cList}">
+                <div th:if="${cate.getId()}==${quiz.getCategoryId()}">
+                    <p th:text="${cate.getCategoryName()}">a</p>
+                </div>
+            </td>
+            <td th:each="state:${sList}">
+                <div th:if="${state.getId()}==${quiz.getStateId()}">
+                    <p th:text="${state.getStateDetails()}">a</p>
+                </div>
+            </td>
+            <td>
+                <form   action="/QuizManager/Delete">
+                    <button type="submit" th:name="id" th:value="${quiz.getId()}">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form action="/QuizManager/Update">
+                    <button type="submit" th:name="id" th:value="${quiz.getId()}">Update</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <form action="/QuizManager/AddQuiz">
+                    <button type="submit">Add Quiz</button>
+                </form>
+            </td>
+        </tr>
     </table>
-    <input type="button" name="CreateQuiz" value="CreateQuiz">
 </body>
 </html>

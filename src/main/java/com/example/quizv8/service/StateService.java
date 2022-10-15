@@ -23,4 +23,9 @@ public class StateService implements IStateService {
     public Optional<QuizState> getState(long id) {
         return stateRepository.findById(id);
     }
+
+    @Override
+    public QuizState getQuizState(long id) {
+        return stateRepository.getById(id);
+    }
 }

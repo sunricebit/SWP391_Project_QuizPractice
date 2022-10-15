@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface IStateService {
     public List<QuizState> getAllState();
     public Optional<QuizState> getState(long id);
+    public QuizState getQuizState(long id);
 }
