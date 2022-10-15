@@ -6,6 +6,7 @@ import com.example.quizv8.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -49,5 +50,16 @@ public class QuizService implements IQuizService{
     @Override
     public void saveQuiz(QuizList quiz) {
         quizRepository.save(quiz);
+    }
+
+    @Override
+    public List<QuizList> getAllQuizByUserId(long userId) {
+        List<QuizList> qList = new ArrayList<>();
+        for (QuizList quiz:quizRepository.findAll()){
+            if (quiz.getUserId()==userId){
+                qList.add(quiz);
+            }
+        }
+        return qList;
     }
 }

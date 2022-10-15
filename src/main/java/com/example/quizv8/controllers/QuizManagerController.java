@@ -27,25 +27,17 @@ public class QuizManagerController {
     @Autowired
     private ICategoryService ICategoryService;
     @RequestMapping("/")
-    public String showAllQuizList(Model model){
-        List<QuizList> qList = IQuizService.getAllQuiz();
-        List<QuizState> sList = new ArrayList<QuizState>();
-        for (QuizList quiz:qList){
-            sList.add(IStateService.getQuizState(quiz.getStateId()));
-        }
-        List<Category> cList = ICategoryService.getAllCategory();
-
+    public String showAllQuizList(Model model, @RequestParam long userId){
+        List<QuizList> qList = IQuizService.getAllQuizByUserId(userId);
         model.addAttribute("qList",qList);
-        model.addAttribute("sList",sList);
-        model.addAttribute("cList",cList);
         return "QuizManager";
     }
 
-    @RequestMapping("/Delete")
-    public String deleteQuiz(Model model, @RequestParam String id){
-        IQuizService.deleteQuiz(Long.parseLong(id));
+    @RequestMapping("/delete")
+    public String deleteQuiz(Model model, @RequestParam long id){
+        IQuizService.deleteQuiz(id);
         model.addAttribute("RetMessage","Delete success!");
-        return "QuizManager";
+        return "QuizManager/?userId=1";
     }
 
 
