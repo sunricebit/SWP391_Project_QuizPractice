@@ -18,16 +18,17 @@
       <th>Actions</th>
     </tr>
     <tr th:each="user : ${users}">
-      <td th:text="${user.email()}"></td>
+      <td th:text="${user.getEmail()}"></td>
       <td th:text="${user.password}"></td>
       <td th:text="${user.role}"></td>
       <td>
-        <a th:href="@{/quizmanager/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{/quizmanager/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+        <a th:href="@{/admin/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/admin/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+        <a th:href="@{/admin/view?id={id}(id=${user.id})}" class="btn btn-primary">View Quiz List</a>
       </td>
     </tr>
   </table>
-  <a href="/quizmanager/add" class="btn btn-success">Add User</a>
+  <a href="/admin/add" class="btn btn-success">Add User</a>
 </div>
 </body>
 </html>
