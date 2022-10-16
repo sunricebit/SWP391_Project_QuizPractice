@@ -1,8 +1,7 @@
 package com.example.quizv8.service;
 
 import com.example.quizv8.model.QuizList;
-import com.example.quizv8.repositories.QuizRepository;
-import com.example.quizv8.repositories.UserRepository;
+import com.example.quizv8.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ import java.util.Optional;
 import com.example.quizv8.model.Answer;
 import com.example.quizv8.model.Question;
 import com.example.quizv8.model.QuestionDetail;
-import com.example.quizv8.repositories.AnswerRepository;
 import com.example.quizv8.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +24,8 @@ import java.util.ListIterator;
 public class QuizService implements IQuizService{
     @Autowired
     private QuizRepository quizRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
     @Override
     public void updateQuiz(long id, QuizList quiz) {
         if(quiz.equals(null)){
@@ -36,7 +36,7 @@ public class QuizService implements IQuizService{
             quiz1.setActive(quiz.isActive());
             quiz1.setName(quiz.getName());
             quiz1.setVote(quiz.getVote());
-            quiz1.setCategoryId(quiz.getCategoryId());
+            quiz1.setCategory(quiz.getCategory());
             quiz1.setStateId(quiz.getStateId());
             quizRepository.save(quiz1);
         }
@@ -82,7 +82,7 @@ public class QuizService implements IQuizService{
     @Override
     public List<Question> getAllQuestion() {
         List<Answer> ans = answerRepository.findAll();
-        List<QuestionDetail> quesDetail = quizRepository.findAll();
+        List<QuestionDetail> quesDetail = questionRepository.findAll();
         List<Question> ques = new List<Question>() {
             @Override
             public int size() {

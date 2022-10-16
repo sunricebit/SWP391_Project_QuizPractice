@@ -30,6 +30,8 @@ public class QuizManagerController {
     public String showAllQuizList(Model model, @RequestParam long userId){
         List<QuizList> qList = IQuizService.getAllQuizByUserId(userId);
         model.addAttribute("qList",qList);
+        //Set model cho category
+
         return "QuizManager";
     }
 
