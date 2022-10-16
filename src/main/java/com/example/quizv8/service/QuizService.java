@@ -39,7 +39,7 @@ public class QuizService implements IQuizService {
             quiz1.setName(quiz.getName());
             quiz1.setVote(quiz.getVote());
             quiz1.setCategory(quiz.getCategory());
-            quiz1.setStateId(quiz.getStateId());
+            quiz1.setState(quiz.getState());
             quizRepository.save(quiz1);
         }
     }
