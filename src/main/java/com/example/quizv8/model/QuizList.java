@@ -18,27 +18,26 @@ public class QuizList {
 //    @Column(name = "_categoryId", nullable = false)
 //    private long categoryId;
 
-    @Column(name = "_stateId", nullable = false)
-    private long stateId;
-
     @Column(name = "_userId")
     private long userId;
 
     @ManyToOne
     @JoinColumn(name = "_categoryId")
     private Category category;
-
+    @ManyToOne
+    @JoinColumn(name = "_stateId")
+    private QuizState state;
     public QuizList() {
     }
 
-    public QuizList(long id, String name, boolean active, long vote, long stateId, long userId, Category category) {
+    public QuizList(long id, String name, boolean active, long vote, long userId, Category category, QuizState state) {
         this.id = id;
         this.name = name;
         this.active = active;
         this.vote = vote;
-        this.stateId = stateId;
         this.userId = userId;
         this.category = category;
+        this.state = state;
     }
 
     public long getUserId() {
@@ -89,11 +88,13 @@ public class QuizList {
         this.category = category;
     }
 
-    public long getStateId() {
-        return stateId;
+
+
+    public QuizState getState() {
+        return state;
     }
 
-    public void setStateId(long stateId) {
-        this.stateId = stateId;
+    public void setState(QuizState state) {
+        this.state = state;
     }
 }

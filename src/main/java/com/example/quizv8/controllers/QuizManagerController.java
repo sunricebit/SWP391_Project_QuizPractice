@@ -48,8 +48,15 @@ public class QuizManagerController {
 
     }
     @RequestMapping("/add")
+    public String redirectToCreateQuizPage(Model model,@RequestParam("id") long userId){
+        List<Category> list = ICategoryService.getAllCategory();
+        model.addAttribute("cList",list);
+        return "createQuiz";
+    }
+
+    @RequestMapping("/addQuiz")
     public String addQuiz(Model model){
-        return "redirect:/QuizManager/?userId=1";
+        return "createQuiz";
     }
 
 
