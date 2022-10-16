@@ -20,6 +20,7 @@ public class QuizList {
 
     @Column(name = "_stateId", nullable = false)
     private long stateId;
+
     @Column(name = "_userId")
     private long userId;
     public QuizList() {
