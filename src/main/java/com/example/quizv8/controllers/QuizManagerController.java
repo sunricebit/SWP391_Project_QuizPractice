@@ -3,7 +3,9 @@ package com.example.quizv8.controllers;
 import com.example.quizv8.model.Category;
 import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizState;
+import com.example.quizv8.repositories.QuizListRepository;
 import com.example.quizv8.service.ICategoryService;
+import com.example.quizv8.service.IQuizListService;
 import com.example.quizv8.service.IQuizService;
 import com.example.quizv8.service.IStateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class QuizManagerController {
     private IStateService IStateService;
     @Autowired
     private ICategoryService ICategoryService;
+    @Autowired
+    private IQuizListService IQuizListService;
     @RequestMapping("/")
     public String showAllQuizList(Model model, @RequestParam long userId){
         List<QuizList> qList = IQuizService.getAllQuizByUserId(userId);
@@ -36,10 +40,16 @@ public class QuizManagerController {
     }
 
     @RequestMapping("/delete")
-    public String deleteQuiz(Model model, @RequestParam long id){
-        IQuizService.deleteQuiz(id);
+    public String deleteQuiz(Model model, @RequestParam("id") long quizListId){
+        IQuizListService.deleteQuizList(quizListId);
         model.addAttribute("RetMessage","Delete success!");
-        return "QuizManager/?userId=1";
+        return "redirect:/QuizManager/?userId=1";
+
+
+    }
+    @RequestMapping("/add")
+    public String addQuiz(Model model){
+        return "redirect:/QuizManager/?userId=1";
     }
 
 
