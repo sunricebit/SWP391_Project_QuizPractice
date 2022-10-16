@@ -58,13 +58,7 @@
                 <span class="badge badge-primary rounded-pill d-inline" th:if="${quiz.getStateId()==1}">Private</span>
                 <span class="badge badge-warning rounded-pill d-inline" th:if="${quiz.getStateId()==2}">Public</span>
             </td>
-            <td th:switch="${quiz.getCategoryId()}">
-                <div th:case="1">Mathematics</div>
-                <div th:case="2">Science</div>
-                <div th:case="3">Social Studies</div>
-                <div th:case="4">Physics</div>
-                <div th:case="5">Chemistry</div>
-                <div th:case="6">Others</div>
+            <td th:text="${quiz.getCategory().getCategoryName()}">
             </td>
             <td th:text="${quiz.getVote()}"></td>
             <td>
@@ -76,7 +70,7 @@
                         </button>
                     </form>
                 </div>
-                <div style="display:inline-block">
+                <div style="display:inline-block" th:unless="${quiz.isActive()==True}">
                     <form th:action="@{delete}">
                         <button type="submit" class="btn btn-link btn-sm btn-rounded" th:name="id"
                                 th:value="${quiz.getId()}">
@@ -84,13 +78,20 @@
                         </button>
                     </form>
                 </div>
-                <div style="display:inline-block" th:unless="${quiz.getStateId==3}">
+                <div style="display:inline-block" th:unless="${quiz.getStateId()==3}">
                     <form>
                         <button type="button" class="btn btn-link btn-sm btn-rounded"
                                 th:onclick="'shareForm('+${quiz.getId()}+');'"><i class="fa fa-share"></i>
                         </button>
                     </form>
 
+                </div>
+                <div style="display:inline-block" th:if="${quiz.getStateId()==3}">
+                    <form>
+                        <button type="button" class="btn btn-link btn-sm btn-rounded"
+                                th:onclick=""><i class="fa-solid fa-comment-dots"></i>
+                        </button>
+                    </form>
                 </div>
 
             </td>
@@ -124,6 +125,7 @@
 }
 
 </script>
+<script src="https://kit.fontawesome.com/99b46135b5.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

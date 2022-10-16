@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import com.example.quizv8.model.Answer;
 import com.example.quizv8.model.Question;
 import com.example.quizv8.model.QuestionDetail;
@@ -21,22 +22,23 @@ import java.util.List;
 import java.util.ListIterator;
 
 @Service
-public class QuizService implements IQuizService{
+public class QuizService implements IQuizService {
     @Autowired
     private QuizRepository quizRepository;
     @Autowired
     private QuestionRepository questionRepository;
+
     @Override
     public void updateQuiz(long id, QuizList quiz) {
-        if(quiz.equals(null)){
+        if (quiz.equals(null)) {
             return;
         }
         QuizList quiz1 = quizRepository.getById(id);
-        if (quiz1!=null){
+        if (quiz1 != null) {
             quiz1.setActive(quiz.isActive());
             quiz1.setName(quiz.getName());
             quiz1.setVote(quiz.getVote());
-            quiz1.setCategoryId(quiz.getCategoryId());
+            quiz1.setCategory(quiz.getCategory());
             quiz1.setStateId(quiz.getStateId());
             quizRepository.save(quiz1);
         }
@@ -45,7 +47,7 @@ public class QuizService implements IQuizService{
     @Override
     public boolean deleteQuiz(long id) {
         QuizList quiz1 = quizRepository.getById(id);
-        if (quiz1!=null) quizRepository.delete(quiz1);
+        if (quiz1 != null) quizRepository.delete(quiz1);
         return false;
     }
 
@@ -68,8 +70,8 @@ public class QuizService implements IQuizService{
     @Override
     public List<QuizList> getAllQuizByUserId(long userId) {
         List<QuizList> qList = new ArrayList<>();
-        for (QuizList quiz:quizRepository.findAll()){
-            if (quiz.getUserId()==userId){
+        for (QuizList quiz : quizRepository.findAll()) {
+            if (quiz.getUserId() == userId) {
                 qList.add(quiz);
             }
         }
@@ -85,9 +87,10 @@ public class QuizService implements IQuizService{
         List<QuestionDetail> questionDetails = questionRepository.findAll();
         List<Question> questions = new ArrayList<Question>();
         for (int i = 0; i < questionDetails.size(); i++) {
+
             List<Answer> answers = new ArrayList<Answer>();
             for (int j = 0; j < ans.size(); j++) {
-                if(questionDetails.get(i).getQuestionNo()== ans.get(j).getQuestionID()){
+                if (questionDetails.get(i).getQuestionNo() == ans.get(j).getQuestionID()) {
                     answers.add(ans.get(j));
                 }
             }
@@ -96,7 +99,6 @@ public class QuizService implements IQuizService{
         }
         return questions;
     }
-
 
 
 }
