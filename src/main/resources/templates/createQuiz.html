@@ -45,7 +45,7 @@
       .banner {
       position: relative;
       height: 260px;
-      background-image: url("/uploads/media/default/0001/02/de5d4fa9c24ed631b1c5d3f3bff8c0d5f3f4f325.png");
+      background-image: url("https://www.castlelearning.com/wp-content/uploads/2020/05/Castle_Hero_New1-1200x600.jpg");
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -185,28 +185,37 @@
 </head>
 <body>
 <div class="testbox">
-    <form th:action="/QuizManager/addQuiz">
+    <form th:action="@{addQuiz}">
         <div class="banner">
             <h1>Add Quiz</h1>
         </div>
         <div class="item">
             <p>Quiz Name:</p>
             <div class="name-item">
-                <input type="text" name="name" placeholder="Enter quiz's name...."/>
+                <input required type="text" name="name" placeholder="Enter quiz's name...."/>
             </div>
         </div>
         <div class="item">
-            <label th:for="Category">Choose a category: </label>
-            <select th:each="category:${cList}" th:name="Category" th:id="Category">
-
-                <option th:value="${category.getId()}" th:text="${category.getCategoryName()}"></option>
+            <label th:for="Category" >Choose a category: </label>
+            <select  th:name="Category" th:id="Category">
+                <option th:each="category:${cList}" th:value="${category.getId()}" th:text="${category.getCategoryName()}"></option>
             </select>
 
         </div>
+        <div>
+            <div style="display:inline-block">
+                
+            </div>
+            <div style="display:inline-block">
+
+            </div>
+        </div>
+
         <div class="btn-block">
             <button type="submit" href="/">Submit</button>
         </div>
     </form>
+
 </div>
 </body>
 </html>
