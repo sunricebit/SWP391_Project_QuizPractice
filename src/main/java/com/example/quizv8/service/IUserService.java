@@ -1,6 +1,5 @@
 package com.example.quizv8.service;
 
-import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public interface IUserService {
     public boolean deleteUser(long id);
     public List<QuizUser> getAllUser();
     public Optional<QuizUser> getUser(long id);
-    public void saveUser(QuizUser user);
+    public QuizUser saveUser(QuizUser user);
     public Optional<QuizUser> getUserbyEmail(String email);
 
 }

@@ -10,34 +10,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/SignIn")
 public class LoginController {
     @Autowired
     private IUserService iUserService;
-    @RequestMapping("/")
-    public String getLoginForm( Model model) {
+    @GetMapping
+    public String getQuizUser( Model model) {
         model.addAttribute("user", new QuizUser());
-        return "home";
+        return "SignIn";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute(name = "QuizUser") QuizUser user, Model model) {
-        String notification = "";
         Optional<QuizUser> u = iUserService.getUserbyEmail(user.getEmail());
         if (u != null) {
             if (u.get().getPassword().equals(user.getPassword())) {
                 //set cookie
-                return "redirect:/home/";
+                return "redirect:/";
             }
         }
-        notification = "Wrong username or password";
-        model.addAttribute("invalidCredentials", true);
-        model.addAttribute("notification", notification);
-        return "redirect:/home/";
-
+        model.addAttribute("notification", true);
+        return "SignIn";
     }
 }
