@@ -19,30 +19,6 @@ import java.util.Optional;
 public class AdminController {
     @Autowired
     private IUserService iUserService;
-    //    @RequestMapping(value = "/add")
-//    public String addUser(Model model) {
-//        model.addAttribute("user", new QuizUser());
-//        return "addUser";
-//    }
-//
-//    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-//    public String editUser(@RequestParam("id") Long userId, Model model) {
-//        Optional<QuizUser> userEdit = iUserService.getUser(userId);
-//        userEdit.ifPresent(user -> model.addAttribute("user", user));
-//        return "editUser";
-//    }
-//
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    public String save(QuizUser user) {
-//        iUserService.saveUser(user);
-//        return "redirect:/quizmanager/";
-//    }
-//
-//    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-//    public String deleteUser(@RequestParam("id") Long userId, Model model) {
-//        iUserService.deleteUser(userId);
-//        return "redirect:/quizmanager/";
-//    }
     @Autowired
     private IQuizListService iQuizListService;
     @RequestMapping(value = "/add")
@@ -69,12 +45,12 @@ public class AdminController {
         iUserService.deleteUser(userId);
         return "redirect:/admin/";
     }
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
-            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
-            model.addAttribute("userquiz", userquiz);
-            return "view";
-    }
+//    @RequestMapping(value = "/view", method = RequestMethod.GET)
+////    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
+////            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
+////            model.addAttribute("userquiz", userquiz);
+////            return "view";
+////    }
     //API show list
     @RequestMapping("/")
     public String index(Model model) {

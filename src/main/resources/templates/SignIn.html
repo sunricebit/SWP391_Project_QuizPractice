@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Login </title>
+  <title>Sign In </title>
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
   <link rel="stylesheet" href="/css/style2.css">
@@ -14,26 +14,26 @@
     <div class="screen__content">
       <form th:action="@{/login}" th:object="${User}" method="post" class="login">
         <h2 style="color:rgb(99, 46, 150);">QUIZ PRACTICE</h2>
+        </br>
+        <h3 style="color:rgb(99, 46, 150);">Email</h3>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" class="login__input" id="username" name="username"  autofocus="autofocus" placeholder="User name / Email">
+          <input type="text" class="login__input" id="email" name="email"  autofocus="autofocus" placeholder="Enter Email">
         </div>
+        <h3 style="color:rgb(99, 46, 150);">Password</h3>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" class="login__input" id="password" name="password" autofocus="autofocus" placeholder="Password">
+          <input type="password" class="login__input" id="password" name="password" autofocus="autofocus" placeholder="Enter Password">
         </div>
-        <p th:text="${notification}" ></p>
-        <button class="button login__submit" value="Log in">
+        <p th:if="${notification}" class="fancybox-error" >Email or password is incorrect</p>
+        <button class="button login__submit" value="Log in" id="submit" name="submit">
           <span class="button__text">Log In Now</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
       </form>
-      <div class="social-login">
-        <h3>log in with</h3>
-        <div class="social-icons">
-          <a href="#" class="social-login__icon fab fa-google"></a>
-        </div>
-      </div>
+      <span class="text-center text-muted mt-5 mb-0" style="font-weight:bold";>&nbsp;Don't have an account?
+            <a th:href="@{/SignUp}" class="fw-bold text-body">Register
+            here</a></span>
     </div>
     <div class="screen__background">
       <span class="screen__background__shape screen__background__shape4"></span>

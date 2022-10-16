@@ -8,18 +8,17 @@ import javax.persistence.*;
 public class QuizUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private long id;
     //this is name
-    @Column(name = "_email", nullable = false)
+    @Column(name = "_email")
 
     private String email;
-    @Column(name = "_password", nullable = false)
+    @Column(name = "_password")
 
     private String password;
 
-    @Column(name = "_role",  nullable = false)
-
+    @Column(name = "_role")
     private String role;
 
     public QuizUser() {

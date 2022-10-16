@@ -1,6 +1,5 @@
 package com.example.quizv8.service;
 
-import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,11 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        super();
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void updateUser(long id, QuizUser user) {
@@ -45,8 +49,10 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void saveUser(QuizUser user) {
-        userRepository.save(user);
+    public QuizUser saveUser(QuizUser user) {
+        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole());
+        System.out.println(""+quizUser.toString());
+        return userRepository.save(quizUser);
     }
 
     @Override
