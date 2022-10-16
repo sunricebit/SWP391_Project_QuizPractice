@@ -14,4 +14,13 @@ public class HomeController {
         return "home";
     }
 
+    @RequestMapping(value = "/homepage")
+    public String homePage() {
+        return "homePage";
+    }
+
+    @RequestMapping(value = "/profile")
+    public String profile() {
+        return "profile";
+    }
 }

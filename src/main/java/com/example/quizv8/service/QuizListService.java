@@ -1,6 +1,10 @@
 package com.example.quizv8.service;
 
+import com.example.quizv8.model.Answer;
+import com.example.quizv8.model.QuestionDetail;
 import com.example.quizv8.model.QuizList;
+import com.example.quizv8.repositories.AnswerRepository;
+import com.example.quizv8.repositories.QuestionRepository;
 import com.example.quizv8.repositories.QuizListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -140,5 +144,46 @@ public class QuizListService implements IQuizListService {
 
         }
         return userquiz;
+    }
+
+    @Autowired
+    private AnswerRepository answerRepository;
+    @Override
+    public boolean deleteAnswer(long questionId) {
+        List<Answer> aList = answerRepository.findAll();
+        for (Answer answer:aList){
+            if(answer.getQuestionID()==questionId){
+                answerRepository.delete(answer);
+            }
+        }
+        return true;
+    }
+    @Autowired
+    private QuestionRepository questionRepository;
+    @Override
+    public boolean deleteQuestionDetail(long quizListId) {
+
+        List<QuestionDetail> qList = questionRepository.findAll();
+        for (QuestionDetail question:qList){
+            deleteAnswer(question.getQuestionNo());
+            if(question.getQuizListID()==quizListId){
+                questionRepository.delete(question);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteQuizList(long quizListId) {
+
+        QuizList quizList = quizListRepository.getById(quizListId);
+        deleteQuestionDetail(quizListId);
+        quizListRepository.delete(quizList);
+        return true;
+    }
+
+    @Override
+    public QuizList getQuizListById(long QuizListId) {
+        return quizListRepository.getById(QuizListId);
     }
 }

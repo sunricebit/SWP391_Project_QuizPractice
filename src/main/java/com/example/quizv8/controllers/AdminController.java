@@ -21,7 +21,7 @@ public class AdminController {
     private IUserService iUserService;
     @Autowired
     private IQuizListService iQuizListService;
-        @RequestMapping(value = "/add")
+    @RequestMapping(value = "/add")
     public String addUser(Model model) {
         model.addAttribute("user", new QuizUser());
         return "addUser";
@@ -45,12 +45,12 @@ public class AdminController {
         iUserService.deleteUser(userId);
         return "redirect:/admin/";
     }
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
-            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
-            model.addAttribute("userquiz", userquiz);
-            return "view";
-    }
+//    @RequestMapping(value = "/view", method = RequestMethod.GET)
+////    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
+////            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
+////            model.addAttribute("userquiz", userquiz);
+////            return "view";
+////    }
     //API show list
     @RequestMapping("/")
     public String index(Model model) {

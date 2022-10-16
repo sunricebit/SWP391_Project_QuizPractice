@@ -1,8 +1,9 @@
 package com.example.quizv8.model;
 
+import javax.persistence.*;
 import java.util.List;
-
 public class Question {
+
     private QuestionDetail detail;
     private List<Answer> answers;
 
@@ -29,4 +30,5 @@ public class Question {
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
+
 }
