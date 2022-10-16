@@ -27,7 +27,7 @@
     <table class="table align-middle mb-0 bg-white">
         <tr>
             <form th:action="@{add}">
-                <button type="submit" class="btn btn-rounded" th:name="Add">Add</button>
+                <button type="submit" class="btn btn-rounded">Add</button>
             </form>
         </tr>
         <thead class="bg-light">
@@ -54,9 +54,9 @@
                 <p class="fw-normal mb-1" th:text="${quiz.isActive()}"></p>
             </td>
             <td>
-                <span class="badge badge-success rounded-pill d-inline" th:if="${quiz.getStateId()==3}">Banned</span>
-                <span class="badge badge-primary rounded-pill d-inline" th:if="${quiz.getStateId()==1}">Private</span>
-                <span class="badge badge-warning rounded-pill d-inline" th:if="${quiz.getStateId()==2}">Public</span>
+                <span class="badge badge-success rounded-pill d-inline" th:if="${quiz.getState().getId()==3}">Banned</span>
+                <span class="badge badge-primary rounded-pill d-inline" th:if="${quiz.getState().getId()==1}">Private</span>
+                <span class="badge badge-warning rounded-pill d-inline" th:if="${quiz.getState().getId()==2}">Public</span>
             </td>
             <td th:text="${quiz.getCategory().getCategoryName()}">
             </td>
