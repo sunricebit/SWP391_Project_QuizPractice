@@ -1,5 +1,6 @@
 package com.example.quizv8.service;
 
+import com.example.quizv8.model.Question;
 import com.example.quizv8.model.QuizList;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface IQuizService {
     public void saveQuiz(QuizList quiz);
 
     public List<QuizList> getAllQuizByUserId(long userId);
+    public List<Question> getAllQuestion();
+
 }

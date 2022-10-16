@@ -45,7 +45,7 @@ public class AdminController {
 //    }
     @Autowired
     private IQuizListService iQuizListService;
-        @RequestMapping(value = "/add")
+    @RequestMapping(value = "/add")
     public String addUser(Model model) {
         model.addAttribute("user", new QuizUser());
         return "addUser";

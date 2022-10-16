@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
+<head>
+  <title>Quiz List</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+  <h1>Quiz Practice</h1>
+  <h2 th:each="quiz : ${quizlists}">
+    <p th:text="${quiz.detail}"></p>
+    <h3 th:each="answer : ${quiz.answers}">
+      <p th:text="${answer.answer}"></p>
+      <p th:text="${answer.correct}" hidden></p>
+    </h3>
+  </h2>
+  <a href="/quizlist/submit" class="btn btn-success">Submit</a>
+</div>
+</body>
+</html>
