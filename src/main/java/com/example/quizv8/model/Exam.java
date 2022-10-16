@@ -12,8 +12,8 @@ public class Exam {
     private long id;
     @Column(name = "_userId")
     private long userId;
-    @Column(name = "_quizId")
-    private long quizId;
+    @Column(name = "_quizName")
+    private String quizName;
     @Column(name = "_date")
     private Date date;
     @Column(name = "_percentage")
@@ -24,10 +24,10 @@ public class Exam {
     public Exam() {
     }
 
-    public Exam(long id, long userId, long quizId, Date date, String percentage, long totalQuestion) {
+    public Exam(long id, long userId, String quizName, Date date, String percentage, long totalQuestion) {
         this.id = id;
         this.userId = userId;
-        this.quizId = quizId;
+        this.quizName = quizName;
         this.date = date;
         this.percentage = percentage;
         this.totalQuestion = totalQuestion;
@@ -49,12 +49,12 @@ public class Exam {
         this.userId = userId;
     }
 
-    public long getQuizId() {
-        return quizId;
+    public String getQuizName() {
+        return quizName;
     }
 
-    public void setQuizId(long quizId) {
-        this.quizId = quizId;
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
     }
 
     public Date getDate() {
