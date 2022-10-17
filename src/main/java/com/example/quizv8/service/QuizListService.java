@@ -29,7 +29,7 @@ public class QuizListService implements IQuizListService {
     public boolean deleteAnswer(long questionId) {
         List<Answer> aList = answerRepository.findAll();
         for (Answer answer:aList){
-            if(answer.getQuestionID()==questionId){
+            if(answer.getQuestion().getQuestionNo()==questionId){
                 answerRepository.delete(answer);
             }
         }
@@ -43,7 +43,7 @@ public class QuizListService implements IQuizListService {
         List<QuestionDetail> qList = questionRepository.findAll();
         for (QuestionDetail question:qList){
             deleteAnswer(question.getQuestionNo());
-            if(question.getQuizListID()==quizListId){
+            if(question.getQuizList().getId()==quizListId){
                 questionRepository.delete(question);
             }
         }

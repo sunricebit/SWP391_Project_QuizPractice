@@ -1,6 +1,7 @@
 package com.example.quizv8.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Quiz_List")
@@ -20,7 +21,8 @@ public class QuizList {
 
 //    @Column(name = "_userId")
 //    private long userId;
-
+    @OneToMany(mappedBy = "quizList")
+    private List<QuestionDetail> questionDetailList;
     @ManyToOne
     @JoinColumn(name="_userId")
     private QuizUser user;
