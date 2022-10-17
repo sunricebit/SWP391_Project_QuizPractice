@@ -21,6 +21,7 @@ public class QuizUser {
     @Column(name = "_role")
     private String role;
 
+
     @OneToMany(mappedBy = "user")
     private List<QuizList> quiz;
     public QuizUser() {
@@ -31,6 +32,14 @@ public class QuizUser {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public List<QuizList> getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(List<QuizList> quiz) {
+        this.quiz = quiz;
     }
 
     public long getId() {
