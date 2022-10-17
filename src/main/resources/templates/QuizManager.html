@@ -62,7 +62,7 @@
             </td>
             <td th:text="${quiz.getVote()}"></td>
             <td>
-                <div style="display:inline-block" th:unless="${quiz.getStateId()==3}">
+                <div style="display:inline-block" th:unless="${quiz.getState().getId()==3}">
                     <form th:action="@{edit}">
                         <button type="submit" class="btn btn-link btn-sm btn-rounded" th:name="id"
                                 th:value="${quiz.getId()}" style="display:inline;">
@@ -78,7 +78,7 @@
                         </button>
                     </form>
                 </div>
-                <div style="display:inline-block" th:unless="${quiz.getStateId()==3}">
+                <div style="display:inline-block" th:unless="${quiz.getState().getId()==3}">
                     <form>
                         <button type="button" class="btn btn-link btn-sm btn-rounded"
                                 th:onclick="'shareForm('+${quiz.getId()}+');'"><i class="fa fa-share"></i>
@@ -86,7 +86,7 @@
                     </form>
 
                 </div>
-                <div style="display:inline-block" th:if="${quiz.getStateId()==3}">
+                <div style="display:inline-block" th:if="${quiz.getState().getId()==3}">
                     <form>
                         <button type="button" class="btn btn-link btn-sm btn-rounded"
                                 th:onclick=""><i class="fa-solid fa-comment-dots"></i>

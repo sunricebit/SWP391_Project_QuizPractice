@@ -18,9 +18,12 @@ public class QuizList {
 //    @Column(name = "_categoryId", nullable = false)
 //    private long categoryId;
 
-    @Column(name = "_userId")
-    private long userId;
+//    @Column(name = "_userId")
+//    private long userId;
 
+    @ManyToOne
+    @JoinColumn(name="_userId")
+    private QuizUser user;
     @ManyToOne
     @JoinColumn(name = "_categoryId")
     private Category category;
@@ -30,22 +33,22 @@ public class QuizList {
     public QuizList() {
     }
 
-    public QuizList(long id, String name, boolean active, long vote, long userId, Category category, QuizState state) {
+    public QuizList(long id, String name, boolean active, long vote, QuizUser user, Category category, QuizState state) {
         this.id = id;
         this.name = name;
         this.active = active;
         this.vote = vote;
-        this.userId = userId;
+        this.user = user;
         this.category = category;
         this.state = state;
     }
 
-    public long getUserId() {
-        return userId;
+    public QuizUser getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(QuizUser user) {
+        this.user = user;
     }
 
     public long getId() {

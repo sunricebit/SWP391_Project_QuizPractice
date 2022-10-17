@@ -19,31 +19,18 @@ public class LoginController {
     @Autowired
     private IUserService iUserService;
 
-    @GetMapping
+    @RequestMapping("/")
     public String getQuizUser(Model model) {
         model.addAttribute("user", new QuizUser());
         return "SignIn";
     }
 
-    //    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String login(@ModelAttribute(name = "QuizUser") QuizUser user, Model model) {
-//        Optional<QuizUser> u = iUserService.getUserbyEmail(user.getEmail());
-//        if (u != null) {
-//            if (u.get().getPassword().equals(user.getPassword())) {
-//                //set cookie
-//                return "redirect:/";
-//            }
-//        }
-//        model.addAttribute("notification", true);
-//        return "SignIn";
-//    }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(QuizUser user, Model model, HttpServletRequest request) {
         Optional<QuizUser> currentUser = iUserService.getUserbyEmail(user.getEmail());
         if (currentUser.isPresent()) {
             if (currentUser.get().getPassword().equals(user.getPassword())) {
                 //set cookie
-                model.addAttribute("currentUser", currentUser);
                 return "redirect:/";
             }
         }

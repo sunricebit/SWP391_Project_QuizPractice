@@ -67,17 +67,6 @@ public class QuizService implements IQuizService {
         quizRepository.save(quiz);
     }
 
-    @Override
-    public List<QuizList> getAllQuizByUserId(long userId) {
-        List<QuizList> qList = new ArrayList<>();
-        for (QuizList quiz : quizRepository.findAll()) {
-            if (quiz.getUserId() == userId) {
-                qList.add(quiz);
-            }
-        }
-        return qList;
-    }
-
     @Autowired
     private AnswerRepository answerRepository;
 

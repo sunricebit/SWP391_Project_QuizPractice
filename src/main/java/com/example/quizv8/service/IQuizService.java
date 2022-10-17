@@ -12,8 +12,6 @@ public interface IQuizService {
     public List<QuizList> getAllQuiz();
     public Optional<QuizList> getQuiz(long id);
     public void saveQuiz(QuizList quiz);
-
-    public List<QuizList> getAllQuizByUserId(long userId);
     public List<Question> getAllQuestion();
 
 }

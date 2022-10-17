@@ -32,7 +32,7 @@ public class QuizManagerController {
     private IQuizListService IQuizListService;
     @RequestMapping("/")
     public String showAllQuizList(Model model, @RequestParam long userId){
-        List<QuizList> qList = IQuizService.getAllQuizByUserId(userId);
+        List<QuizList> qList = IQuizListService.getQuizByUserID(userId);
         model.addAttribute("qList",qList);
         //Set model cho category
 
