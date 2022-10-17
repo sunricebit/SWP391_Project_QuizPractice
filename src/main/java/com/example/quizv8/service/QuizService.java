@@ -68,21 +68,4 @@ public class QuizService implements IQuizService {
     @Autowired
     private AnswerRepository answerRepository;
 
-//    @Override
-//    public List<Question> getAllQuestion() {
-//        List<Answer> ans = answerRepository.findAll();
-//        List<QuestionDetail> questionDetails = questionRepository.findAll();
-//        List<Question> questions = new ArrayList<Question>();
-//        for (int i = 0; i < questionDetails.size(); i++) {
-//            List<Answer> answers = new ArrayList<Answer>();
-//            for (int j = 0; j < ans.size(); j++) {
-//                if (questionDetails.get(i).getQuestionNo() == ans.get(j).getQuestion().getQuestionNo()) {
-//                    answers.add(ans.get(j));
-//                }
-//            }
-//            Question q = new Question(questionDetails.get(i), answers);
-//            questions.add(q);
-//        }
-//        return questions;
-//    }
 }
