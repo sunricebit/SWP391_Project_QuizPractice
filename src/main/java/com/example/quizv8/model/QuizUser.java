@@ -11,7 +11,6 @@ public class QuizUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    //this is name
     @Column(name = "_email")
 
     private String email;
