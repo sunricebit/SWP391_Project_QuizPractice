@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IQuizService {
-    public void updateQuiz(long id, QuizList quiz);
-    public boolean deleteQuiz(long id);
-    public List<QuizList> getAllQuiz();
-    public Optional<QuizList> getQuiz(long id);
-    public void saveQuiz(QuizList quiz);
-//    public List<Question> getAllQuestion();
+//    public void updateQuiz(long id, QuizList quiz);
+//    public boolean deleteQuiz(long id);
+//    public List<QuizList> getAllQuiz();
+//    public Optional<QuizList> getQuiz(long id);
+//    public void saveQuiz(QuizList quiz);
     public List<QuestionDetail> getAllQuestion(long quizListID);
 
 }

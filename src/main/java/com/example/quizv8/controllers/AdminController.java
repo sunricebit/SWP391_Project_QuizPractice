@@ -45,18 +45,12 @@ public class AdminController {
         iUserService.deleteUser(userId);
         return "redirect:/admin/";
     }
-//    @RequestMapping(value = "/view", method = RequestMethod.GET)
-////    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
-////            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
-////            model.addAttribute("userquiz", userquiz);
-////            return "view";
-////    }
     //API show list
     @RequestMapping("/")
     public String index(Model model) {
-        List<QuizUser> users = iUserService.getAllUser();
+        List<QuizUser> allUser = iUserService.getAllUser();
 
-        model.addAttribute("users", users);
+        model.addAttribute("allUser", allUser);
 
         return "index";
     }

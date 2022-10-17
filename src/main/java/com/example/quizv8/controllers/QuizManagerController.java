@@ -23,10 +23,6 @@ import java.util.List;
 @RequestMapping("/QuizManager")
 public class QuizManagerController {
     @Autowired
-    private IQuizService IQuizService;
-    @Autowired
-    private IStateService IStateService;
-    @Autowired
     private ICategoryService ICategoryService;
     @Autowired
     private IQuizListService IQuizListService;
@@ -35,7 +31,6 @@ public class QuizManagerController {
         List<QuizList> qList = IQuizListService.getQuizByUserID(userId);
         model.addAttribute("qList",qList);
         //Set model cho category
-
         return "QuizManager";
     }
 
