@@ -18,23 +18,23 @@ import java.util.Optional;
 public class LoginController {
     @Autowired
     private IUserService iUserService;
-
-    @RequestMapping("/")
-    public String getQuizUser(Model model) {
+    @RequestMapping("/In")
+    public String getQuizUser(Model model, HttpServletRequest request) {
         model.addAttribute("user", new QuizUser());
         return "SignIn";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(QuizUser user, Model model, HttpServletRequest request) {
-        Optional<QuizUser> currentUser = iUserService.getUserbyEmail(user.getEmail());
-        if (currentUser.isPresent()) {
-            if (currentUser.get().getPassword().equals(user.getPassword())) {
-                //set cookie
-                return "redirect:/";
+            Optional<QuizUser> currentUser = iUserService.getUserbyEmail(user.getEmail());
+            if (currentUser.isPresent()) {
+                if (currentUser.get().getPassword().equals(user.getPassword())) {
+                    //set cookie
+                    model.addAttribute("currentUser", currentUser);
+                    return "redirect:/demo";
+                }
             }
+            model.addAttribute("notification",true);
+            return "forward:/SignIn/In";
         }
-        model.addAttribute("notification", true);
-        return "redirect:/SignIn/";
-    }
 }
