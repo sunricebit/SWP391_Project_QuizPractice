@@ -31,14 +31,14 @@ public class UserService implements IUserService {
         }
     }
 
+    @Autowired
+    private IQuizListService iQuizListService;
     @Override
     public boolean deleteUser(long id) {
-        if (id > 0) {
-            QuizUser user1 = userRepository.getById(id);
-            if (user1 != null) {
+        QuizUser user1 = userRepository.getById(id);
+        if (user1 != null) {
                 userRepository.delete(user1);
                 return true;
-            }
         }
         return false;
     }
