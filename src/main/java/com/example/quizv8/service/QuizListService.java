@@ -27,11 +27,10 @@ public class QuizListService implements IQuizListService {
     private AnswerRepository answerRepository;
     @Override
     public boolean deleteAnswer(long questionId) {
-        List<Answer> aList = answerRepository.findAll();
+        QuestionDetail questionDetail = questionRepository.getById(questionId);
+        List<Answer> aList = answerRepository.getAllByQuestion(questionDetail);
         for (Answer answer:aList){
-            if(answer.getQuestion().getQuestionNo()==questionId){
                 answerRepository.delete(answer);
-            }
         }
         return true;
     }
@@ -39,13 +38,11 @@ public class QuizListService implements IQuizListService {
     private QuestionRepository questionRepository;
     @Override
     public boolean deleteQuestionDetail(long quizListId) {
-
-        List<QuestionDetail> qList = questionRepository.findAll();
+        QuizList quizList = quizListRepository.getById(quizListId);
+        List<QuestionDetail> qList = questionRepository.getAllByQuizList(quizList);
         for (QuestionDetail question:qList){
             deleteAnswer(question.getQuestionNo());
-            if(question.getQuizList().getId()==quizListId){
-                questionRepository.delete(question);
-            }
+            questionRepository.delete(question);
         }
         return true;
     }
@@ -67,14 +64,6 @@ public class QuizListService implements IQuizListService {
     private QuizStateRepositoty quizStateRepositoty;
     @Override
     public List<QuizList> getQuizPublic(long stateId) {
-//        List<QuizList> listsQuiz = quizListRepository.findAll();
-//        List<QuizList> publicQuiz = new ArrayList<QuizList>();
-//        for (QuizList quiz: listsQuiz) {
-//            if(quiz.getState().getId()==stateId){
-//                publicQuiz.add(quiz);
-//            }
-//        }
-//        return publicQuiz;
         QuizState state = quizStateRepositoty.findById(stateId);
         return quizListRepository.findQuizListsByState(state);
     }

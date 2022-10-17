@@ -13,5 +13,6 @@ import java.util.Optional;
 public interface QuizListRepository extends JpaRepository<QuizList, Long> {
     List<QuizList> findQuizListByCategoryAndState(Category category, QuizState state);
     List<QuizList> findQuizListsByState(QuizState state);
+
 //    List<QuizList> findById(long id);
 }
