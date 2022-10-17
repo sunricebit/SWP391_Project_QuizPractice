@@ -87,7 +87,6 @@ public class QuizService implements IQuizService {
         List<QuestionDetail> questionDetails = questionRepository.findAll();
         List<Question> questions = new ArrayList<Question>();
         for (int i = 0; i < questionDetails.size(); i++) {
-
             List<Answer> answers = new ArrayList<Answer>();
             for (int j = 0; j < ans.size(); j++) {
                 if (questionDetails.get(i).getQuestionNo() == ans.get(j).getQuestionID()) {
