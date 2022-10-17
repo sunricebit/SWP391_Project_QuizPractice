@@ -17,17 +17,17 @@
 <!--      <input hidden type="checkbox" value="${ans.correct}">-->
 <!--    </div>-->
 <!--  </div>-->
-  <ol type="1">
+
     <div th:each="ques : ${quizlists}">
-      <li th:text="${ques.detail.question}"></li>
-        <ol type="a">
-            <li th:each="ans : ${ques.answers}">
-              <input type="checkbox" th:text="${ans.answer}">
-              <input hidden type="checkbox" value="${ans.correct}">
-            </li>
-        </ol>
+      <ul>
+        <h2 th:text="${ques.detail.question}"></h2>
+        <li th:each="ans : ${ques.answers}">
+          <input type="checkbox" th:text="${ans.answer}">
+          <input hidden type="checkbox" value="${ans.correct}">
+        </li>
+      </ul>
     </div>
-  </ol>
+
   <a href="/quizlist/submit" class="btn btn-success">Submit</a>
 </div>
 </body>
