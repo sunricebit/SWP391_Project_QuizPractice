@@ -9,8 +9,9 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "_answerNo")
     private long answerNo;
-    @Column(name = "id")
-    private long questionID;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private QuestionDetail question;
     @Column(name = "_answer")
     private String answer;
     @Column(name = "_correct")
@@ -19,9 +20,9 @@ public class Answer {
     public Answer() {
     }
 
-    public Answer(long answerNo, long questionID, String answer, boolean correct) {
+    public Answer(long answerNo, QuestionDetail question, String answer, boolean correct) {
         this.answerNo = answerNo;
-        this.questionID = questionID;
+        this.question = question;
         this.answer = answer;
         this.correct = correct;
     }
@@ -34,12 +35,12 @@ public class Answer {
         this.answerNo = answerNo;
     }
 
-    public long getQuestionID() {
-        return questionID;
+    public QuestionDetail getQuestion() {
+        return question;
     }
 
-    public void setQuestionID(long questionID) {
-        this.questionID = questionID;
+    public void setQuestion(QuestionDetail question) {
+        this.question = question;
     }
 
     public String getAnswer() {

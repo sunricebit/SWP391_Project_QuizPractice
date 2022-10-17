@@ -10,13 +10,17 @@
 <div class="col-3"></div>
 <div class="container col-6">
   <h1>Quiz Practice</h1>
-  <h2 th:each="quiz : ${quizlists}">
-    <p th:text="${quiz.detail}"></p>
-    <h3 th:each="answer : ${quiz.answers}">
-      <p th:text="${answer.answer}"></p>
-      <p th:text="${answer.correct}" hidden></p>
-    </h3>
-  </h2>
+
+
+    <div th:each="ques : ${questions}">
+      <ul>
+        <h2 th:text="${ques.question}"></h2>
+        <li th:each="ans : ${ques.getAnswers()}">
+          <input type="checkbox" th:text="${ans.answer}">
+          <input hidden type="checkbox" value="${ans.correct}">
+        </li>
+      </ul>
+    </div>
   <a href="/quizlist/submit" class="btn btn-success">Submit</a>
 </div>
 </body>

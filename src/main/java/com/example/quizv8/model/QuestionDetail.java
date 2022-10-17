@@ -1,6 +1,7 @@
 package com.example.quizv8.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Question_Details")
@@ -9,18 +10,29 @@ public class QuestionDetail {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "_questionNo")
     private long questionNo;
-    @Column(name = "id")
-    private long quizListID;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private QuizList quizList;
     @Column(name = "_question")
     private String question;
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers;
 
     public QuestionDetail() {
     }
 
-    public QuestionDetail(long questionNo, long quizListID, String question) {
+    public QuestionDetail(long questionNo, QuizList quizList, String question) {
         this.questionNo = questionNo;
-        this.quizListID = quizListID;
+        this.quizList = quizList;
         this.question = question;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     public long getQuestionNo() {
@@ -31,12 +43,12 @@ public class QuestionDetail {
         this.questionNo = questionNo;
     }
 
-    public long getQuizListID() {
-        return quizListID;
+    public QuizList getQuizList() {
+        return quizList;
     }
 
-    public void setQuizListID(long quizListID) {
-        this.quizListID = quizListID;
+    public void setQuizList(QuizList quizList) {
+        this.quizList = quizList;
     }
 
     public String getQuestion() {

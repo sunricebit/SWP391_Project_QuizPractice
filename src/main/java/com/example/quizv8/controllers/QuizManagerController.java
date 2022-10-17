@@ -23,19 +23,14 @@ import java.util.List;
 @RequestMapping("/QuizManager")
 public class QuizManagerController {
     @Autowired
-    private IQuizService IQuizService;
-    @Autowired
-    private IStateService IStateService;
-    @Autowired
     private ICategoryService ICategoryService;
     @Autowired
     private IQuizListService IQuizListService;
     @RequestMapping("/")
     public String showAllQuizList(Model model, @RequestParam long userId){
-        List<QuizList> qList = IQuizService.getAllQuizByUserId(userId);
+        List<QuizList> qList = IQuizListService.getQuizByUserID(userId);
         model.addAttribute("qList",qList);
         //Set model cho category
-
         return "QuizManager";
     }
 
