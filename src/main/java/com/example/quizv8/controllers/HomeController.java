@@ -38,4 +38,5 @@ public class HomeController {
         model.addAttribute("quizl", quizl);
         return "DemoHomePage";
     }
+    public String homePage(){return "homePage";}
 }
