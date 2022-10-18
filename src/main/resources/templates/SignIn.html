@@ -25,7 +25,7 @@
           <i class="login__icon fas fa-lock"></i>
           <input type="password" class="login__input" id="password" th:field="*{password}" name="password" autofocus="autofocus" placeholder="Enter Password">
         </div>
-        <p th:if="${notification}" class="fancybox-error" >Email or password is incorrect</p>
+        <p th:if="${notification}" class="fancybox-error" style="font-weight: bold;color: red;" >Email or password is incorrect</p>
         <button class="button login__submit" value="Login" id="submit" name="submit">
           <span class="button__text">Log In Now</span>
           <i class="button__icon fas fa-chevron-right"></i>

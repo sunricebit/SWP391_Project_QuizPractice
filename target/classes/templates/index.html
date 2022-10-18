@@ -14,23 +14,18 @@
     <tr>
       <th>Email</th>
       <th>Password</th>
+      <th>Status</th>
       <th>Role</th>
       <th>Actions</th>
     </tr>
-    <tr th:each="user : ${users}">
-      <td th:text="${user.getEmail()}"></td>
-      <td th:text="${user.password}"></td>
-      <td th:text="${user.role}"></td>
+    <tr th:each="u : ${allUser}">
+      <td th:text="${u.getEmail()}"></td>
+      <td th:text="${u.password}"></td>
+      <td th:text="${u.status}"></td>
+      <td th:text="${u.role}"></td>
       <td>
-        <a th:href="@{/quizmanager/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{/quizmanager/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
-      </td>
-    </tr>
-  </table>
-  <a href="/quizmanager/add" class="btn btn-success">Add User</a>
-        <a th:href="@{/admin/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{/admin/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
-        <a th:href="@{/admin/view?id={id}(id=${user.id})}" class="btn btn-primary">View Quiz List</a>
+        <a th:href="@{/admin/edit?id={id}(id=${u.getId()})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/admin/LockOrUnlock?id={id}(id=${u.getId()})}" class="btn btn-danger">Lock/Unlock</a>
       </td>
     </tr>
   </table>

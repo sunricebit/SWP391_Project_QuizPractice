@@ -1,6 +1,5 @@
 package com.example.quizv8.controllers;
 
-import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.service.IQuizListService;
 import com.example.quizv8.service.IUserService;
@@ -29,8 +28,8 @@ public class AdminController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String editUser(@RequestParam("id") Long userId, Model model) {
-        Optional<QuizUser> userEdit = iUserService.getUser(userId);
-        userEdit.ifPresent(user -> model.addAttribute("user", user));
+        QuizUser userEdit = iUserService.getUser(userId);
+        model.addAttribute("user", userEdit);
         return "editUser";
     }
 
@@ -40,23 +39,23 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/LockOrUnlock", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
-        iUserService.deleteUser(userId);
+        QuizUser quizUser = iUserService.getUser(userId);
+        boolean s = true;
+        if(quizUser.isStatus()){
+            s= false;
+        }
+        quizUser.setStatus(s);
+        iUserService.saveUser(quizUser);
         return "redirect:/admin/";
     }
-//    @RequestMapping(value = "/view", method = RequestMethod.GET)
-////    public  String viewQuizList(@RequestParam("id") Long userId, Model model){
-////            List<QuizList> userquiz = iQuizListService.getQuizByUserID(userId);
-////            model.addAttribute("userquiz", userquiz);
-////            return "view";
-////    }
     //API show list
     @RequestMapping("/")
     public String index(Model model) {
-        List<QuizUser> users = iUserService.getAllUser();
+        List<QuizUser> allUser = iUserService.getAllUser();
 
-        model.addAttribute("users", users);
+        model.addAttribute("allUser", allUser);
 
         return "index";
     }

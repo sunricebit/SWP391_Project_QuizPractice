@@ -31,14 +31,14 @@ public class UserService implements IUserService {
         }
     }
 
+    @Autowired
+    private IQuizListService iQuizListService;
     @Override
     public boolean deleteUser(long id) {
-        if (id > 0) {
-            QuizUser user1 = userRepository.getById(id);
-            if (user1 != null) {
+        QuizUser user1 = userRepository.getById(id);
+        if (user1 != null) {
                 userRepository.delete(user1);
                 return true;
-            }
         }
         return false;
     }
@@ -50,8 +50,7 @@ public class UserService implements IUserService {
 
     @Override
     public QuizUser saveUser(QuizUser user) {
-        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole());
-        System.out.println(""+quizUser.toString());
+        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole(), user.isStatus());
         return userRepository.save(quizUser);
     }
 
@@ -67,8 +66,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<QuizUser> getUser(long id) {
-        return userRepository.findById(id);
+    public QuizUser getUser(long id) {
+        return userRepository.getById(id);
     }
 
 }

@@ -64,4 +64,8 @@ public class QuizService implements IQuizService {
         QuizList quizList = quizListRepository.getById(quizListID);
         return questionRepository.getAllByQuizList(quizList);
     }
+
+    @Autowired
+    private AnswerRepository answerRepository;
+
 }
