@@ -50,8 +50,7 @@ public class UserService implements IUserService {
 
     @Override
     public QuizUser saveUser(QuizUser user) {
-        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole());
-        System.out.println(""+quizUser.toString());
+        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole(), user.isStatus());
         return userRepository.save(quizUser);
     }
 
@@ -67,8 +66,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<QuizUser> getUser(long id) {
-        return userRepository.findById(id);
+    public QuizUser getUser(long id) {
+        return userRepository.getById(id);
     }
 
 }
