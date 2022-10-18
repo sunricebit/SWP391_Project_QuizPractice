@@ -15,24 +15,29 @@ public class QuestionDetail {
     private QuizList quizList;
     @Column(name = "_question")
     private String question;
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answers;
+    @Column(name = "_answerA")
+    private String answerA;
+    @Column(name = "_correctAnswer")
+    private String correctAnswer;
+    @Column(name="_answerB")
+    private String answerB;
+    @Column(name="_answerC")
+    private String answerC;
+    @Column(name="_answerD")
+    private String answerD;
 
     public QuestionDetail() {
     }
 
-    public QuestionDetail(long questionNo, QuizList quizList, String question) {
+    public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String correctAnswer, String answerB, String answerC, String answerD) {
         this.questionNo = questionNo;
         this.quizList = quizList;
         this.question = question;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+        this.answerA = answerA;
+        this.correctAnswer = correctAnswer;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
     }
 
     public long getQuestionNo() {
@@ -57,5 +62,45 @@ public class QuestionDetail {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getAnswerA() {
+        return answerA;
+    }
+
+    public void setAnswerA(String answerA) {
+        this.answerA = answerA;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String getAnswerB() {
+        return answerB;
+    }
+
+    public void setAnswerB(String answerB) {
+        this.answerB = answerB;
+    }
+
+    public String getAnswerC() {
+        return answerC;
+    }
+
+    public void setAnswerC(String answerC) {
+        this.answerC = answerC;
+    }
+
+    public String getAnswerD() {
+        return answerD;
+    }
+
+    public void setAnswerD(String answerD) {
+        this.answerD = answerD;
     }
 }
