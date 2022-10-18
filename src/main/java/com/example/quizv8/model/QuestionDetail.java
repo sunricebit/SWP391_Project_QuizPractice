@@ -17,19 +17,20 @@ public class QuestionDetail {
     private String question;
     @Column(name = "_answerA")
     private String answerA;
+
+    @Column(name = "_answerB")
+    private String answerB;
+
+    @Column(name = "_answerC")
+    private String answerC;
+    @Column(name = "_answerD")
+    private String answerD;
     @Column(name = "_correctAnswer")
     private String correctAnswer;
-    @Column(name="_answerB")
-    private String answerB;
-    @Column(name="_answerC")
-    private String answerC;
-    @Column(name="_answerD")
-    private String answerD;
-
     public QuestionDetail() {
     }
-
     public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String correctAnswer, String answerB, String answerC, String answerD) {
+
         this.questionNo = questionNo;
         this.quizList = quizList;
         this.question = question;
@@ -38,6 +39,7 @@ public class QuestionDetail {
         this.answerB = answerB;
         this.answerC = answerC;
         this.answerD = answerD;
+
     }
 
     public long getQuestionNo() {
