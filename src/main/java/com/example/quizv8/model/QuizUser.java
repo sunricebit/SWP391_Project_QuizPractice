@@ -21,21 +21,32 @@ public class QuizUser {
     @Column(name = "_role")
     private String role;
 
+    @Column(name = "_status")
+    private boolean status;
 
     @OneToMany(mappedBy = "user")
     private List<QuizList> quiz;
     public QuizUser() {
     }
 
-    public QuizUser(long id, String email, String password, String role) {
+    public QuizUser(long id, String email, String password, String role, boolean status) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.status = status;
     }
 
     public List<QuizList> getQuiz() {
         return quiz;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public void setQuiz(List<QuizList> quiz) {
