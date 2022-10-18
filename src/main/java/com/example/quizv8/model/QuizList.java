@@ -16,11 +16,6 @@ public class QuizList {
     private boolean active;
     @Column(name = "_vote", nullable = false)
     private long vote;
-//    @Column(name = "_categoryId", nullable = false)
-//    private long categoryId;
-
-//    @Column(name = "_userId")
-//    private long userId;
     @OneToMany(mappedBy = "quizList")
     private List<QuestionDetail> questionDetailList;
     @ManyToOne

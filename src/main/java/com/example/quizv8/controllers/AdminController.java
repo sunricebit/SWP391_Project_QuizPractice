@@ -1,5 +1,6 @@
 package com.example.quizv8.controllers;
 
+import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.service.IQuizListService;
 import com.example.quizv8.service.IUserService;
@@ -58,5 +59,12 @@ public class AdminController {
         model.addAttribute("allUser", allUser);
 
         return "index";
+    }
+    @RequestMapping("/user")
+    public String showAllQuizList(Model model, @RequestParam("id") long userId){
+        List<QuizList> qList = iQuizListService.getQuizByUserID(userId);
+        model.addAttribute("qList",qList);
+        //Set model cho category
+        return "QuizManager";
     }
 }
