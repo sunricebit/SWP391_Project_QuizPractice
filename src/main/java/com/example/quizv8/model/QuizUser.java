@@ -52,7 +52,7 @@ public class QuizUser {
     public void setQuiz(List<QuizList> quiz) {
         this.quiz = quiz;
     }
-
+    //
     public long getId() {
         return id;
     }
