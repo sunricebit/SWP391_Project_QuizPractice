@@ -4,10 +4,10 @@ import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/SignUp")
@@ -16,19 +16,30 @@ public class RegisterController {
         super();
         this.iUserService = iUserService;
     }
+
     @Autowired
     private IUserService iUserService;
+
     @ModelAttribute("quizUser")
-    public QuizUser quizUser(){
+    public QuizUser quizUser() {
         return new QuizUser();
     }
+
     @GetMapping
-    public String showRegister(){
+    public String showRegister() {
         return "SignUp";
     }
+
     @PostMapping
-    public String register(@ModelAttribute("quizUser")QuizUser user){
-        iUserService.saveUser(user);
-        return "redirect:/SignIn";
+    public String register(@ModelAttribute("quizUser") QuizUser user, HttpServletRequest res, Model model ) {
+//        String pass = res.getParameter("Pass");
+//        String rePass = res.getParameter("rePass");
+//        if (user.getPassword().equals(rePass)) {
+            iUserService.saveUser(user);
+            return "redirect:/SignIn/In?success";
+//        }
+//        model.addAttribute("notification", true);
+//        return "forward:/SignUp";
     }
+
 }

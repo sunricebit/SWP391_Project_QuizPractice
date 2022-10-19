@@ -26,6 +26,10 @@
           <input type="password" class="login__input" id="password" th:field="*{password}" name="password" autofocus="autofocus" placeholder="Enter Password">
         </div>
         <p th:if="${notification}" class="fancybox-error" style="font-weight: bold;color: red;" >Email or password is incorrect</p>
+        <p th:if="${notification2}" class="fancybox-error" style="font-weight: bold;color: red;" >Your account is locked</p>
+        <div th:if="${param.success}">
+          <div class="alert alert-info" style="color: red; font-weight: bold">Create account success</div>
+        </div>
         <button class="button login__submit" value="Login" id="submit" name="submit">
           <span class="button__text">Log In Now</span>
           <i class="button__icon fas fa-chevron-right"></i>
