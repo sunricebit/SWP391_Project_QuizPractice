@@ -32,8 +32,6 @@ public class QuizManagerController {
         IQuizListService.deleteQuizList(quizListId);
         model.addAttribute("RetMessage","Delete success!");
         return "redirect:/QuizManager/?userId=1";
-
-
     }
     @RequestMapping("/add")
     public String redirectToCreateQuizPage(Model model,@RequestParam("id") long userId){

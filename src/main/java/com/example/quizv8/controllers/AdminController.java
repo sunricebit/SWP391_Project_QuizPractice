@@ -40,6 +40,12 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
+    @RequestMapping("/delete")
+    public String deleteQuiz(Model model, @RequestParam("id") long quizListId){
+        iQuizListService.deleteQuizList(quizListId);
+        model.addAttribute("RetMessage","Delete success!");
+        return "redirect:/QuizManager/?userId=1";
+    }
     @RequestMapping(value = "/LockOrUnlock", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
         QuizUser quizUser = iUserService.getUser(userId);
