@@ -70,4 +70,10 @@ public class QuizListService implements IQuizListService {
         QuizList quizList = quizListRepository.getById(quizListID);
         return questionRepository.getAllByQuizList(quizList);
     }
+
+    @Override
+    public QuizList saveQuiz(QuizList quizList) {
+        QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
+        return quizListRepository.save(newQuiz);
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "Quiz_State")
 public class QuizState {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     @Column(name = "_stateDetail")

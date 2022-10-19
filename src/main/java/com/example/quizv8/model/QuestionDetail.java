@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "Question_Details")
 public class QuestionDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "_questionNo")
     private long questionNo;
     @ManyToOne

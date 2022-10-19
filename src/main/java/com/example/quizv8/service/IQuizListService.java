@@ -15,4 +15,5 @@ public interface IQuizListService {
 
     public List<QuizList> getQuizByCategory(String categoryName);
     public List<QuestionDetail> getAllQuestion(long quizListID);
+    public QuizList saveQuiz(QuizList quizList);
 }
