@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "Question_Details")
 public class QuestionDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "_questionNo")
     private long questionNo;
     @ManyToOne
@@ -15,24 +15,72 @@ public class QuestionDetail {
     private QuizList quizList;
     @Column(name = "_question")
     private String question;
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answers;
+    @Column(name = "_answerA")
+    private String answerA;
+
+    @Column(name = "_answerB")
+    private String answerB;
+
+    @Column(name = "_answerC")
+    private String answerC;
+    @Column(name = "_answerD")
+    private String answerD;
+    @Column(name = "_correctAnswer")
+    private String correctAnswer;
 
     public QuestionDetail() {
     }
 
-    public QuestionDetail(long questionNo, QuizList quizList, String question) {
+
+    public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
         this.questionNo = questionNo;
         this.quizList = quizList;
         this.question = question;
+        this.answerA = answerA;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
+        this.correctAnswer = correctAnswer;
     }
 
-    public List<Answer> getAnswers() {
-        return answers;
+    public String getAnswerA() {
+        return answerA;
     }
 
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+    public void setAnswerA(String answerA) {
+        this.answerA = answerA;
+    }
+
+    public String getAnswerB() {
+        return answerB;
+    }
+
+    public void setAnswerB(String answerB) {
+        this.answerB = answerB;
+    }
+
+    public String getAnswerC() {
+        return answerC;
+    }
+
+    public void setAnswerC(String answerC) {
+        this.answerC = answerC;
+    }
+
+    public String getAnswerD() {
+        return answerD;
+    }
+
+    public void setAnswerD(String answerD) {
+        this.answerD = answerD;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public long getQuestionNo() {

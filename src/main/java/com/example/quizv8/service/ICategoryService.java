@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ICategoryService {
     List<Category> getAllCategory();
 
-    Optional<Category> getCategory(long id);
+    Category getCategory(long id);
 
     void saveCategory(Category c);
 

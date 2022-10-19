@@ -2,25 +2,21 @@ package com.example.quizv8.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "Quiz_List")
 public class QuizList {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
-    @Column(name = "_name", nullable = false)
+    @Column(name = "_name")
     private String name;
-    @Column(name = "_active", nullable = false)
+    @Column(name = "_active")
     private boolean active;
-    @Column(name = "_vote", nullable = false)
+    @Column(name = "_vote")
     private long vote;
-//    @Column(name = "_categoryId", nullable = false)
-//    private long categoryId;
-
-//    @Column(name = "_userId")
-//    private long userId;
     @OneToMany(mappedBy = "quizList")
     private List<QuestionDetail> questionDetailList;
     @ManyToOne
@@ -33,6 +29,12 @@ public class QuizList {
     @JoinColumn(name = "_stateId")
     private QuizState state;
     public QuizList() {
+    }
+
+    public QuizList(boolean active, long vote, QuizUser user) {
+        this.active = active;
+        this.vote = vote;
+        this.user = user;
     }
 
     public QuizList(long id, String name, boolean active, long vote, QuizUser user, Category category, QuizState state) {
@@ -92,8 +94,6 @@ public class QuizList {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-
 
     public QuizState getState() {
         return state;

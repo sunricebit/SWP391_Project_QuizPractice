@@ -24,24 +24,12 @@ public class QuizListService implements IQuizListService {
     }
 
     @Autowired
-    private AnswerRepository answerRepository;
-    @Override
-    public boolean deleteAnswer(long questionId) {
-        QuestionDetail questionDetail = questionRepository.getById(questionId);
-        List<Answer> aList = answerRepository.getAllByQuestion(questionDetail);
-        for (Answer answer:aList){
-                answerRepository.delete(answer);
-        }
-        return true;
-    }
-    @Autowired
     private QuestionRepository questionRepository;
     @Override
     public boolean deleteQuestionDetail(long quizListId) {
         QuizList quizList = quizListRepository.getById(quizListId);
         List<QuestionDetail> qList = questionRepository.getAllByQuizList(quizList);
         for (QuestionDetail question:qList){
-            deleteAnswer(question.getQuestionNo());
             questionRepository.delete(question);
         }
         return true;
@@ -77,5 +65,15 @@ public class QuizListService implements IQuizListService {
         Category category = categoryRepository.findCategoryByCategoryName(categoryName);
         return quizListRepository.findQuizListByCategoryAndState(category, state);
     }
+    @Override
+    public List<QuestionDetail> getAllQuestion(long quizListID) {
+        QuizList quizList = quizListRepository.getById(quizListID);
+        return questionRepository.getAllByQuizList(quizList);
+    }
 
+    @Override
+    public QuizList saveQuiz(QuizList quizList) {
+        QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
+        return quizListRepository.save(newQuiz);
+    }
 }
