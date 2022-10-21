@@ -10,6 +10,8 @@ import java.util.*;
 @Service
 public class QuizListService implements IQuizListService {
     @Autowired
+    private ExamRepository examRepository;
+    @Autowired
     private QuizListRepository quizListRepository;
     @Override
     public List<QuizList> getQuizByUserID(long id) {
@@ -22,18 +24,14 @@ public class QuizListService implements IQuizListService {
         }
         return userquiz;
     }
+    @Override
+    public boolean deleteAnswer(long questionId) {
+        return false;
+    }
 
     @Autowired
     private AnswerRepository answerRepository;
-    @Override
-    public boolean deleteAnswer(long questionId) {
-        QuestionDetail questionDetail = questionRepository.getById(questionId);
-        List<Answer> aList = answerRepository.getAllByQuestion(questionDetail);
-        for (Answer answer:aList){
-                answerRepository.delete(answer);
-        }
-        return true;
-    }
+
     @Autowired
     private QuestionRepository questionRepository;
     @Override
@@ -76,6 +74,17 @@ public class QuizListService implements IQuizListService {
         QuizState state = quizStateRepositoty.findById(stateID);
         Category category = categoryRepository.findCategoryByCategoryName(categoryName);
         return quizListRepository.findQuizListByCategoryAndState(category, state);
+    }
+
+    @Override
+    public Exam saveExam(Exam exam) {
+        Exam exam1 = new Exam(exam.getUserId(),exam.getQuizName(),exam.getPercentage(),exam.getTotalQuestion(),exam.getDate());
+        return examRepository.save(exam1);
+    }
+
+    @Override
+    public List<Exam> getAllExam(long uid) {
+        return examRepository.getAllByUserId(uid);
     }
 
 }

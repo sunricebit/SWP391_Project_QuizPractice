@@ -1,13 +1,14 @@
 package com.example.quizv8.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "Exam")
 public class Exam {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     @Column(name = "_userId")
@@ -15,7 +16,7 @@ public class Exam {
     @Column(name = "_quizName")
     private String quizName;
     @Column(name = "_date")
-    private Date date;
+    private LocalDate date;
     @Column(name = "_percentage")
     private String percentage;
     @Column(name = "_totalQuestion")
@@ -24,8 +25,7 @@ public class Exam {
     public Exam() {
     }
 
-    public Exam(long id, long userId, String quizName, Date date, String percentage, long totalQuestion) {
-        this.id = id;
+    public Exam(long userId, String quizName, String percentage, long totalQuestion,LocalDate date) {
         this.userId = userId;
         this.quizName = quizName;
         this.date = date;
@@ -57,11 +57,11 @@ public class Exam {
         this.quizName = quizName;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

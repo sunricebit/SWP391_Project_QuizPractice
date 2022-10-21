@@ -39,18 +39,45 @@
 <div class="col-3"></div>
 <div class="container col-6">
   <h1>Quiz Practice</h1>
-
-
     <div th:each="ques : ${questions}">
       <ul>
         <h2 th:text="${ques.question}"></h2>
-        <li th:each="ans : ${ques.getAnswers()}">
-          <input type="checkbox" th:text="${ans.answer}">
-          <input hidden type="checkbox" value="${ans.correct}">
+        <li>
+          <input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerA}" th:value="${ques.answerA}">
+        </li>
+        <li><input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerB}" th:value="${ques.answerB}">
+        </li>
+        <li><input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerC}" th:value="${ques.answerC}">
+        </li>
+        <li>  <input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerD}" th:value="${ques.answerD}">
+        </li>
+        <li hidden>
+          <input type="radio" th:name="${ques.questionNo}" th:text="${ques.answerD}" value="_default" checked>
         </li>
       </ul>
     </div>
-  <a href="/quizlist/submit" class="btn btn-success">Submit</a>
+
+
+  <form th:object="${result}" th:action="@{submit}" method="post">
+    <textarea hidden th:field="*{strResult}" id="result"></textarea>
+<!--    <input type="submit" value="Ket thuc bai thi">-->
+    <input style="margin-left: 325px" type="submit" class="btn btn-success" onclick="displayRadioValue()" value="Submit">
+  </form>
+
+  <script>
+    function displayRadioValue() {
+      var ele = document.getElementsByTagName('input');
+
+      for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked) {
+          document.getElementById("result").innerHTML
+                  += "," + ele[i].value;
+        }
+      }
+    }
+
+
+  </script>
 </div>
 </body>
 </html>

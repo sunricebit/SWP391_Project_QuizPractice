@@ -1,5 +1,6 @@
 package com.example.quizv8.service;
 
+import com.example.quizv8.model.Exam;
 import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizState;
 
@@ -14,5 +15,6 @@ public interface IQuizListService {
     public List<QuizList> getQuizPublic(long stateId);
 
     public List<QuizList> getQuizByCategory(String categoryName);
-
+    public Exam saveExam(Exam exam);
+    public List<Exam> getAllExam(long uid);
 }

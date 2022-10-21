@@ -14,4 +14,5 @@ public interface IQuizService {
 //    public void saveQuiz(QuizList quiz);
     public List<QuestionDetail> getAllQuestion(long quizListID);
 
+
 }

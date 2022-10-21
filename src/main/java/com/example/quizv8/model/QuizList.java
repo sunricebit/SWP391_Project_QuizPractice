@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "Quiz_List")
 public class QuizList {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
     @Column(name = "_name", nullable = false)
@@ -93,7 +93,13 @@ public class QuizList {
         this.category = category;
     }
 
+    public List<QuestionDetail> getQuestionDetailList() {
+        return questionDetailList;
+    }
 
+    public void setQuestionDetailList(List<QuestionDetail> questionDetailList) {
+        this.questionDetailList = questionDetailList;
+    }
 
     public QuizState getState() {
         return state;

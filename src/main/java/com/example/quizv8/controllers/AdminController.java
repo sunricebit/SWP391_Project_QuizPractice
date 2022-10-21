@@ -1,5 +1,6 @@
 package com.example.quizv8.controllers;
 
+import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.service.IQuizListService;
 import com.example.quizv8.service.IUserService;
@@ -28,8 +29,8 @@ public class AdminController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String editUser(@RequestParam("id") Long userId, Model model) {
-        QuizUser userEdit = iUserService.getUser(userId);
-        model.addAttribute("user", userEdit);
+        Optional<QuizUser> userEdit = iUserService.getUser(userId);
+        userEdit.ifPresent(user -> model.addAttribute("user", user));
         return "editUser";
     }
 
@@ -39,15 +40,9 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    @RequestMapping(value = "/LockOrUnlock", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
-        QuizUser quizUser = iUserService.getUser(userId);
-        boolean s = true;
-        if(quizUser.isStatus()){
-            s= false;
-        }
-        quizUser.setStatus(s);
-        iUserService.saveUser(quizUser);
+        iUserService.deleteUser(userId);
         return "redirect:/admin/";
     }
     //API show list
