@@ -1,6 +1,8 @@
 package com.example.quizv8.controllers;
 
+import com.example.quizv8.model.Category;
 import com.example.quizv8.model.QuizUser;
+import com.example.quizv8.service.ICategoryService;
 import com.example.quizv8.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -18,6 +21,7 @@ import java.util.Optional;
 public class LoginController {
     @Autowired
     private IUserService iUserService;
+
 
     @RequestMapping("/In")
     public String getQuizUser(Model model, HttpServletRequest request) {

@@ -23,22 +23,28 @@ public class HomeController {
     @RequestMapping("/")
     public String home(){return "homePage";}
     @RequestMapping("/home")
-    public String Home(){return "home";}
-    @RequestMapping("/demo")
-    public  String homeDemo(Model model){
+    public String Home(Model model){
         List<QuizList> quizl = iQuizListService.getQuizPublic(2);
         model.addAttribute("quizl", quizl);
         List<Category> categories = iCategoryService.getAllCategory();
         model.addAttribute("categories", categories);
-        return "DemoHomePage";
+        return "home";
     }
-    @RequestMapping("/demo/find")
-    public String homeDemo(@RequestParam("name") String categoryName, Model model){
+//    @RequestMapping("/demo")
+//    public  String homeDemo(Model model){
+//        List<QuizList> quizl = iQuizListService.getQuizPublic(2);
+//        model.addAttribute("quizl", quizl);
+//        List<Category> categories = iCategoryService.getAllCategory();
+//        model.addAttribute("categories", categories);
+//        return "DemoHomePage";
+//    }
+    @RequestMapping("/find")
+    public String homeDemo(@RequestParam("categoryName") String categoryName, Model model){
         List<Category> categories = iCategoryService.getAllCategory();
         model.addAttribute("categories", categories);
         List<QuizList> quizl = iQuizListService.getQuizByCategory(categoryName);
         model.addAttribute("quizl", quizl);
-        return "DemoHomePage";
+        return "home";
     }
     public String homePage(){return "homePage";}
 }
