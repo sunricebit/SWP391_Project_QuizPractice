@@ -26,6 +26,7 @@
       <td>
         <a th:href="@{/admin/edit?id={id}(id=${u.getId()})}" class="btn btn-primary">Edit</a>
         <a th:href="@{/admin/LockOrUnlock?id={id}(id=${u.getId()})}" class="btn btn-danger">Lock/Unlock</a>
+        <a th:href="@{/admin/user?id={id}(id=${u.getId()})}">View List Quiz</a>
       </td>
     </tr>
   </table>

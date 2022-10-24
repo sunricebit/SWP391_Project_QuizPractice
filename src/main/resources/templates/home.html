@@ -116,7 +116,7 @@
                             </li>
                             <li class="nav-item">
                                 <!--                Profile here-->
-                                <a class="nav-link signup-btn" th:text="${currentUser.getEmail()}" ></a>
+                                <a class="nav-link signup-btn" th:text="${session.currentUser.get().getEmail()}" ></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link signup-btn" th:href="@{/}">LogOut</a>
@@ -137,7 +137,22 @@
 </div>
 <!-- end header inner -->
 <!-- end header -->
-
+<!--<div class="row">-->
+<!--    <div class="col-md-3">-->
+<!--        <ul>-->
+<!--            <h2>Category:</h2>-->
+<!--            <li th:each="category : ${categories}">-->
+<!--                <a th:text="${category.categoryName}" th:href="@{/demo/find?name={cateName}(cateName=${category.categoryName})}"></a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="col-md-9">-->
+<!--        <div th:each="quiz : ${quizl}">-->
+<!--            <a th:text="${quiz.user.email}"></a>-->
+<!--            <a th:text="${quiz.name}"></a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--  footer -->
 <footer>
     <div class="footer">

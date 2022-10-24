@@ -22,6 +22,8 @@ public class HomeController {
     private ICategoryService iCategoryService;
     @RequestMapping("/")
     public String home(){return "homePage";}
+    @RequestMapping("/home")
+    public String Home(){return "home";}
     @RequestMapping("/demo")
     public  String homeDemo(Model model){
         List<QuizList> quizl = iQuizListService.getQuizPublic(2);

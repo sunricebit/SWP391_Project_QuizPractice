@@ -2,24 +2,15 @@ package com.example.quizv8.service;
 
 import com.example.quizv8.model.*;
 import com.example.quizv8.repositories.*;
-import org.hibernate.engine.query.internal.NativeQueryInterpreterStandardImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 @Service
 public class QuizListService implements IQuizListService {
     @Autowired
     private QuizListRepository quizListRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private StateRepository stateRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-
     @Override
     public List<QuizList> getQuizByUserID(long id) {
         List<QuizList> quizLists =  quizListRepository.findAll();
@@ -64,6 +55,8 @@ public class QuizListService implements IQuizListService {
         QuizState state = quizStateRepositoty.findById(stateId);
         return quizListRepository.findQuizListsByState(state);
     }
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public List<QuizList> getQuizByCategory(String categoryName) {
@@ -79,12 +72,8 @@ public class QuizListService implements IQuizListService {
     }
 
     @Override
-    public void saveQuizList(String quizListName, long UserId,long QuizListCategoryId,long StateId) {
-        QuizUser user =  userRepository.getReferenceById(UserId);
-        Category category = categoryRepository.getReferenceById(QuizListCategoryId);
-        QuizState state = stateRepository.getReferenceById(StateId);
-        QuizList quiz = new QuizList(quizListName,false,0,user,category,state);
-        quizListRepository.save(quiz);
-
+    public QuizList saveQuiz(QuizList quizList) {
+        QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
+        return quizListRepository.save(newQuiz);
     }
 }

@@ -10,7 +10,7 @@
     }
 
     /* Full-width input fields */
-    input[type=text], input[type=password] {
+    input[type=email], input[type=password] {
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -20,7 +20,7 @@
     }
 
     /* Add a background color when the inputs get focus */
-    input[type=text]:focus, input[type=password]:focus {
+    input[type=email]:focus, input[type=password]:focus {
         background-color: #ddd;
         outline: none;
     }
@@ -120,21 +120,28 @@
 <div th:if="${param.success}">
     <div class="alert alert-info">Create account success</div>
 </div>
-<form th:action="${SignUp}" method="post" th:object="${quizUser}">
+<form th:action="${SignUp}" method="post" th:object="${quizUser}" >
     <div class="container">
         <h1 style="color:rgb(99, 46, 150);">Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
         <hr>
         <label th:for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required th:feild="*{email}" autofocus="autofocus">
+        <input type="email" placeholder="Enter Email" name="email" required th:field="*{email}" autofocus="autofocus">
+        <br/>
 
         <label th:for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required  th:feild="*{password}" autofocus="autofocus">
+        <input type="password" placeholder="Enter Password" name="Pass" required  th:field="*{password}" autofocus="autofocus">
 
+        <label th:for="repass"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Enter Password" name="rePass" required autofocus="autofocus">
+        <p th:if="${notification}" class="fancybox-error" style="font-weight: bold;color: red;" >Invalid Confirm Password</p>
         <label th:for="role"><b>Role</b></label>
-        <select required style="width: 240px;height: 34px;overflow: hidden;border: 1px solid" name="role" th:feild="*{role}" autofocus="autofocus">
+        <select required style="width: 240px;height: 34px;overflow: hidden;border: 1px solid" name="role" th:field="*{role}" autofocus="autofocus">
             <option th:value="Teacher">Teacher</option>
             <option th:value="Student">Student</option>
+        </select>
+        <select hidden th:field="*{status}">
+            <option value="1">Active</option>
         </select>
         </br></br></br>
         <label>
@@ -145,10 +152,20 @@
             <button type="submit" class="signupbtn">Sign Up</button>
         </div>
         <span class="text-center text-muted mt-5 mb-0">Already have an account?
-            <a th:href="@{/SignIn}" class="fw-bold text-body">Login
+            <a th:href="@{/SignIn/In}" class="fw-bold text-body">Login
             here</a></span>
     </div>
 </form>
 </div>
+<!--<script>-->
+<!--    function validateForm() {-->
+<!--        if (document.myForm.Pass.value != document.myForm.rePass.value) {-->
+<!--            window.alert();-->
+<!--            return false;-->
+<!--        } else {-->
+<!--            document.getElementById("errConfirm").innerHTML = "";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

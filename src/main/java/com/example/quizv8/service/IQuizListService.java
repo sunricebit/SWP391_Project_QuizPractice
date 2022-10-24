@@ -3,7 +3,6 @@ package com.example.quizv8.service;
 import com.example.quizv8.model.QuestionDetail;
 import com.example.quizv8.model.QuizList;
 import com.example.quizv8.model.QuizState;
-import com.example.quizv8.model.Category;
 
 import java.util.List;
 
@@ -16,5 +15,5 @@ public interface IQuizListService {
 
     public List<QuizList> getQuizByCategory(String categoryName);
     public List<QuestionDetail> getAllQuestion(long quizListID);
-    public void saveQuizList(String quizListName,long UserId ,long QuizListCategoryId,long StateId);
+    public QuizList saveQuiz(QuizList quizList);
 }

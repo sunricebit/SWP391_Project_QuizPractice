@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "Report_Details")
 public class ReportDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     //references quiz_list ID
