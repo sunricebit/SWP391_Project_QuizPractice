@@ -2,8 +2,10 @@ package com.example.quizv8.controllers;
 
 import com.example.quizv8.model.Category;
 import com.example.quizv8.model.QuizList;
+import com.example.quizv8.model.QuizState;
 import com.example.quizv8.service.ICategoryService;
 import com.example.quizv8.service.IQuizListService;
+import com.example.quizv8.service.IStateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ public class QuizManagerController {
     private ICategoryService ICategoryService;
     @Autowired
     private IQuizListService IQuizListService;
+    @Autowired
+    private IStateService IStateService;
     @RequestMapping("/")
     public String showAllQuizList(Model model, @RequestParam long userId){
         List<QuizList> qList = IQuizListService.getQuizByUserID(userId);
@@ -39,6 +43,8 @@ public class QuizManagerController {
     public String redirectToCreateQuizPage(Model model,@RequestParam("id") long userId){
         List<Category> list = ICategoryService.getAllCategory();
         model.addAttribute("cList",list);
+        List<QuizState> sList = IStateService.getAllState();
+        model.addAttribute("sList",sList);
         return "createQuiz";
     }
 

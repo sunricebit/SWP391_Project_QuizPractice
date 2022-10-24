@@ -1,5 +1,7 @@
 package com.example.quizv8.model;
 
+import com.example.quizv8.service.QuizListService;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import java.util.List;
 @Table(name = "Quiz_List")
 public class QuizList {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
     @Column(name = "_name", nullable = false)
@@ -35,6 +37,10 @@ public class QuizList {
     public QuizList() {
     }
 
+    public QuizList(String name) {
+        this.name = name;
+    }
+
     public QuizList(long id, String name, boolean active, long vote, QuizUser user, Category category, QuizState state) {
         this.id = id;
         this.name = name;
@@ -43,6 +49,15 @@ public class QuizList {
         this.user = user;
         this.category = category;
         this.state = state;
+    }
+
+    public QuizList(String name, boolean active, long vote, QuizUser user, Category category, QuizState state) {
+        this.name = name;
+        this.active = active;
+        this.vote = vote;
+        this.user=user;
+        this.category=category;
+        this.state=state;
     }
 
     public QuizUser getUser() {
