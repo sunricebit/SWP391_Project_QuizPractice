@@ -30,16 +30,18 @@ public class QuizListService implements IQuizListService {
     }
 
     @Autowired
+<<<<<<< HEAD
     private AnswerRepository answerRepository;
 
     @Autowired
+=======
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     private QuestionRepository questionRepository;
     @Override
     public boolean deleteQuestionDetail(long quizListId) {
         QuizList quizList = quizListRepository.getById(quizListId);
         List<QuestionDetail> qList = questionRepository.getAllByQuizList(quizList);
         for (QuestionDetail question:qList){
-            deleteAnswer(question.getQuestionNo());
             questionRepository.delete(question);
         }
         return true;
@@ -75,8 +77,14 @@ public class QuizListService implements IQuizListService {
         Category category = categoryRepository.findCategoryByCategoryName(categoryName);
         return quizListRepository.findQuizListByCategoryAndState(category, state);
     }
+    @Override
+    public List<QuestionDetail> getAllQuestion(long quizListID) {
+        QuizList quizList = quizListRepository.getById(quizListID);
+        return questionRepository.getAllByQuizList(quizList);
+    }
 
     @Override
+<<<<<<< HEAD
     public Exam saveExam(Exam exam) {
         Exam exam1 = new Exam(exam.getUserId(),exam.getQuizName(),exam.getPercentage(),exam.getTotalQuestion(),exam.getDate());
         return examRepository.save(exam1);
@@ -87,4 +95,10 @@ public class QuizListService implements IQuizListService {
         return examRepository.getAllByUserId(uid);
     }
 
+=======
+    public QuizList saveQuiz(QuizList quizList) {
+        QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
+        return quizListRepository.save(newQuiz);
+    }
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 }

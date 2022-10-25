@@ -185,23 +185,31 @@
 </head>
 <body>
 <div class="testbox">
-    <form th:action="@{addQuiz}">
+    <form th:action="@{save}" th:object="${newQuiz}" method="post", action="#">
         <div class="banner">
             <h1>Add Quiz</h1>
         </div>
+<!--        quizName-->
         <div class="item">
             <p>Quiz Name:</p>
             <div class="name-item">
-                <input required type="text" name="name" placeholder="Enter quiz's name...."/>
+                <input th:field="*{name}" required type="text" name="name" placeholder="Enter quiz's name...."/>
             </div>
         </div>
+        Category
         <div class="item">
             <label th:for="Category" >Choose a category: </label>
-            <select  th:name="Category" th:id="Category">
+            <select th:object="${cate}" th:field="*{id}" th:name="Category" th:id="Category">
                 <option th:each="category:${cList}" th:value="${category.getId()}" th:text="${category.getCategoryName()}"></option>
             </select>
-
         </div>
+<!--&lt;!&ndash;        State&ndash;&gt;-->
+<!--        <div class="item">-->
+<!--            <label th:for="State" >Choose a state: </label>-->
+<!--            <select th:object="${st}" th:field="*{id}" th:name="State" th:id="State">-->
+<!--                <option th:each="s : ${sList}" th:if="${s.getId()!=3}" th:value="${s.getId()}" th:text="${s.stateDetails}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
         <div>
             <div style="display:inline-block">
                 

@@ -15,6 +15,7 @@ public class QuestionDetail {
     private QuizList quizList;
     @Column(name = "_question")
     private String question;
+<<<<<<< HEAD
     @Column(name="_answerA")
     private String answerA;
 
@@ -28,11 +29,28 @@ public class QuestionDetail {
     private String answerD;
 
     @Column(name="_correctAnswer")
+=======
+    @Column(name = "_answerA")
+    private String answerA;
+
+    @Column(name = "_answerB")
+    private String answerB;
+
+    @Column(name = "_answerC")
+    private String answerC;
+    @Column(name = "_answerD")
+    private String answerD;
+    @Column(name = "_correctAnswer")
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     private String correctAnswer;
 
     public QuestionDetail() {
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
         this.questionNo = questionNo;
         this.quizList = quizList;

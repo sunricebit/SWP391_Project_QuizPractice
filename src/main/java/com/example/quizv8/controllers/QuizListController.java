@@ -1,9 +1,14 @@
 package com.example.quizv8.controllers;
 
+<<<<<<< HEAD
 import com.example.quizv8.model.*;
 import com.example.quizv8.service.IQuizListService;
 import com.example.quizv8.service.IQuizService;
 import com.example.quizv8.service.IUserService;
+=======
+import com.example.quizv8.model.QuestionDetail;
+import com.example.quizv8.service.IQuizListService;
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +24,7 @@ import java.util.Random;
 @Controller
 @RequestMapping("/quizlist")
 public class QuizListController {
+<<<<<<< HEAD
     @Autowired
     private IQuizService iQuizService;
     @Autowired
@@ -27,8 +33,13 @@ public class QuizListController {
     private IQuizListService iQuizListService;
     private long uid = 1;
     private long qid;
+=======
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 
+    @Autowired
+    private IQuizListService iQuizListService;
     @RequestMapping("/")
+<<<<<<< HEAD
     public String index(@RequestParam("id") long id, Model model) {
         List<QuestionDetail> questions = iQuizService.getAllQuestion(id);
         model.addAttribute("questions", questions);
@@ -84,4 +95,12 @@ public class QuizListController {
         model.addAttribute("examSave",examSave);
         return "Result";
     }
+=======
+    public String index(@RequestParam("id") long id, Model model){
+        List<QuestionDetail> questions = iQuizListService.getAllQuestion(id);
+        model.addAttribute("questions",questions);
+        return "quiz";
+    }
+
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 }
