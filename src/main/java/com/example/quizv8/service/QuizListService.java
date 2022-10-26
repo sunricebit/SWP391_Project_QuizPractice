@@ -10,6 +10,8 @@ import java.util.*;
 @Service
 public class QuizListService implements IQuizListService {
     @Autowired
+    private ExamRepository examRepository;
+    @Autowired
     private QuizListRepository quizListRepository;
     @Override
     public List<QuizList> getQuizByUserID(long id) {
@@ -22,8 +24,18 @@ public class QuizListService implements IQuizListService {
         }
         return userquiz;
     }
+    @Override
+    public boolean deleteAnswer(long questionId) {
+        return false;
+    }
 
     @Autowired
+<<<<<<< HEAD
+    private AnswerRepository answerRepository;
+
+    @Autowired
+=======
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     private QuestionRepository questionRepository;
     @Override
     public boolean deleteQuestionDetail(long quizListId) {
@@ -72,8 +84,21 @@ public class QuizListService implements IQuizListService {
     }
 
     @Override
+<<<<<<< HEAD
+    public Exam saveExam(Exam exam) {
+        Exam exam1 = new Exam(exam.getUserId(),exam.getQuizName(),exam.getPercentage(),exam.getTotalQuestion(),exam.getDate());
+        return examRepository.save(exam1);
+    }
+
+    @Override
+    public List<Exam> getAllExam(long uid) {
+        return examRepository.getAllByUserId(uid);
+    }
+
+=======
     public QuizList saveQuiz(QuizList quizList) {
         QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
         return quizListRepository.save(newQuiz);
     }
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 }

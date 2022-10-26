@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
+<head>
+  <title>Quiz Result</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<style>
+  #quizResult {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #quizResult td, #quizResult th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #quizResult tr:nth-child(even){background-color: #f2f2f2;}
+
+  #quizResult tr:hover {background-color: #ddd;}
+
+  #quizResult th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+  button{-webkit-appearance: button;
+    margin-left: 650px;
+    background-color: slategray;
+    border-radius: 10px;
+    text-align: center;
+    width: max-content;
+    color: floralwhite;
+  }
+</style>
+<div class="col-3"></div>
+<div class="container col-6">
+  <h1>Quiz Result</h1>
+  <form th:object="${examSave}" th:action="@{save}" method="post">
+  <table id="quizResult">
+    <tr>
+      <th>Id</th>
+      <th>UserId</th>
+      <th>QuizName</th>
+      <th>Percentage</th>
+      <th>TotalQuestion</th>
+      <th>Date</th>
+    </tr>
+      <tr>
+        <td th:field="*{id}" th:text="${exam.id}" th:value="${exam.id}"></td>
+        <td th:field="*{userId}" th:text="${exam.userId}" th:value="${exam.userId}"></td>
+        <td th:field="*{quizName}" th:text="${exam.quizName}" th:value="${exam.quizName}"></td>
+        <td th:field="*{percentage}" th:text="${exam.percentage}" th:value="${exam.percentage}"></td>
+        <td th:field="*{totalQuestion}" th:text="${exam.totalQuestion}" th:value="${exam.totalQuestion}"></td>
+        <td th:field="*{date}" th:text="${exam.date}" th:value="${exam.date}"></td>
+      </tr>
+
+  </table>
+  <button type="submit">Save result</button>
+  </form>
+</div>
+</body>
+</html>

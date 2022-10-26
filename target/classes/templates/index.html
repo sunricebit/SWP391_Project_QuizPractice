@@ -14,19 +14,16 @@
     <tr>
       <th>Email</th>
       <th>Password</th>
-      <th>Status</th>
       <th>Role</th>
       <th>Actions</th>
     </tr>
     <tr th:each="u : ${allUser}">
       <td th:text="${u.getEmail()}"></td>
       <td th:text="${u.password}"></td>
-      <td th:text="${u.status}"></td>
       <td th:text="${u.role}"></td>
       <td>
         <a th:href="@{/admin/edit?id={id}(id=${u.getId()})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{/admin/LockOrUnlock?id={id}(id=${u.getId()})}" class="btn btn-danger">Lock/Unlock</a>
-        <a th:href="@{/admin/user?id={id}(id=${u.getId()})}">View List Quiz</a>
+        <a th:href="@{/admin/delete?id={id}(id=${u.getId()})}" class="btn btn-danger">Delete</a>
       </td>
     </tr>
   </table>

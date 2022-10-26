@@ -12,13 +12,7 @@
     <h1>Edit User</h1>
     <form th:object="${user}" th:action="@{save}" action="#" method="POST">
         <input type="hidden" th:field="*{id}">
-        <div>
-            <label th:text="Status" th:for="status"></label>
-            <select  required th:field="*{status}">
-                <option selected value="1">active</option>
-                <option selected value="0">unactive</option>
-            </select>
-        </div>
+
         <div>
             <label th:text="Email" th:for="email"></label>
             <input required type="text" th:field="*{email}" class="form-control"/>

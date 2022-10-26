@@ -9,7 +9,11 @@ import java.util.Optional;
 public class QuizList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
+    @Column(name = "id", nullable = false)
+=======
     @Column(name = "id")
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     private long id;
     @Column(name = "_name")
     private String name;
@@ -95,6 +99,17 @@ public class QuizList {
         this.category = category;
     }
 
+<<<<<<< HEAD
+    public List<QuestionDetail> getQuestionDetailList() {
+        return questionDetailList;
+    }
+
+    public void setQuestionDetailList(List<QuestionDetail> questionDetailList) {
+        this.questionDetailList = questionDetailList;
+    }
+
+=======
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     public QuizState getState() {
         return state;
     }
