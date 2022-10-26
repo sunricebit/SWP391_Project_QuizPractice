@@ -25,12 +25,14 @@ public class QuizListController {
     private long uid = 1;
     private long qid;
     @RequestMapping("/")
-    public String index(@RequestParam("id") long id, Model model) {
-        List<QuestionDetail> questions = iQuizListService.getAllQuestion(id);
+    public String index(@RequestParam("id") long quizId, Model model) {
+        QuizList quizList = iQuizListService.getQuizListById(quizId);
+        model.addAttribute("quizList", quizList);
+        List<QuestionDetail> questions = iQuizListService.getAllQuestion(quizId);
         model.addAttribute("questions", questions);
         Result result = new Result();
         model.addAttribute("result", result);
-        qid = id;
+        qid = quizId;
         return "quiz";
     }
 
