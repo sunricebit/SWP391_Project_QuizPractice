@@ -29,7 +29,7 @@ public class QuestionDetail {
     private String correctAnswer;
     public QuestionDetail() {
     }
-    public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String correctAnswer, String answerB, String answerC, String answerD) {
+    public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
 
         this.questionNo = questionNo;
         this.quizList = quizList;
@@ -40,6 +40,16 @@ public class QuestionDetail {
         this.answerC = answerC;
         this.answerD = answerD;
 
+    }
+
+    public QuestionDetail(QuizList quizList, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
+        this.quizList = quizList;
+        this.question = question;
+        this.answerA = answerA;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
+        this.correctAnswer = correctAnswer;
     }
 
     public long getQuestionNo() {
@@ -104,5 +114,19 @@ public class QuestionDetail {
 
     public void setAnswerD(String answerD) {
         this.answerD = answerD;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionDetail{" +
+                "questionNo=" + questionNo +
+                ", quizList=" + quizList +
+                ", question='" + question + '\'' +
+                ", answerA='" + answerA + '\'' +
+                ", answerB='" + answerB + '\'' +
+                ", answerC='" + answerC + '\'' +
+                ", answerD='" + answerD + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                '}';
     }
 }

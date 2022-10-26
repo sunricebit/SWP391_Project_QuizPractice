@@ -44,6 +44,9 @@ public class QuizManagerController {
     public String redirectToCreateQuizPage(Model model,@RequestParam("id") long userId){
         List<Category> list = ICategoryService.getAllCategory();
         model.addAttribute("cList",list);
+        List<QuizState> sList = iStateService.getAllState();
+        model.addAttribute("sList",sList);
+
         return "createQuiz";
     }
 
@@ -53,8 +56,9 @@ public class QuizManagerController {
     private IStateService iStateService;
     @RequestMapping("/addQuiz")
     public String addQuiz(Model model){
-        model.addAttribute("cate", new Category());
         List<Category> cList = ICategoryService.getAllCategory();
+        List<QuizState> sList = iStateService.getAllState();
+        model.addAttribute("sList",sList);
         model.addAttribute("cList", cList);
         model.addAttribute("newQuiz", new QuizList());
         return "createQuiz";

@@ -47,6 +47,15 @@ public class QuizList {
         this.state = state;
     }
 
+    public QuizList(String name, boolean active, long vote, QuizUser user, Category category, QuizState state) {
+        this.name = name;
+        this.active = active;
+        this.vote = vote;
+        this.user = user;
+        this.category = category;
+        this.state = state;
+    }
+
     public QuizUser getUser() {
         return user;
     }

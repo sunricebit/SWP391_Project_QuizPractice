@@ -181,11 +181,12 @@
       }
       }
 
+
     </style>
 </head>
 <body>
-<div >
-    <form th:action="@{addQuiz}" id="quizListForm" method="get">
+<div>
+    <form th:action="@{addQuiz}" id="quizListForm" method="POST">
         <div class="banner">
             <h1>Add Quiz</h1>
         </div>
@@ -197,56 +198,69 @@
             </div>
         </div>
         <div class="item">
-            <label th:for="Category" >Choose a category: </label>
-            <select  th:name="quizCategoryId" th:id="Category">
-                <option th:each="category:${cList}" th:value="${category.getId()}" th:text="${category.getCategoryName()}"></option>
+            <label th:for="Category">Choose a category: </label>
+            <select th:name="quizCategoryId" th:id="Category">
+                <option th:each="category:${cList}" th:value="${category.getId()}"
+                        th:text="${category.getCategoryName()}"></option>
             </select>
         </div>
         <div class="item">
-            <label th:for="State" >Choose a state: </label>
-            <select  th:name="stateId" th:id="State">
-                <option th:each="state:${sList}" th:value="${state.getId()}" th:text="${state.getStateDetails()}"></option>
+            <label th:for="State">Choose a state: </label>
+            <select th:name="stateId" th:id="State">
+                <option th:each="state:${sList}" th:value="${state.getId()}"
+                        th:text="${state.getStateDetails()}"></option>
             </select>
-        </div>
-        <div class="btn-block">
-            <button type="submit" onclick="submit()">Submit</button>
         </div>
         <div>
             <div id="AnswerForm">
-                <div style="display:inline-block">
-                    <p>Question:</p>
-                    <textarea th:name="Question[0]"></textarea>
-                </div>
-                <div style="display:inline-block">
-                    <p>Answer A:</p>
-                    <input type="text" th:name="answerA[0]">
-                    <p>Answer B:</p>
-                    <input type="text" th:name="answerB[0]">
-                    <p>Answer C:</p>
-                    <input type="text" th:name="answerC[0]">
-                    <p>Answers D:</p>
-                    <input type="text" th:name="answerD[0]">
+                <div>
+                    <div style="display:inline-block">
+                        <p>Question:</p>
+                        <textarea th:name="Question"></textarea>
+                    </div>
+                    <div style="display:inline-block">
+                        <p>Answer A:</p>
+                        <input type="text" th:name="answerA">
+                        <p>Answer B:</p>
+                        <input type="text" th:name="answerB">
+                        <p>Answer C:</p>
+                        <input type="text" th:name="answerC">
+                        <p>Answers D:</p>
+                        <input type="text" th:name="answerD">
+                        <label th:for="TrueAnswer[]">True Answer: </label>
+                        <select th:name="TrueAnswer[]" th:id="TrueAnswer">
+                            <option th:value="A">A</option>
+                            <option th:value="B">B</option>
+                            <option th:value="C">C</option>
+                            <option th:value="D">D</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-        </form>
+    </form>
 
     <input type="button" id="addAns" value="Add">
+    <input type="button" id="delAns" value="Delete">
     <div class="btn-block">
         <button type="button" onclick="submit()">Submit</button>
     </div>
 
 </div>
 <script>
-    var count =0;
     document.getElementById("addAns").onclick = function() {
-    count++;
-    document.getElementById("AnswerForm").innerHTML +="<br><br>"
-	document.getElementById("AnswerForm").innerHTML +=" <div style='display:inline-block'><p>Question:</p><textarea th:name='Question["+count+"]'></textarea></div><div style='display:inline-block'><p>Answer A:</p><input type='text' th:name='answerA["+count+"]'><p>Answer B:</p><input type='text' th:name='answerB["+count+"]'><p>Answer C:</p><input type='text' th:name='answerC["+count+"]'><p>Answer D:</p><input type='text' th:name='answerD["+count+"]'>";
+        var container = document.createElement("div");
+        container.innerHTML=" <div style='display:inline-block'><p>Question:</p><textarea name='Question'></textarea></div><div style='display:inline-block'><p>Answer A:</p><input type='text' name='answerA'><p>Answer B:</p><input type='text' name='answerB'><p>Answer C:</p><input type='text' name='answerC'><p>Answer D:</p><input type='text' name='answerD'><label for='TrueAnswer[]' >True Answer: </label><select name='TrueAnswer[]' id='TrueAnswer'><option value='A'>A</option><option value='B'>B</option><option value='C'>C</option><option value='D'>D</option></select></div>";
+        document.getElementById("AnswerForm").appendChild(container);
+    }
+    document.getElementById("delAns").onclick = function(){
+        const container = document.getElementById("AnswerForm");
+        container.removeChild(container.lastElementChild);
     }
     function submit(){
-    document.getElementById("quizListForm").submit();
+        document.getElementById("quizListForm").submit();
     }
+
 </script>
 </body>
 </html>

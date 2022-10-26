@@ -10,7 +10,7 @@ public class QuizState {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "_stateDetails")
+    @Column(name = "_stateDetail")
     private String stateDetails;
     @OneToMany(mappedBy = "state")
     private List<QuizList> quiz;
