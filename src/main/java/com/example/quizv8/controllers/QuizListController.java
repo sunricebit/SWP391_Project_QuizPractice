@@ -1,14 +1,8 @@
 package com.example.quizv8.controllers;
-
-<<<<<<< HEAD
 import com.example.quizv8.model.*;
 import com.example.quizv8.service.IQuizListService;
-import com.example.quizv8.service.IQuizService;
 import com.example.quizv8.service.IUserService;
-=======
 import com.example.quizv8.model.QuestionDetail;
-import com.example.quizv8.service.IQuizListService;
->>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,31 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
 @Controller
 @RequestMapping("/quizlist")
 public class QuizListController {
-<<<<<<< HEAD
-    @Autowired
-    private IQuizService iQuizService;
     @Autowired
     private IUserService iUserService;
     @Autowired
     private IQuizListService iQuizListService;
     private long uid = 1;
     private long qid;
-=======
->>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
-
-    @Autowired
-    private IQuizListService iQuizListService;
     @RequestMapping("/")
-<<<<<<< HEAD
     public String index(@RequestParam("id") long id, Model model) {
-        List<QuestionDetail> questions = iQuizService.getAllQuestion(id);
+        List<QuestionDetail> questions = iQuizListService.getAllQuestion(id);
         model.addAttribute("questions", questions);
         Result result = new Result();
         model.addAttribute("result", result);
@@ -57,50 +42,26 @@ public class QuizListController {
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
     public String getResult(Result result, Model model) {
-        QuizUser quizUser = iUserService.getUser(uid).get();
+        QuizUser quizUser = iUserService.getUser(uid);
         QuizList quizList = iQuizListService.getQuizListById(qid);
-        List<QuestionDetail> questionDetails = quizList.getQuestionDetailList();
+        List<QuestionDetail> questionDetails = iQuizListService.getAllQuestion(quizList.getId());
         int leng = result.getStrResult().length();
         int mark = 0;
         String[] ansSelected = result.getStrResult().substring(1, leng).split(",");
         for (int i = 0; i < questionDetails.size(); i++) {
-            if (!ansSelected[i].equals("_default")) {
-                String correct = questionDetails.get(i).getCorrectAnswer();
-                if (correct.equals("a")) {
-                    if (questionDetails.get(i).getAnswerA().equals(ansSelected[i])) {
-                        mark += 1;
-                    }
-                } else if (correct.equals("b")) {
-                    if (questionDetails.get(i).getAnswerB().equals(ansSelected[i])) {
-                        mark += 1;
-                    }
-                } else if (correct.equals("c")) {
-                    if (questionDetails.get(i).getAnswerC().equals(ansSelected[i])) {
-                        mark += 1;
-                    }
-                } else if (correct.equals("d")) {
-                    if (questionDetails.get(i).getAnswerD().equals(ansSelected[i])) {
-                        mark += 1;
-                    }
-                }
-
+            String correct = questionDetails.get(i).getCorrectAnswer().toLowerCase();
+            if (correct.equals(ansSelected[i])) {
+                mark += 1;
             }
         }
-        Random rand = new Random();
+
         int totalQuestion = questionDetails.size();
-        String percent = String.valueOf(1.0 * mark / totalQuestion);
-        Exam exam = new Exam(quizUser.getId(), quizList.getName(), percent, totalQuestion, LocalDate.now());
-        model.addAttribute("exam", exam);
-        Exam examSave = new Exam();
-        model.addAttribute("examSave",examSave);
+        double mark1 =(double) mark;
+        double percent = mark1 *100 / totalQuestion;
+        Exam exam = new Exam(quizUser, quizList.getName(), String.valueOf(percent) +"%", totalQuestion, LocalDateTime.now());
+        iQuizListService.saveExam(exam);
+        List<ExamWithRank> leaderBoard = iQuizListService.getLeaderBoard(exam, uid, qid);
+        model.addAttribute("leaderBoard", leaderBoard);
         return "Result";
     }
-=======
-    public String index(@RequestParam("id") long id, Model model){
-        List<QuestionDetail> questions = iQuizListService.getAllQuestion(id);
-        model.addAttribute("questions",questions);
-        return "quiz";
-    }
-
->>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
 }

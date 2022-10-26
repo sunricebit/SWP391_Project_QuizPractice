@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
 <head>
@@ -41,29 +42,27 @@
 </style>
 <div class="col-3"></div>
 <div class="container col-6">
-  <h1>Quiz Result</h1>
-  <form th:object="${examSave}" th:action="@{save}" method="post">
+  <h1 style="color: orange">Leader Board</h1>
   <table id="quizResult">
     <tr>
-      <th>Id</th>
-      <th>UserId</th>
+      <th>Rank</th>
+      <th>Account</th>
       <th>QuizName</th>
       <th>Percentage</th>
       <th>TotalQuestion</th>
       <th>Date</th>
     </tr>
-      <tr>
-        <td th:field="*{id}" th:text="${exam.id}" th:value="${exam.id}"></td>
-        <td th:field="*{userId}" th:text="${exam.userId}" th:value="${exam.userId}"></td>
-        <td th:field="*{quizName}" th:text="${exam.quizName}" th:value="${exam.quizName}"></td>
-        <td th:field="*{percentage}" th:text="${exam.percentage}" th:value="${exam.percentage}"></td>
-        <td th:field="*{totalQuestion}" th:text="${exam.totalQuestion}" th:value="${exam.totalQuestion}"></td>
-        <td th:field="*{date}" th:text="${exam.date}" th:value="${exam.date}"></td>
-      </tr>
 
+    <tr th:each="leader : ${leaderBoard}">
+      <td th:text="${leader.rank}"></td>
+      <td th:text="${leader.exam.examUser.email}"></td>
+      <td th:text="${leader.exam.quizName}" ></td>
+      <td th:text="${leader.exam.percentage}" ></td>
+      <td th:text="${leader.exam.totalQuestion}" ></td>
+      <td th:text="${leader.exam.date}" ></td>
+    </tr>
   </table>
-  <button type="submit">Save result</button>
-  </form>
+  <a th:href="@{/home}"><button>Home</button></a>
 </div>
 </body>
 </html>

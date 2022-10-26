@@ -29,8 +29,8 @@ public class AdminController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String editUser(@RequestParam("id") Long userId, Model model) {
-        Optional<QuizUser> userEdit = iUserService.getUser(userId);
-        userEdit.ifPresent(user -> model.addAttribute("user", user));
+        QuizUser userEdit = iUserService.getUser(userId);
+        model.addAttribute("user", userEdit);
         return "editUser";
     }
 
@@ -40,17 +40,13 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-<<<<<<< HEAD
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-=======
-    @RequestMapping("/delete")
     public String deleteQuiz(Model model, @RequestParam("id") long quizListId){
         iQuizListService.deleteQuizList(quizListId);
         model.addAttribute("RetMessage","Delete success!");
         return "redirect:/QuizManager/?userId=1";
     }
     @RequestMapping(value = "/LockOrUnlock", method = RequestMethod.GET)
->>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
         iUserService.deleteUser(userId);
         return "redirect:/admin/";

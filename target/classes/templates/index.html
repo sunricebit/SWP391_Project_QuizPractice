@@ -23,7 +23,12 @@
       <td th:text="${u.role}"></td>
       <td>
         <a th:href="@{/admin/edit?id={id}(id=${u.getId()})}" class="btn btn-primary">Edit</a>
+<<<<<<< HEAD
         <a th:href="@{/admin/delete?id={id}(id=${u.getId()})}" class="btn btn-danger">Delete</a>
+=======
+        <a th:href="@{/admin/LockOrUnlock?id={id}(id=${u.getId()})}" class="btn btn-danger">Lock/Unlock</a>
+        <a th:href="@{/admin/user?id={id}(id=${u.getId()})}">View List Quiz</a>
+>>>>>>> 44983280f7a622ad61a096bf6539c05cb89badc6
       </td>
     </tr>
   </table>
