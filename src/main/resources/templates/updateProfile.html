@@ -126,100 +126,93 @@
                 </nav>
             </div>
             <div class="col-md-3 col-sm-5 d_none">
-               <ul class="sign">
-                   <div class="chakra-inputgroup css-mt5xj9" style="display: flex; flex-direction: row">
-                       <input placeholder="Search by author, title, name" class="chakra-input css-1sovewm" style="">
-                       <button class="chakra-inputright-element css-ur97uj" style="padding: .5em;">
-                           <i class="fa fa-search" aria-hidden="true"></i>
-                       </button>
-                   </div>
-               </ul>
+                <ul class="sign">
+                    <div class="chakra-inputgroup css-mt5xj9" style="display: flex; flex-direction: row">
+                        <input placeholder="Search by author, title, name" class="chakra-input css-1sovewm" style="">
+                        <button class="chakra-inputright-element css-ur97uj" style="padding: .5em;">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </ul>
             </div>
         </div>
     </div>
 </div>
-<!-- end header inner -->
-<!-- end header -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <ul>
-                <h2>Category:</h2>
-                <li th:each="category : ${categories}">
-                    <a th:text="${category.categoryName}" th:href="@{/find?categoryName={cateName}(cateName=${category.categoryName})}"></a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-9">
-            <div th:each="quiz : ${quizl}">
-                <a th:text="${quiz.user.email}"></a>
-                <a th:text="${quiz.name}"></a>
+<div class="container" style="min-height: 400px">
+    <div style="margin-top: 100px" class="main-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                            <div class="mt-3">
+                                <h4 th:text="${session.currentUser.get().getEmail()}"}></h4>
+                                <a href="history-orders" class="btn btn-primary">History</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <form th:action="@{/updateProfile/update}" th:object="${user}" method="post">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input readonly="" name="email" type="email" class="form-control" th:value="${session.currentUser.get().getEmail()}"}>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Role</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input name="role" readonly="" type="text" class="form-control" th:value="${session.currentUser.get().getRole()}"}>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Old password</h6>
+                                    <h6 th:if="${notification}" class="fancybox-error" style="font-weight: bold;color: red;" >Wrong password</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input name="oldPass" type="password"  class="form-control" value="" >
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">New password</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input name="newPass"  type="password" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>
 
-<!--  footer -->
-<footer>
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <a class="logo2" href="#"><img src="images/logo2.png" alt="#"/></a>
-                </div>
-                <div class="col-lg-5 col-md-6 col-sm-6">
-                    <h3>Contact Us</h3>
-                    <ul class="location_icon">
-                        <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a> Hòa Lạc
-                            <br> Việt Nam
-                        </li>
-                        <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>quizpractice_group2@gmail.com<br>
-                            quizpractice123_group2@gmail.com
-                        </li>
-                        <li><a href="#"><i class="fa fa-volume-control-phone"
-                                           aria-hidden="true"></i></a>+012345678910<br>+011234567089
-                        </li>
-                    </ul>
-                    <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"> <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                    <h3>Menus</h3>
-                    <ul class="link_icon">
-                        <li class="active"><a href="homePage.html"> Home</a></li>
-                        <li>
-                            <a href="about.html">About Us</i></a>
-                        </li>
-                        <li><a href=""> </i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p>© 2022 All Rights Reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- end footer -->
-<!-- Javascript files-->
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src=".js/jquery-3.0.0.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<!-- sidebar -->
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="js/custom.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
