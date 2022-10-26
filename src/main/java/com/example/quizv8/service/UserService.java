@@ -37,8 +37,8 @@ public class UserService implements IUserService {
     public boolean deleteUser(long id) {
         QuizUser user1 = userRepository.getById(id);
         if (user1 != null) {
-                userRepository.delete(user1);
-                return true;
+            userRepository.delete(user1);
+            return true;
         }
         return false;
     }
@@ -50,7 +50,6 @@ public class UserService implements IUserService {
 
     @Override
     public QuizUser saveUser(QuizUser user) {
-//        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole(), user.isStatus());
         return userRepository.save(user);
     }
 

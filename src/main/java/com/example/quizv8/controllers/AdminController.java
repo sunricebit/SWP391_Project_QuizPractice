@@ -40,7 +40,7 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteQuiz(Model model, @RequestParam("id") long quizListId){
         iQuizListService.deleteQuizList(quizListId);
         model.addAttribute("RetMessage","Delete success!");
@@ -48,13 +48,7 @@ public class AdminController {
     }
     @RequestMapping(value = "/LockOrUnlock", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
-        QuizUser quizUser = iUserService.getUser(userId);
-        boolean s = true;
-        if(quizUser.isStatus()){
-            s= false;
-        }
-        quizUser.setStatus(s);
-        iUserService.saveUser(quizUser);
+        iUserService.deleteUser(userId);
         return "redirect:/admin/";
     }
     //API show list

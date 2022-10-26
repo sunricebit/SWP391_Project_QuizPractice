@@ -30,14 +30,6 @@ public class HomeController {
         model.addAttribute("categories", categories);
         return "home";
     }
-//    @RequestMapping("/demo")
-//    public  String homeDemo(Model model){
-//        List<QuizList> quizl = iQuizListService.getQuizPublic(2);
-//        model.addAttribute("quizl", quizl);
-//        List<Category> categories = iCategoryService.getAllCategory();
-//        model.addAttribute("categories", categories);
-//        return "DemoHomePage";
-//    }
     @RequestMapping("/find")
     public String homeDemo(@RequestParam("categoryName") String categoryName, Model model){
         List<Category> categories = iCategoryService.getAllCategory();

@@ -13,9 +13,7 @@
   <h1>New User</h1>
   <div class="col-md-auto">
     <form th:object="${user}" th:action="@{save}" action="#" method="post">
-      <select hidden th:field="*{status}">
-        <option selected value="1">active</option>
-      </select>
+
       <div>
         <label th:text="Email" th:for="email"></label>
         <input  required type="text" th:field="*{email}" class="form-control" placeholder="Email"/>

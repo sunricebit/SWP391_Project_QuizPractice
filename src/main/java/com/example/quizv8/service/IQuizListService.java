@@ -1,8 +1,10 @@
 package com.example.quizv8.service;
 
+
+import com.example.quizv8.model.Exam;
+import com.example.quizv8.model.ExamWithRank;
 import com.example.quizv8.model.QuestionDetail;
 import com.example.quizv8.model.QuizList;
-import com.example.quizv8.model.QuizState;
 
 import java.util.List;
 
@@ -14,6 +16,11 @@ public interface IQuizListService {
     public List<QuizList> getQuizPublic(long stateId);
 
     public List<QuizList> getQuizByCategory(String categoryName);
+    public Exam saveExam(Exam exam);
+    public List<Exam> getAllExam(long uid);
+    public List<ExamWithRank> getLeaderBoard(Exam current, long uid, long qid);
     public List<QuestionDetail> getAllQuestion(long quizListID);
     public QuizList saveQuiz(QuizList quizList);
+
+
 }

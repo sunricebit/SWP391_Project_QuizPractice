@@ -1,7 +1,7 @@
 package com.example.quizv8.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Exam")
@@ -10,12 +10,13 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "_userId")
-    private long userId;
+    @ManyToOne
+    @JoinColumn(name = "_userId")
+    private QuizUser examUser;
     @Column(name = "_quizName")
     private String quizName;
     @Column(name = "_date")
-    private Date date;
+    private LocalDateTime date;
     @Column(name = "_percentage")
     private String percentage;
     @Column(name = "_totalQuestion")
@@ -24,9 +25,8 @@ public class Exam {
     public Exam() {
     }
 
-    public Exam(long id, long userId, String quizName, Date date, String percentage, long totalQuestion) {
-        this.id = id;
-        this.userId = userId;
+    public Exam(QuizUser examUser, String quizName, String percentage, long totalQuestion, LocalDateTime date) {
+        this.examUser = examUser;
         this.quizName = quizName;
         this.date = date;
         this.percentage = percentage;
@@ -41,12 +41,12 @@ public class Exam {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public QuizUser getExamUser() {
+        return examUser;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setExamUser(QuizUser examUser) {
+        this.examUser = examUser;
     }
 
     public String getQuizName() {
@@ -57,11 +57,11 @@ public class Exam {
         this.quizName = quizName;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

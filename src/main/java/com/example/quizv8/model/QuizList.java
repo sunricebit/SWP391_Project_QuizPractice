@@ -2,14 +2,13 @@ package com.example.quizv8.model;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 @Table(name = "Quiz_List")
 public class QuizList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
     @Column(name = "_name")
     private String name;
