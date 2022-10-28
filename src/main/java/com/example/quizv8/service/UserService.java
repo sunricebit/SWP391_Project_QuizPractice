@@ -50,9 +50,7 @@ public class UserService implements IUserService {
 
     @Override
     public QuizUser saveUser(QuizUser user) {
-        QuizUser quizUser = new QuizUser(user.getId(),user.getEmail(),user.getPassword(),user.getRole(), user.isStatus());
-        System.out.println(""+quizUser.toString());
-        return userRepository.save(quizUser);
+        return userRepository.save(user);
     }
 
     @Override
