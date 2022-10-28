@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ExamRepository extends JpaRepository<Exam,Long> {
     List<Exam> getAllByExamUser(QuizUser quizUser);
-    List<Exam> findAllByQuizNameOrderByPercentage(String quizName);
-
-
+    List<Exam> findAllByQuizNameOrderByPercentageDesc(String quizName);
+    List<Exam> getDistinctFirstByQuizNameOrderByPercentageDescDateDesc(String quizName);
 }

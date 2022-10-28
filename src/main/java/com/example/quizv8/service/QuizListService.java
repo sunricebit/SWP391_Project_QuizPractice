@@ -4,6 +4,7 @@ import com.example.quizv8.model.*;
 import com.example.quizv8.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
 
 @Service
@@ -95,25 +96,25 @@ public class QuizListService implements IQuizListService {
     @Override
     public List<ExamWithRank> getLeaderBoard(Exam current, long uid, long qid) {
         QuizList quizList = quizListRepository.getById(qid);
-        List<Exam> allExam = examRepository.findAllByQuizNameOrderByPercentage(quizList.getName());
+        List<Exam> allExam = examRepository.getDistinctFirstByQuizNameOrderByPercentageDescDateDesc(quizList.getName());
         List<ExamWithRank> leaderBoard = new ArrayList<ExamWithRank>();
-        int count =0;
+        int count = 0;
         boolean isExist = false;
         for (Exam e : allExam) {
-            ExamWithRank eRank = new ExamWithRank(allExam.indexOf(e)+1, e);
+            ExamWithRank eRank = new ExamWithRank(allExam.indexOf(e) + 1, e);
             leaderBoard.add(eRank);
             count++;
-            if(e.getExamUser().getId()==uid){
+            if (e.getExamUser().getId() == uid) {
                 isExist = true;
             }
-            if(count == 10){
+            if (count == 10) {
                 break;
             }
         }
 
-        if(!isExist){
-            ExamWithRank eRank = new ExamWithRank(allExam.indexOf(current)+1, allExam.get(allExam.indexOf(current)));
-            leaderBoard.add( eRank);
+        if (!isExist) {
+            ExamWithRank eRank = new ExamWithRank(allExam.indexOf(current) + 1, allExam.get(allExam.indexOf(current)));
+            leaderBoard.add(eRank);
         }
         return leaderBoard;
     }

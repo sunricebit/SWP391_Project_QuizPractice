@@ -22,7 +22,7 @@ public class QuizListController {
     private IUserService iUserService;
     @Autowired
     private IQuizListService iQuizListService;
-    private long uid = 1;
+    private long uid = 2;
     private long qid;
     @RequestMapping("/")
     public String index(@RequestParam("id") long quizId, Model model) {
