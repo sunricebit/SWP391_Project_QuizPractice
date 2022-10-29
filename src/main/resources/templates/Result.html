@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
+<head>
+  <title>Quiz Result</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<style>
+  #quizResult {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #quizResult td, #quizResult th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #quizResult tr:nth-child(even){background-color: #f2f2f2;}
+
+  #quizResult tr:hover {background-color: #ddd;}
+
+  #quizResult th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+  button{-webkit-appearance: button;
+    margin-left: 650px;
+    background-color: slategray;
+    border-radius: 10px;
+    text-align: center;
+    width: max-content;
+    color: floralwhite;
+  }
+</style>
+<div class="col-3"></div>
+<div class="container col-6">
+  <h1 style="color: orange">Leader Board</h1>
+  <table id="quizResult">
+    <tr>
+      <th>Rank</th>
+      <th>Account</th>
+      <th>QuizName</th>
+      <th>Percentage</th>
+      <th>TotalQuestion</th>
+      <th>Date</th>
+    </tr>
+
+    <tr th:each="leader : ${leaderBoard}">
+      <td th:text="${leader.Rank}"></td>
+      <td th:text="${leader.leaderBoard.examUser.email}"></td>
+      <td th:text="${leader.leaderBoard.quizPractice.name}" ></td>
+      <td th:text="${leader.leaderBoard.percentage}" ></td>
+      <td th:text="${leader.leaderBoard.totalQuestion}" ></td>
+      <td th:text="${leader.leaderBoard.date}" ></td>
+    </tr>
+  </table>
+  <a th:href="@{/home}"><button>Home</button></a>
+</div>
+</body>
+</html>

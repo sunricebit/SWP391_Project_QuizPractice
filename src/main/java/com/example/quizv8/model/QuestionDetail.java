@@ -15,17 +15,20 @@ public class QuestionDetail {
     private QuizList quizList;
     @Column(name = "_question")
     private String question;
-    @Column(name = "_answerA")
+
+    @Column(name="_answerA")
     private String answerA;
 
-    @Column(name = "_answerB")
+    @Column(name="_answerB")
     private String answerB;
 
-    @Column(name = "_answerC")
+    @Column(name="_answerC")
     private String answerC;
-    @Column(name = "_answerD")
+
+    @Column(name="_answerD")
     private String answerD;
-    @Column(name = "_correctAnswer")
+
+    @Column(name="_correctAnswer")
     private String correctAnswer;
     public QuestionDetail() {
     }

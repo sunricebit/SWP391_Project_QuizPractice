@@ -18,12 +18,12 @@
         <h3 style="color:rgb(99, 46, 150);">Email</h3>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" class="login__input" th:feild="*{email}" id="email" name="email"  autofocus="autofocus" placeholder="Enter Email">
+          <input type="text" class="login__input" th:feild="*{email}" id="email" name="email"  autofocus="autofocus" placeholder="Enter Email" required>
         </div>
         <h3 style="color:rgb(99, 46, 150);">Password</h3>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" class="login__input" id="password" th:field="*{password}" name="password" autofocus="autofocus" placeholder="Enter Password">
+          <input required type="password" class="login__input" id="password" th:field="*{password}" name="password" autofocus="autofocus" placeholder="Enter Password">
         </div>
         <p th:if="${notification}" class="fancybox-error" style="font-weight: bold;color: red;" >Email or password is incorrect</p>
         <p th:if="${notification2}" class="fancybox-error" style="font-weight: bold;color: red;" >Your account is locked</p>

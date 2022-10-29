@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Exam")
-public class Exam {
+@Table(name = "LeaderBoard")
+public class LeaderBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -13,8 +13,9 @@ public class Exam {
     @ManyToOne
     @JoinColumn(name = "_userId")
     private QuizUser examUser;
-    @Column(name = "_quizName")
-    private String quizName;
+    @ManyToOne
+    @JoinColumn(name = "_quizId")
+    private QuizList quizPractice;
     @Column(name = "_date")
     private LocalDateTime date;
     @Column(name = "_percentage")
@@ -22,21 +23,21 @@ public class Exam {
     @Column(name = "_totalQuestion")
     private long totalQuestion;
 
-    public Exam() {
+    public LeaderBoard() {
     }
 
-    public Exam(long id, QuizUser examUser, String quizName, String percentage, long totalQuestion, LocalDateTime date) {
-        this.id = id;
+    public LeaderBoard(QuizUser examUser, QuizList quizPractice, String percentage, long totalQuestion, LocalDateTime date) {
         this.examUser = examUser;
-        this.quizName = quizName;
+        this.quizPractice = quizPractice;
         this.date = date;
         this.percentage = percentage;
         this.totalQuestion = totalQuestion;
     }
 
-    public Exam(QuizUser examUser, String quizName, String percentage, long totalQuestion, LocalDateTime date) {
+    public LeaderBoard(long id, QuizUser examUser, QuizList quizPractice,  String percentage, long totalQuestion, LocalDateTime date) {
+        this.id = id;
         this.examUser = examUser;
-        this.quizName = quizName;
+        this.quizPractice = quizPractice;
         this.date = date;
         this.percentage = percentage;
         this.totalQuestion = totalQuestion;
@@ -58,12 +59,12 @@ public class Exam {
         this.examUser = examUser;
     }
 
-    public String getQuizName() {
-        return quizName;
+    public QuizList getQuizPractice() {
+        return quizPractice;
     }
 
-    public void setQuizName(String quizName) {
-        this.quizName = quizName;
+    public void setQuizPractice(QuizList quizPractice) {
+        this.quizPractice = quizPractice;
     }
 
     public LocalDateTime getDate() {
