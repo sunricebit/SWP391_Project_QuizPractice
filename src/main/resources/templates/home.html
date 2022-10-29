@@ -119,7 +119,7 @@
                                 <a class="nav-link signup-btn" th:text="${session.currentUser.get().getEmail()}" th:href="@{/profile}"></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link signup-btn" th:href="@{/}">LogOut</a>
+                                <a class="nav-link signup-btn" th:href="@{/logout}">LogOut</a>
                             </li>
                         </ul>
                     </div>
@@ -152,8 +152,9 @@
         </div>
         <div class="col-md-9">
             <div th:each="quiz : ${quizl}">
-                <a th:text="${quiz.user.email}"></a>
-                <a th:text="${quiz.name}"></a>
+                <h3 th:text="${quiz.user.email}"></h3>
+                <br>
+                <a th:text="${quiz.name}" th:href="@{/quizlist/?id={quizId}(quizId=${quiz.id})}"></a>
             </div>
         </div>
     </div>

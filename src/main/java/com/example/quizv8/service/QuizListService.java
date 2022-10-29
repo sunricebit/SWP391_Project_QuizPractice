@@ -10,6 +10,8 @@ import java.util.*;
 @Service
 public class QuizListService implements IQuizListService {
     @Autowired
+    private LeaderBoardRepository leaderBoardRepository;
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     private ExamRepository examRepository;
@@ -93,35 +95,42 @@ public class QuizListService implements IQuizListService {
         return examRepository.getAllByExamUser(quizUser);
     }
 
-    @Override
-    public List<ExamWithRank> getLeaderBoard(Exam current, long uid, long qid) {
-        QuizList quizList = quizListRepository.getById(qid);
-        List<Exam> allExam = examRepository.getDistinctFirstByQuizNameOrderByPercentageDescDateDesc(quizList.getName());
-        List<ExamWithRank> leaderBoard = new ArrayList<ExamWithRank>();
-        int count = 0;
-        boolean isExist = false;
-        for (Exam e : allExam) {
-            ExamWithRank eRank = new ExamWithRank(allExam.indexOf(e) + 1, e);
-            leaderBoard.add(eRank);
-            count++;
-            if (e.getExamUser().getId() == uid) {
-                isExist = true;
-            }
-            if (count == 10) {
-                break;
-            }
-        }
-
-        if (!isExist) {
-            ExamWithRank eRank = new ExamWithRank(allExam.indexOf(current) + 1, allExam.get(allExam.indexOf(current)));
-            leaderBoard.add(eRank);
-        }
-        return leaderBoard;
-    }
 
     public QuizList saveQuiz(QuizList quizList) {
         QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
         return quizListRepository.save(newQuiz);
+    }
+
+    @Override
+    public long findExisted(LeaderBoard leaderBoard) {
+        Optional<LeaderBoard> old = leaderBoardRepository.findByExamUserAndQuizPractice(leaderBoard.getExamUser(), leaderBoard.getQuizPractice());
+        if(old.isPresent()){
+            return old.get().getId();
+        }
+        return -1;
+    }
+
+    public LeaderBoard getById (long id){
+        return leaderBoardRepository.getById(id);
+    }
+    public LeaderBoard saveLeaderBoard(LeaderBoard newLeader){
+        return leaderBoardRepository.save(newLeader);
+    }
+    public List<LeaderBoard> getTenLeaderBoard(){
+        List<LeaderBoard> all = leaderBoardRepository.getAllByOrderByPercentageDesc();
+        if(all.size()>10){
+            List<LeaderBoard> ten = new ArrayList<LeaderBoard>();
+            for (int i = 0; i < 10; i++) {
+                ten.add(all.get(i));
+            }
+            return ten;
+        }
+        return all;
+    }
+
+    @Override
+    public List<LeaderBoard> getAllLeaderBoard() {
+        return leaderBoardRepository.getAllByOrderByPercentageDesc();
     }
 
 }
