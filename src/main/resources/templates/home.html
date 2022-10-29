@@ -152,8 +152,9 @@
         </div>
         <div class="col-md-9">
             <div th:each="quiz : ${quizl}">
-                <a th:text="${quiz.user.email}"></a>
-                <a th:text="${quiz.name}"></a>
+                <h3 th:text="${quiz.user.email}"></h3>
+                <br>
+                <a th:text="${quiz.name}" th:href="@{/quizlist/?id={quizId}(quizId=${quiz.id})}"></a>
             </div>
         </div>
     </div>
