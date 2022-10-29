@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -39,4 +40,11 @@ public class HomeController {
         return "home";
     }
     public String homePage(){return "homePage";}
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session){
+        if(session.getAttribute("uid")!=null){
+            session.removeAttribute("uid");
+        }
+        return "homePage";
+    }
 }

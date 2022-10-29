@@ -54,12 +54,12 @@
     </tr>
 
     <tr th:each="leader : ${leaderBoard}">
-      <td th:text="${leader.rank}"></td>
-      <td th:text="${leader.exam.examUser.email}"></td>
-      <td th:text="${leader.exam.quizName}" ></td>
-      <td th:text="${leader.exam.percentage}" ></td>
-      <td th:text="${leader.exam.totalQuestion}" ></td>
-      <td th:text="${leader.exam.date}" ></td>
+      <td th:text="${leader.Rank}"></td>
+      <td th:text="${leader.leaderBoard.examUser.email}"></td>
+      <td th:text="${leader.leaderBoard.quizPractice.name}" ></td>
+      <td th:text="${leader.leaderBoard.percentage}" ></td>
+      <td th:text="${leader.leaderBoard.totalQuestion}" ></td>
+      <td th:text="${leader.leaderBoard.date}" ></td>
     </tr>
   </table>
   <a th:href="@{/home}"><button>Home</button></a>
