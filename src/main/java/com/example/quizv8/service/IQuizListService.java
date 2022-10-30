@@ -18,9 +18,8 @@ public interface IQuizListService {
     public List<QuestionDetail> getAllQuestion(long quizListID);
     public QuizList saveQuiz(QuizList quizList);
 
-<<<<<<< HEAD
-}
-=======
+
+
     //for leader board
     public long findExisted(LeaderBoard leaderBoard);
     public LeaderBoard getById (long id);
@@ -28,4 +27,3 @@ public interface IQuizListService {
     public List<LeaderBoard> getTenLeaderBoard();
     public List<LeaderBoard> getAllLeaderBoard();
 }
->>>>>>> main

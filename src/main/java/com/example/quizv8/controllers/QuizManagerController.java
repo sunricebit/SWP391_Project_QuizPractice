@@ -1,13 +1,7 @@
 package com.example.quizv8.controllers;
 
-import com.example.quizv8.model.Category;
-import com.example.quizv8.model.QuizList;
-import com.example.quizv8.model.QuizState;
-import com.example.quizv8.model.QuizUser;
-import com.example.quizv8.service.ICategoryService;
-import com.example.quizv8.service.IQuizListService;
-import com.example.quizv8.service.IStateService;
-import com.example.quizv8.service.IUserService;
+import com.example.quizv8.model.*;
+import com.example.quizv8.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +20,9 @@ public class QuizManagerController {
     private ICategoryService ICategoryService;
     @Autowired
     private IQuizListService IQuizListService;
+    @Autowired
+    private IQuestionDetailService iQuestionDetailService;
+
     @RequestMapping("/")
     public String showAllQuizList(Model model, @RequestParam long userId){
         List<QuizList> qList = IQuizListService.getQuizByUserID(userId);
@@ -33,13 +30,14 @@ public class QuizManagerController {
         //Set model cho category
         return "QuizManager";
     }
-
+    //Delete button
     @RequestMapping("/delete")
     public String deleteQuiz(Model model, @RequestParam("id") long quizListId){
         IQuizListService.deleteQuizList(quizListId);
         model.addAttribute("RetMessage","Delete success!");
         return "redirect:/QuizManager/?userId=1";
     }
+    //Add button
     @RequestMapping("/add")
     public String redirectToCreateQuizPage(Model model,@RequestParam("id") long userId){
         List<Category> list = ICategoryService.getAllCategory();
@@ -49,26 +47,26 @@ public class QuizManagerController {
 
         return "createQuiz";
     }
+    @RequestMapping("/edit")
+    public String redirectToEditQuizPage(Model model,@RequestParam long id){
+        List<Category> list = ICategoryService.getAllCategory();
+        model.addAttribute("cList",list);
+        List<QuizState> sList = iStateService.getAllState();
+        model.addAttribute("sList",sList);
+        QuizList quiz = IQuizListService.getQuizListById(id);
+        model.addAttribute("quizName",quiz.getName()    );
+        model.addAttribute("quizCate",quiz.getCategory());
+        model.addAttribute("quizState", quiz.getState() );
+        model.addAttribute("quizId", id                 );
+        List<QuestionDetail> qDList = iQuestionDetailService.getQuestionByQuizId(id);
+        model.addAttribute("qDList",qDList);
+        return "editQuiz";
+    }
 
     @Autowired
     private  IUserService iUserService;
     @Autowired
     private IStateService iStateService;
-    @RequestMapping("/addQuiz")
-    public String addQuiz(Model model){
-        List<Category> cList = ICategoryService.getAllCategory();
-        List<QuizState> sList = iStateService.getAllState();
-        model.addAttribute("sList",sList);
-        model.addAttribute("cList", cList);
-        model.addAttribute("newQuiz", new QuizList());
-        return "createQuiz";
-    }
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveQuiz(QuizList newQuiz, Category cate){
-        QuizUser currentUser = iUserService.getUser(uid);
-        QuizState state = iStateService.getQuizState(1);
-        QuizList quizList = new QuizList(newQuiz.getId(), newQuiz.getName(), false, 0, currentUser, cate, state);
-        IQuizListService.saveQuiz(quizList);
-        return "redirect:/QuizManager/?userId=1";
-    }
+
+
 }

@@ -1,7 +1,9 @@
 package com.example.quizv8.service;
 
 import com.example.quizv8.model.QuestionDetail;
+import com.example.quizv8.model.QuizList;
 import com.example.quizv8.repositories.QuestionDetailReository;
+import com.example.quizv8.repositories.QuizListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class QuestionDetailService implements IQuestionDetailService{
 
     @Autowired
     private QuestionDetailReository questionDetailReository;
+    @Autowired
+    private QuizListRepository quizListRepository;
 
     @Override
     public List<QuestionDetail> getAllQuestionDetail() {
@@ -37,5 +41,23 @@ public class QuestionDetailService implements IQuestionDetailService{
     @Override
     public QuestionDetail saveQuestionDetail(QuestionDetail q) {
         return questionDetailReository.save(q);
+    }
+
+    @Override
+    public List<QuestionDetail> getQuestionByQuizId(long quizListId) {
+        QuizList q = quizListRepository.getReferenceById(quizListId);
+        List<QuestionDetail> qDAllList = questionDetailReository.findAll();
+        List<QuestionDetail> qDList = new ArrayList<>();
+        for (QuestionDetail qD:qDAllList){
+            if (qD.getQuizList().equals(q)){
+                qDList.add(qD);
+            }
+        }
+        return qDList;
+    }
+
+    @Override
+    public void deleteQuestionDetail(QuestionDetail q) {
+         questionDetailReository.delete(q);
     }
 }

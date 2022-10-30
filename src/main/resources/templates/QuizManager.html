@@ -45,7 +45,7 @@
             <td>
                 <div class="d-flex align-items-center">
                     <div class="ms-3">
-                        <p class="fw-bold mb-1" th:text="${quiz.getName()}"></p>
+                            <a class="link-btn" th:href="@{/ViewQuiz/?pagestr=0&quizId={quizId}(quizId=${quiz.getId()})}" th:text="${quiz.getName()}"></a>
                     </div>
                 </div>
                 <link>

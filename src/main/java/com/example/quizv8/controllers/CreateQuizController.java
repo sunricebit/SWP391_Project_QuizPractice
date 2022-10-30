@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.thymeleaf.Thymeleaf;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/QuizManager")
@@ -43,8 +45,8 @@ public class CreateQuizController {
 
 
     @RequestMapping(value= "addQuiz", method=RequestMethod.POST)
-    public String create(Model model, @RequestParam String quizName,@RequestParam long quizCategoryId, @RequestParam long stateId,@RequestParam String[] Question,@RequestParam String[] answerA,
-                         @RequestParam String[] answerB,@RequestParam String[] answerC, @RequestParam String[] answerD,@RequestParam(value = "TrueAnswer[]") String[] TrueAnswer){
+    public String create(Model model, @RequestParam String quizName, @RequestParam long quizCategoryId, @RequestParam long stateId, @RequestParam String[] Question, @RequestParam String[] answerA,
+                         @RequestParam String[] answerB, @RequestParam String[] answerC, @RequestParam String[] answerD, @RequestParam(value = "TrueAnswer[]") String[] TrueAnswer, HttpSession session){
 
         logger.info("Hello");
         QuizList quizList = new QuizList(quizName,false,0,userRepository.getById((long)1),categoryRepository.getById(quizCategoryId),stateRepository.getById(stateId));
@@ -65,8 +67,8 @@ public class CreateQuizController {
             }catch (Exception ex){
                 logger.info("Question insert err:" + ex.getMessage());
             }
-
+        model.addAttribute("retMess","Add quiz success!");
         }
-        return "redirect:/QuizManager/add?id=1";
+        return "redirect:/QuizManager/?userId="+session.getAttribute("uid");
     }
 }

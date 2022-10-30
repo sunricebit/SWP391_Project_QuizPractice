@@ -9,7 +9,8 @@ public interface IQuestionDetailService {
     public List<String> getAllTrueAnswer();
     public String getTrueAnswerByQuestion(Long questionId);
     public QuestionDetail saveQuestionDetail(QuestionDetail q);
-
+    public List<QuestionDetail> getQuestionByQuizId(long quizListId);
+    public void deleteQuestionDetail(QuestionDetail q);
 
 
 }
