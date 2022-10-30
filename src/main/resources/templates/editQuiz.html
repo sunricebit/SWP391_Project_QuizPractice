@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>CreateQuiz</title>
+    <title>Edit Quiz</title>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -185,16 +185,16 @@
     </style>
 </head>
 <body>
-<div>
-    <form th:action="@{addQuiz}" id="quizListForm" method="POST">
+    <form th:action="@{/editQuiz}" id="quizListForm" method="POST">
         <div class="banner">
-            <h1>Add Quiz</h1>
+            <h1>Edit Quiz</h1>
         </div>
         <div class="item">
             <p th:text="${retMess}" style="color:red"></p>
             <p>Quiz Name:</p>
             <div class="name-item">
-                <input required type="text" th:name="quizName" placeholder="Enter quiz's name...."/>
+                <input type="text" th:name="quizId" th:value="${quizId}" hidden>
+                <input required type="text" th:name="quizName" th:value="${quizName}" placeholder="Enter quiz's name...."/>
             </div>
         </div>
         <div class="item">
@@ -213,22 +213,23 @@
         </div>
         <div>
             <div id="AnswerForm">
-                <div>
+                <div class="row" th:each="q:${qDList}">
                     <div style="display:inline-block">
                         <p>Question:</p>
-                        <textarea th:name="Question"></textarea>
+                        <textarea th:name="Question" th:text="${q.getQuestion()}"></textarea>
                     </div>
                     <div style="display:inline-block">
                         <p>Answer A:</p>
-                        <input type="text" required th:name="answerA">
+                        <input type="text" required th:name="answerA" th:value="${q.answerA}">
                         <p>Answer B:</p>
-                        <input type="text" required th:name="answerB">
+                        <input type="text" required th:name="answerB" th:value="${q.answerB}">
                         <p>Answer C:</p>
-                        <input type="text" required th:name="answerC">
+                        <input type="text" required th:name="answerC" th:value="${q.answerC}">
                         <p>Answers D:</p>
-                        <input type="text" required th:name="answerD">
+                        <input type="text" required th:name="answerD" th:value="${q.answerD}">
                         <label th:for="TrueAnswer[]">True Answer: </label>
                         <select th:name="TrueAnswer[]" th:id="TrueAnswer">
+                            <option th:value="${q.getCorrectAnswer()}" th:text="${q.getCorrectAnswer()}" selected></option>
                             <option th:value="A">A</option>
                             <option th:value="B">B</option>
                             <option th:value="C">C</option>
@@ -246,21 +247,21 @@
         <button type="button" onclick="submit()">Submit</button>
     </div>
 
-</div>
-<script>
-    document.getElementById("addAns").onclick = function() {
-        var container = document.createElement("div");
-        container.innerHTML=" <div style='display:inline-block'><p>Question:</p><textarea required name='Question'></textarea></div><div style='display:inline-block'><p>Answer A:</p><input type='text' required name='answerA'><p>Answer B:</p><input type='text' required name='answerB'><p>Answer C:</p><input type='text' required name='answerC'><p>Answer D:</p><input type='text' required name='answerD'><label for='TrueAnswer[]' >True Answer: </label><select name='TrueAnswer[]' id='TrueAnswer'><option value='A'>A</option><option value='B'>B</option><option value='C'>C</option><option value='D'>D</option></select></div>";
-        document.getElementById("AnswerForm").appendChild(container);
-    }
-    document.getElementById("delAns").onclick = function(){
-        const container = document.getElementById("AnswerForm");
-        container.removeChild(container.lastElementChild);
-    }
-    function submit(){
-        document.getElementById("quizListForm").submit();
-    }
+    </div>
+    <script>
+        document.getElementById("addAns").onclick = function() {
+            var container = document.createElement("div");
+            container.innerHTML=" <div style='display:inline-block'><p>Question:</p><textarea required name='Question'></textarea></div><div style='display:inline-block'><p>Answer A:</p><input type='text' required name='answerA'><p>Answer B:</p><input type='text' required name='answerB'><p>Answer C:</p><input type='text' required name='answerC'><p>Answer D:</p><input type='text' required name='answerD'><label for='TrueAnswer[]' >True Answer: </label><select name='TrueAnswer[]' id='TrueAnswer'><option value='A'>A</option><option value='B'>B</option><option value='C'>C</option><option value='D'>D</option></select></div>";
+            document.getElementById("AnswerForm").appendChild(container);
+        }
+        document.getElementById("delAns").onclick = function(){
+            const container = document.getElementById("AnswerForm");
+            container.removeChild(container.lastElementChild);
+        }
+        function submit(){
+            document.getElementById("quizListForm").submit();
+        }
 
-</script>
+    </script>
 </body>
 </html>

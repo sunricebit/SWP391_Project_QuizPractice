@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
+
 <head>
   <title>Quiz Result</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,7 +12,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- site metas -->
-  <title>Quiz Practice</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -35,7 +34,14 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
-<body>
+<!-- body -->
+
+<body class="main-layout">
+<!-- loader  -->
+<!--<div class="loader_bg">-->
+<!--    <div class="loader"><img src="images/loading.gif" alt="#"/></div>-->
+<!--</div>-->
+<!-- end loader -->
 <!-- header -->
 <div class="header_to d_none">
   <div class="container">
@@ -82,7 +88,7 @@
         </ul>
       </div>
       <div class="col-md-4 col-sm-4 ">
-        <a class="logo" href="#"><img src="images/logo.png" alt="#"/></a>
+        <a class="logo" href="#"><h1 style="color: red;font-weight: bold">QUIZ RESULT</h1></a>
       </div>
       <div class="col-md-4 col-sm-4 d_none">
         <ul class="conta_icon ">
@@ -105,37 +111,21 @@
           <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" th:href="@{/home}"> Home </a>
+                <a class="nav-link" th:href="@{/home}">Return Home Page </a>
               </li>
               <!--              Manage quiz here-->
               <li class="nav-item">
-                <a class="nav-link signin-btn" >Quiz Management</a>
-              </li>
-              <li class="nav-item">
-                <!--                Profile here-->
-                <a class="nav-link signup-btn" th:text="${session.currentUser.get().getEmail()}" th:href="@{/profile}"></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link signup-btn" th:href="@{/logout}">LogOut</a>
+                <a class="nav-link signup-btn" th:href="@{/}">LogOut</a>
               </li>
             </ul>
           </div>
         </nav>
       </div>
       <div class="col-md-3 col-sm-5 d_none">
-        <ul class="sign">
-          <div class="chakra-inputgroup css-mt5xj9" style="display: flex; flex-direction: row">
-            <input placeholder="Search by author, title, name" class="chakra-input css-1sovewm" style="">
-            <button class="chakra-inputright-element css-ur97uj" style="padding: .5em;">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
-        </ul>
       </div>
     </div>
   </div>
 </div>
-<!-- end header inner -->
 <style>
   #quizResult {
     font-family: Arial, Helvetica, sans-serif;
@@ -170,7 +160,9 @@
 </style>
 <div class="col-3"></div>
 <div class="container col-6">
-  <h1 style="color: orange">Leader Board</h1>
+  <br/>
+  <br/>
+  <h1 style="color: orange; font-weight: bold">Leader Board</h1>
   <table id="quizResult">
     <tr>
       <th>Rank</th>
@@ -190,7 +182,6 @@
       <td th:text="${leader.leaderBoard.date}" ></td>
     </tr>
   </table>
-  <a th:href="@{/home}"><button>Home</button></a>
 </div>
 </body>
 </html>

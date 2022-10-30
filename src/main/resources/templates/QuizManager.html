@@ -26,7 +26,8 @@
     <h2>Quiz management</h2>
     <table class="table align-middle mb-0 bg-white">
         <tr>
-            <form th:action="@{addQuiz}">
+            <form th:action="@{add}">
+                <input type="text" th:name="id" th:value="${session.uid}" hidden>
                 <button type="submit" class="btn btn-rounded">Add</button>
             </form>
         </tr>
@@ -45,7 +46,7 @@
             <td>
                 <div class="d-flex align-items-center">
                     <div class="ms-3">
-                        <p class="fw-bold mb-1" th:text="${quiz.getName()}"></p>
+                            <a class="link-btn" th:href="@{/ViewQuiz/?pagestr=0&quizId={quizId}(quizId=${quiz.getId()})}" th:text="${quiz.getName()}"></a>
                     </div>
                 </div>
                 <link>

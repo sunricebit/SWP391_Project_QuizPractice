@@ -46,6 +46,12 @@ public class QuizListService implements IQuizListService {
     @Override
     public boolean deleteQuizList(long quizListId) {
         QuizList quizList = quizListRepository.getById(quizListId);
+        List<LeaderBoard> boardList = new ArrayList<>();
+        for (LeaderBoard board:getAllLeaderBoard()){
+            if (board.getQuizPractice()==quizListRepository.getById(quizListId)){
+                leaderBoardRepository.delete(board);
+            }
+        }
         deleteQuestionDetail(quizListId);
         quizListRepository.delete(quizList);
         return true;

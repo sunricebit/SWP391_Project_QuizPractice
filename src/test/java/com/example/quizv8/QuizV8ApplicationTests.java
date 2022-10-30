@@ -38,7 +38,7 @@ class QuizV8ApplicationTests {
     @Test
     void testGetUserbyEmail(){
 
-        
+
         Assert.assertEquals("truong998hiro@gmail.com", iUserService.getUserbyEmail("truong998hiro@gmail.com").get().getEmail());
     }
     @Test
