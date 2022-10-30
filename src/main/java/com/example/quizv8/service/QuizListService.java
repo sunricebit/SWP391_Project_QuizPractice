@@ -45,7 +45,6 @@ public class QuizListService implements IQuizListService {
 
     @Override
     public boolean deleteQuizList(long quizListId) {
-
         QuizList quizList = quizListRepository.getById(quizListId);
         List<LeaderBoard> boardList = new ArrayList<>();
         for (LeaderBoard board:getAllLeaderBoard()){
@@ -97,7 +96,7 @@ public class QuizListService implements IQuizListService {
 
     @Override
     public List<Exam> getAllExam(long uid) {
-        QuizUser quizUser = userRepository.getById(uid);
+        QuizUser quizUser = userRepository.getById(uid).get();
         return examRepository.getAllByExamUser(quizUser);
     }
 

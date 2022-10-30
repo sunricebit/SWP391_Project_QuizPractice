@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface IUserService {
     public void updateUser(long id, QuizUser user);
-    public boolean deleteUser(long id);
+    public boolean lockOrUnlock(long id);
     public List<QuizUser> getAllUser();
     public QuizUser getUser(long id);
-    public QuizUser saveUser(QuizUser user);
+    public boolean saveUser(QuizUser user);
     public Optional<QuizUser> getUserbyEmail(String email);
 
 }
