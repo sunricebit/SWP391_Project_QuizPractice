@@ -68,6 +68,6 @@ public class EditQuizController {
 
         }
         model.addAttribute("retMess","Edit quiz success!");
-        return "redirect:/QuizManager/?userId"+session.getAttribute("uid");
+        return "redirect:/QuizManager/?userId="+session.getAttribute("uid");
     }
 }

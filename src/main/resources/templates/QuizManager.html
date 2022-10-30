@@ -26,7 +26,8 @@
     <h2>Quiz management</h2>
     <table class="table align-middle mb-0 bg-white">
         <tr>
-            <form th:action="@{addQuiz}">
+            <form th:action="@{add}">
+                <input type="text" th:name="id" th:value="${session.uid}" hidden>
                 <button type="submit" class="btn btn-rounded">Add</button>
             </form>
         </tr>
