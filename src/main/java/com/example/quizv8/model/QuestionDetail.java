@@ -30,11 +30,22 @@ public class QuestionDetail {
 
     @Column(name="_correctAnswer")
     private String correctAnswer;
-
     public QuestionDetail() {
     }
     public QuestionDetail(long questionNo, QuizList quizList, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
+
         this.questionNo = questionNo;
+        this.quizList = quizList;
+        this.question = question;
+        this.answerA = answerA;
+        this.correctAnswer = correctAnswer;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
+
+    }
+
+    public QuestionDetail(QuizList quizList, String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
         this.quizList = quizList;
         this.question = question;
         this.answerA = answerA;
@@ -44,12 +55,44 @@ public class QuestionDetail {
         this.correctAnswer = correctAnswer;
     }
 
+    public long getQuestionNo() {
+        return questionNo;
+    }
+
+    public void setQuestionNo(long questionNo) {
+        this.questionNo = questionNo;
+    }
+
+    public QuizList getQuizList() {
+        return quizList;
+    }
+
+    public void setQuizList(QuizList quizList) {
+        this.quizList = quizList;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String getAnswerA() {
         return answerA;
     }
 
     public void setAnswerA(String answerA) {
         this.answerA = answerA;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public String getAnswerB() {
@@ -76,35 +119,17 @@ public class QuestionDetail {
         this.answerD = answerD;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
-
-    public long getQuestionNo() {
-        return questionNo;
-    }
-
-    public void setQuestionNo(long questionNo) {
-        this.questionNo = questionNo;
-    }
-
-    public QuizList getQuizList() {
-        return quizList;
-    }
-
-    public void setQuizList(QuizList quizList) {
-        this.quizList = quizList;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
+    @Override
+    public String toString() {
+        return "QuestionDetail{" +
+                "questionNo=" + questionNo +
+                ", quizList=" + quizList +
+                ", question='" + question + '\'' +
+                ", answerA='" + answerA + '\'' +
+                ", answerB='" + answerB + '\'' +
+                ", answerC='" + answerC + '\'' +
+                ", answerD='" + answerD + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                '}';
     }
 }
