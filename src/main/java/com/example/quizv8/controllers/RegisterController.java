@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/SignUp")
@@ -35,8 +37,8 @@ public class RegisterController {
 //        String pass = res.getParameter("Pass");
 //        String rePass = res.getParameter("rePass");
 //        if (user.getPassword().equals(rePass)) {
-            iUserService.saveUser(user);
-            return "redirect:/SignIn/In?success";
+        iUserService.saveUser(user);
+        return "redirect:/SignIn/In?success";
 //        }
 //        model.addAttribute("notification", true);
 //        return "forward:/SignUp";

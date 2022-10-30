@@ -27,7 +27,6 @@ public class updateProfileController {
         Optional<QuizUser> currentUser =(Optional<QuizUser>) session.getAttribute("currentUser");
         String oldPass = request.getParameter("oldPass");
         String newPass = request.getParameter("newPass");
-        System.out.println(""+currentUser.get().getPassword());
         if(!oldPass.equals(currentUser.get().getPassword())){
             model.addAttribute("notification", true);
             return "forward:/updateProfile/change/";
