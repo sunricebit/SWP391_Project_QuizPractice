@@ -21,12 +21,12 @@ public class UserService implements IUserService {
     @Override
     public void updateUser(long id, QuizUser user) {
         if (user != null) {
-            QuizUser user1 = userRepository.getById(id);
-            if (user1 != null) {
-                user1.setEmail(user.getEmail());
-                user1.setPassword(user.getPassword());
-                user1.setRole(user.getRole());
-                userRepository.save(user1);
+            Optional<QuizUser> user1 = userRepository.getById(id);
+            if (user1.isPresent()) {
+                user1.get().setEmail(user.getEmail());
+                user1.get().setPassword(user.getPassword());
+                user1.get().setRole(user.getRole());
+                userRepository.save(user1.get());
             }
         }
     }
@@ -34,10 +34,15 @@ public class UserService implements IUserService {
     @Autowired
     private IQuizListService iQuizListService;
     @Override
-    public boolean deleteUser(long id) {
-        QuizUser user1 = userRepository.getById(id);
-        if (user1 != null) {
-            userRepository.delete(user1);
+    public boolean lockOrUnlock(long id) {
+        Optional<QuizUser> user1 = userRepository.getById(id);
+        if (user1.isPresent()) {
+            if(user1.get().isStatus()){
+                user1.get().setStatus(false);
+            } else {
+                user1.get().setStatus(true);
+            }
+            userRepository.save(user1.get());
             return true;
         }
         return false;
@@ -49,8 +54,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public QuizUser saveUser(QuizUser user) {
-        return userRepository.save(user);
+    public boolean saveUser(QuizUser user) {
+        if(user.getEmail()!=null && user.getPassword()!=null && user.getRole()!=null){
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -66,7 +75,7 @@ public class UserService implements IUserService {
 
     @Override
     public QuizUser getUser(long id) {
-        return userRepository.getById(id);
+        return userRepository.getById(id).get();
     }
 
 }

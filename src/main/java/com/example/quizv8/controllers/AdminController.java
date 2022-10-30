@@ -48,7 +48,7 @@ public class AdminController {
     }
     @RequestMapping(value = "/LockOrUnlock", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("id") Long userId, Model model) {
-        iUserService.deleteUser(userId);
+        iUserService.lockOrUnlock(userId);
         return "redirect:/admin/";
     }
     //API show list
