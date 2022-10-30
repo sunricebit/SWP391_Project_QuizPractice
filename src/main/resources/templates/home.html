@@ -141,23 +141,20 @@
 <!-- end header inner -->
 <!-- end header -->
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <ul>
-                <h2>Category:</h2>
-                <li th:each="category : ${categories}">
-                    <a th:text="${category.categoryName}" th:href="@{/find?categoryName={cateName}(cateName=${category.categoryName})}"></a>
-                </li>
-            </ul>
+        <div class="row" style="margin-top: 10px">
+                <div style="margin-left:5%;background-color: #6db19b;font-weight: bold;float: left;padding: 15px">Category</div>
+                <div th:each="category : ${categories}" style="float: left;background-color: deepskyblue;font-weight: bold;width: 200px;text-align: center;height: 60px;border-left: black solid 1px;">
+                    <button style="background-color: deepskyblue;font-weight: 400;font-size: 20px"><a style="color: whitesmoke;font-weight: bold;line-height: 60px;height: 60px" th:text="${category.categoryName}" th:href="@{/find?categoryName={cateName}(cateName=${category.categoryName})}"></a></button>
+
+                </div>
         </div>
-        <div class="col-md-9">
+        <div class="row" style="margin-top: 50px">
             <div th:each="quiz : ${quizl}">
                 <h3 th:text="${quiz.user.email}"></h3>
                 <br>
                 <a th:text="${quiz.name}" th:href="@{/quizlist/?id={quizId}(quizId=${quiz.id})}"></a>
             </div>
         </div>
-    </div>
 </div>
 
 <!--  footer -->
