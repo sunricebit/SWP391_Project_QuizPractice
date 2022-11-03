@@ -107,6 +107,11 @@ public class QuizListService implements IQuizListService {
     }
 
     @Override
+    public List<QuizList> searchByPartName(String partName) {
+        return quizListRepository.findAllByName(partName);
+    }
+
+    @Override
     public long findExisted(LeaderBoard leaderBoard) {
         Optional<LeaderBoard> old = leaderBoardRepository.findByExamUserAndQuizPractice(leaderBoard.getExamUser(), leaderBoard.getQuizPractice());
         if(old.isPresent()){
@@ -121,8 +126,8 @@ public class QuizListService implements IQuizListService {
     public LeaderBoard saveLeaderBoard(LeaderBoard newLeader){
         return leaderBoardRepository.save(newLeader);
     }
-    public List<LeaderBoard> getTenLeaderBoard(){
-        List<LeaderBoard> all = leaderBoardRepository.getAllByOrderByPercentageDesc();
+    public List<LeaderBoard> getTenLeaderBoard(long qid){
+        List<LeaderBoard> all = leaderBoardRepository.getLeaderBoardsByQuizPracticeAndOrderByPercentageDesc(qid);
         if(all.size()>10){
             List<LeaderBoard> ten = new ArrayList<LeaderBoard>();
             for (int i = 0; i < 10; i++) {

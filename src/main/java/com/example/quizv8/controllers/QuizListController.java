@@ -83,7 +83,7 @@ public class QuizListController {
         } else{
             currentId = iQuizListService.saveLeaderBoard(newLeader).getId();
         }
-        List<LeaderBoard> leaderBoard = iQuizListService.getTenLeaderBoard();
+        List<LeaderBoard> leaderBoard = iQuizListService.getTenLeaderBoard(qid);
         boolean isExist = false;
         for(LeaderBoard l: leaderBoard){
             if(l.getId()==currentId){
