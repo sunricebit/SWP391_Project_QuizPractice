@@ -120,11 +120,11 @@
 <div th:if="${param.success}">
     <div class="alert alert-info">Create account success</div>
 </div>
-<form th:action="${SignUp}" method="post" th:object="${quizUser}" >
+<form th:action="@{/SignUp/sign_up}" method="post" th:object="${quizUser}" >
     <div class="container">
         <h1 style="color:rgb(99, 46, 150);">Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
-        <hr>
+        <br/>
         <label th:for="email"><b>Email</b></label>
         <input  type="email" placeholder="Enter Email" name="email" required th:field="*{email}" autofocus="autofocus">
         <br/>

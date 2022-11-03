@@ -22,26 +22,23 @@ public class RegisterController {
     @Autowired
     private IUserService iUserService;
 
-    @ModelAttribute("quizUser")
-    public QuizUser quizUser() {
-        return new QuizUser();
-    }
-
-    @GetMapping
-    public String showRegister() {
+    @RequestMapping("register")
+    public String showRegister( Model model) {
+        model.addAttribute("quizUser", new QuizUser());
         return "SignUp";
     }
+    @RequestMapping("/sign_up")
+    public String register(@ModelAttribute("quizUser") QuizUser user, HttpServletRequest res, Model model) {
+        String pass = res.getParameter("Pass");
+        String rePass = res.getParameter("rePass");
+        if (!user.getPassword().equals(rePass)) {
+            model.addAttribute("notification", true);
+            return "forward:/SignUp/register/";
+        } else {
+            iUserService.saveUser(user);
+            return "redirect:/SignIn/In?success";
+        }
 
-    @PostMapping
-    public String register(@ModelAttribute("quizUser") QuizUser user, HttpServletRequest res, Model model ) {
-//        String pass = res.getParameter("Pass");
-//        String rePass = res.getParameter("rePass");
-//        if (user.getPassword().equals(rePass)) {
-        iUserService.saveUser(user);
-        return "redirect:/SignIn/In?success";
-//        }
-//        model.addAttribute("notification", true);
-//        return "forward:/SignUp";
     }
 
 }
