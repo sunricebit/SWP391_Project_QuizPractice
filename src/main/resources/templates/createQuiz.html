@@ -186,7 +186,7 @@
 </head>
 <body>
 <div>
-    <form th:action="@{addQuiz}" id="quizListForm" method="POST">
+    <form th:action="@{addQuiz}" id="quizListForm" method="POST" onSubmit="anyAction">
         <div class="banner">
             <h1>Add Quiz</h1>
         </div>
@@ -216,7 +216,7 @@
                 <div>
                     <div style="display:inline-block">
                         <p>Question:</p>
-                        <textarea th:name="Question"></textarea>
+                        <textarea th:name="Question" required></textarea>
                     </div>
                     <div style="display:inline-block">
                         <p>Answer A:</p>

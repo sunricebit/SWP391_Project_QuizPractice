@@ -4,6 +4,7 @@ package com.example.quizv8.controllers;
 import com.example.quizv8.model.Category;
 import com.example.quizv8.model.QuestionDetail;
 import com.example.quizv8.model.QuizList;
+import com.example.quizv8.model.QuizUser;
 import com.example.quizv8.repositories.CategoryRepository;
 import com.example.quizv8.repositories.QuizListRepository;
 import com.example.quizv8.repositories.StateRepository;
@@ -49,7 +50,7 @@ public class CreateQuizController {
                          @RequestParam String[] answerB, @RequestParam String[] answerC, @RequestParam String[] answerD, @RequestParam(value = "TrueAnswer[]") String[] TrueAnswer, HttpSession session){
 
         logger.info("Hello");
-        QuizList quizList = new QuizList(quizName,false,0,userRepository.getById((long)1),categoryRepository.getById(quizCategoryId),stateRepository.getById(stateId));
+        QuizList quizList = new QuizList(quizName,false,0,userRepository.getById(Long.parseLong(session.getAttribute("uid").toString())),categoryRepository.getById(quizCategoryId),stateRepository.getById(stateId));
 
         QuizList qList =IQuizListService.saveQuiz(quizList);
         for (int i=0;i< answerA.length;i++){

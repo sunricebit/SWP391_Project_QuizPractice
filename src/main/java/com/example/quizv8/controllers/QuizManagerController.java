@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,10 +33,10 @@ public class QuizManagerController {
     }
     //Delete button
     @RequestMapping("/delete")
-    public String deleteQuiz(Model model, @RequestParam("id") long quizListId){
+    public String deleteQuiz(Model model, @RequestParam("id") long quizListId, HttpSession session){
         IQuizListService.deleteQuizList(quizListId);
         model.addAttribute("RetMessage","Delete success!");
-        return "redirect:/QuizManager/?userId=1";
+        return "redirect:/QuizManager/?userId=" +session.getAttribute("uid");
     }
     //Add button
     @RequestMapping("/add")

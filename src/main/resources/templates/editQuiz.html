@@ -194,7 +194,7 @@
             <p>Quiz Name:</p>
             <div class="name-item">
                 <input type="text" th:name="quizId" th:value="${quizId}" hidden>
-                <input required type="text" th:name="quizName" th:value="${quizName}" placeholder="Enter quiz's name...."/>
+                <input required type="text" th:name="quizName" th:value="${quizName}" placeholder="Enter quiz's name...." onSubmit="anyAction"/>
             </div>
         </div>
         <div class="item">
@@ -216,7 +216,7 @@
                 <div class="row" th:each="q:${qDList}">
                     <div style="display:inline-block">
                         <p>Question:</p>
-                        <textarea th:name="Question" th:text="${q.getQuestion()}"></textarea>
+                        <textarea th:name="Question" required th:text="${q.getQuestion()}"></textarea>
                     </div>
                     <div style="display:inline-block">
                         <p>Answer A:</p>
