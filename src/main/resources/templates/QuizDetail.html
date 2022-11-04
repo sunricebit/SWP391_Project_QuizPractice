@@ -191,7 +191,7 @@
                 <th>Rank</th>
                 <th>Account</th>
                 <th>QuizName</th>
-                <th>Percentage</th>
+                <th>Percentage(%)</th>
                 <th>TotalQuestion</th>
                 <th>Date</th>
             </tr>
@@ -200,7 +200,7 @@
                 <td th:text="${leader.Rank}"></td>
                 <td th:text="${leader.leaderBoard.examUser.email}"></td>
                 <td th:text="${leader.leaderBoard.quizPractice.name}"></td>
-                <td th:text="${leader.leaderBoard.percentage}"></td>
+                <td th:text="${leader.leaderBoard.percentage}+'%'"></td>
                 <td th:text="${leader.leaderBoard.totalQuestion}"></td>
                 <td th:text="${leader.leaderBoard.date}"></td>
             </tr>

@@ -19,14 +19,14 @@ public class LeaderBoard {
     @Column(name = "_date")
     private LocalDateTime date;
     @Column(name = "_percentage")
-    private String percentage;
+    private float percentage;
     @Column(name = "_totalQuestion")
     private long totalQuestion;
 
     public LeaderBoard() {
     }
 
-    public LeaderBoard(QuizUser examUser, QuizList quizPractice, String percentage, long totalQuestion, LocalDateTime date) {
+    public LeaderBoard(QuizUser examUser, QuizList quizPractice, float percentage, long totalQuestion, LocalDateTime date) {
         this.examUser = examUser;
         this.quizPractice = quizPractice;
         this.date = date;
@@ -34,7 +34,7 @@ public class LeaderBoard {
         this.totalQuestion = totalQuestion;
     }
 
-    public LeaderBoard(long id, QuizUser examUser, QuizList quizPractice,  String percentage, long totalQuestion, LocalDateTime date) {
+    public LeaderBoard(long id, QuizUser examUser, QuizList quizPractice,  float percentage, long totalQuestion, LocalDateTime date) {
         this.id = id;
         this.examUser = examUser;
         this.quizPractice = quizPractice;
@@ -75,11 +75,11 @@ public class LeaderBoard {
         this.date = date;
     }
 
-    public String getPercentage() {
+    public float getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(String percentage) {
+    public void setPercentage(float percentage) {
         this.percentage = percentage;
     }
 

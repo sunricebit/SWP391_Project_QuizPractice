@@ -18,14 +18,14 @@ public class Exam {
     @Column(name = "_date")
     private LocalDateTime date;
     @Column(name = "_percentage")
-    private String percentage;
+    private float percentage;
     @Column(name = "_totalQuestion")
     private long totalQuestion;
 
     public Exam() {
     }
 
-    public Exam(long id, QuizUser examUser, String quizName, String percentage, long totalQuestion, LocalDateTime date) {
+    public Exam(long id, QuizUser examUser, String quizName, float percentage, long totalQuestion, LocalDateTime date) {
         this.id = id;
         this.examUser = examUser;
         this.quizName = quizName;
@@ -34,7 +34,7 @@ public class Exam {
         this.totalQuestion = totalQuestion;
     }
 
-    public Exam(QuizUser examUser, String quizName, String percentage, long totalQuestion, LocalDateTime date) {
+    public Exam(QuizUser examUser, String quizName, float percentage, long totalQuestion, LocalDateTime date) {
         this.examUser = examUser;
         this.quizName = quizName;
         this.date = date;
@@ -74,11 +74,11 @@ public class Exam {
         this.date = date;
     }
 
-    public String getPercentage() {
+    public float getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(String percentage) {
+    public void setPercentage(float percentage) {
         this.percentage = percentage;
     }
 

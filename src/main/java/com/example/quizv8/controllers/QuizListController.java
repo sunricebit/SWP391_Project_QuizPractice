@@ -62,10 +62,10 @@ public class QuizListController {
             }
         }
         int totalQuestion = questionDetails.size();
-        double mark1 =(double) mark;
-        double percent = mark1 *100 / totalQuestion;
-        Exam exam = new Exam(quizUser, quizList.getName(), percent +"%", totalQuestion, LocalDateTime.now());
-        LeaderBoard newLeader = new LeaderBoard(quizUser, quizList, percent +"%", totalQuestion, LocalDateTime.now());
+        float mark1 =(float) mark;
+        float percent = mark1 *100 / totalQuestion;
+        Exam exam = new Exam(quizUser, quizList.getName(), percent, totalQuestion, LocalDateTime.now());
+        LeaderBoard newLeader = new LeaderBoard(quizUser, quizList, percent, totalQuestion, LocalDateTime.now());
         iQuizListService.saveExam(exam);
         //save to leader board
         long id = iQuizListService.findExisted(newLeader);
@@ -73,7 +73,7 @@ public class QuizListController {
         if(id!=-1){
             LeaderBoard old = iQuizListService.getById(id);
             //so sanh diem
-            double oldPercent = Double.parseDouble(old.getPercentage().substring(0, old.getPercentage().length()-1));
+            float oldPercent = old.getPercentage();
             if(oldPercent<percent){
                 old.setPercentage(newLeader.getPercentage());
                 old.setDate(newLeader.getDate());

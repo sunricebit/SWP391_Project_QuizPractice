@@ -15,14 +15,14 @@
             <th>ID</th>
             <th>QuizName</th>
             <th>Practice Date</th>
-            <th>Score</th>
+            <th>Score(%)</th>
             <th>Total Question</th>
         </tr>
         <tr th:each="e : ${history}">
             <td th:text="${history.indexOf(e)+1}"></td>
             <td th:text="${e.quizName}"></td>
             <td th:text="${e.date}"></td>
-            <td th:text="${e.percentage}"></td>
+            <td th:text="${e.percentage}+'%'"></td>
             <td th:text="${e.totalQuestion}"></td>
         </tr>
     </table>
