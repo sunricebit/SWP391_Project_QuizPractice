@@ -50,7 +50,7 @@ public class CreateQuizController {
                          @RequestParam String[] answerB, @RequestParam String[] answerC, @RequestParam String[] answerD, @RequestParam(value = "TrueAnswer[]") String[] TrueAnswer, HttpSession session){
 
         logger.info("Hello");
-        QuizList quizList = new QuizList(quizName,false,0,userRepository.getById(Long.parseLong(session.getAttribute("uid").toString())),categoryRepository.getById(quizCategoryId),stateRepository.getById(stateId));
+        QuizList quizList = new QuizList(quizName,false,0,userRepository.getById(Long.parseLong(session.getAttribute("uid").toString())).get(),categoryRepository.getById(quizCategoryId),stateRepository.getById(stateId));
 
         QuizList qList =IQuizListService.saveQuiz(quizList);
         for (int i=0;i< answerA.length;i++){
