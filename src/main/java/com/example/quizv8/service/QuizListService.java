@@ -45,11 +45,10 @@ public class QuizListService implements IQuizListService {
 
     @Override
     public boolean deleteQuizList(long quizListId) {
-
         QuizList quizList = quizListRepository.getById(quizListId);
         List<LeaderBoard> boardList = new ArrayList<>();
-        for (LeaderBoard board:getAllLeaderBoard()){
-            if (board.getQuizPractice()==quizListRepository.getById(quizListId)){
+        for (LeaderBoard board : getAllLeaderBoard()) {
+            if (board.getQuizPractice() == quizListRepository.getById(quizListId)) {
                 leaderBoardRepository.delete(board);
             }
         }
@@ -97,43 +96,54 @@ public class QuizListService implements IQuizListService {
 
     @Override
     public List<Exam> getAllExam(long uid) {
-        QuizUser quizUser = userRepository.getById(uid);
+        QuizUser quizUser = userRepository.getById(uid).get();
         return examRepository.getAllByExamUser(quizUser);
     }
 
-
+    @Override
     public QuizList saveQuiz(QuizList quizList) {
         QuizList newQuiz = new QuizList(quizList.getId(), quizList.getName(), quizList.isActive(), quizList.getVote(), quizList.getUser(), quizList.getCategory(), quizList.getState());
         return quizListRepository.save(newQuiz);
     }
 
     @Override
+    public List<QuizList> searchByPartName(String partName) {
+        return quizListRepository.findAllByName(partName);
+    }
+
+    @Override
     public long findExisted(LeaderBoard leaderBoard) {
         Optional<LeaderBoard> old = leaderBoardRepository.findByExamUserAndQuizPractice(leaderBoard.getExamUser(), leaderBoard.getQuizPractice());
-        if(old.isPresent()){
+        if (old.isPresent()) {
             return old.get().getId();
         }
         return -1;
     }
 
-    public LeaderBoard getById (long id){
+    @Override
+    public LeaderBoard getById(long id) {
         return leaderBoardRepository.getById(id);
     }
-    public LeaderBoard saveLeaderBoard(LeaderBoard newLeader){
+
+    @Override
+    public LeaderBoard saveLeaderBoard(LeaderBoard newLeader) {
         return leaderBoardRepository.save(newLeader);
     }
-    public List<LeaderBoard> getTenLeaderBoard(){
-        List<LeaderBoard> all = leaderBoardRepository.getAllByOrderByPercentageDesc();
-        if(all.size()>10){
+
+    @Override
+    public List<LeaderBoard> getTenLeaderBoard(long qid) {
+        List<LeaderBoard> all = leaderBoardRepository.getLeaderBoardsByQuizPracticeAndOrderByPercentageDesc(qid);
+        if (all.size() > 10) {
             List<LeaderBoard> ten = new ArrayList<LeaderBoard>();
             for (int i = 0; i < 10; i++) {
                 ten.add(all.get(i));
             }
+            ten.sort((l1, l2)->(l1.getPercentage()<l2.getPercentage()?1:-1));
             return ten;
         }
+        all.sort((l1, l2)->(l1.getPercentage()<l2.getPercentage()?1:-1));
         return all;
     }
-
     @Override
     public List<LeaderBoard> getAllLeaderBoard() {
         return leaderBoardRepository.getAllByOrderByPercentageDesc();

@@ -11,5 +11,7 @@ import java.util.Optional;
 
 public interface LeaderBoardRepository extends JpaRepository<LeaderBoard, Long> {
     Optional<LeaderBoard> findByExamUserAndQuizPractice(QuizUser quizUser, QuizList quizList);
+    @Query("select l from LeaderBoard l where l.quizPractice.id=?1 order by l.percentage asc ")
+    List<LeaderBoard> getLeaderBoardsByQuizPracticeAndOrderByPercentageDesc(long qid);
     List<LeaderBoard> getAllByOrderByPercentageDesc();
 }

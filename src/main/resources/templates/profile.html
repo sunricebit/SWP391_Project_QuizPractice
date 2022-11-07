@@ -112,7 +112,7 @@
                             </li>
                             <!--              Manage quiz here-->
                             <li class="nav-item">
-                                <a class="nav-link signin-btn" >Quiz Management</a>
+                                <a class="nav-link signin-btn" th:href="@{/QuizManager/?userId={userId}(userId=${session.uid})}" >Quiz Management</a>
                             </li>
                             <li class="nav-item">
                                 <!--                Profile here-->
@@ -148,7 +148,7 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4 th:text="${session.currentUser.get().getEmail()}"}></h4>
-                                <a href="history-orders" class="btn btn-primary">History</a>
+                                <a th:href="@{/history}" class="btn btn-primary">History</a>
                                 <a th:href="@{/updateProfile/change}" class="btn btn-primary">Change Password</a>
                             </div>
                         </div>

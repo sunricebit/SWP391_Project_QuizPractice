@@ -32,7 +32,6 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <!-- body -->
-
 <body class="main-layout">
 <!-- loader  -->
 <!--<div class="loader_bg">-->
@@ -125,46 +124,54 @@
           </div>
         </nav>
       </div>
-      <div class="col-md-3 col-sm-5 d_none">
-        <ul class="sign">
-          <div class="chakra-inputgroup css-mt5xj9" style="display: flex; flex-direction: row">
-            <input placeholder="Search by author, title, name" class="chakra-input css-1sovewm" style="">
-            <button class="chakra-inputright-element css-ur97uj" style="padding: .5em;">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
-        </ul>
-      </div>
     </div>
   </div>
 </div>
 <!--add front page-->
 <div class="col-3"></div>
 <div class="container col-6">
-  <h1 th:text="${quizList.getName()}"></h1>
+  <h1 style="text-align: center;width: 100%; font-weight: bold;color: #d7eb07" th:text="${quizList.getName()}" ></h1>
   <div th:each="ques : ${questions}">
     <ul>
-      <h2 th:text="${ques.question}"></h2>
-      <li>
-        <input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerA}" th:value="a">
-      </li>
-      <li><input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerB}" th:value="b">
-      </li>
-      <li><input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerC}" th:value="c">
-      </li>
-      <li>  <input  type="radio" th:name="${ques.questionNo}" th:text="${ques.answerD}" th:value="d">
-      </li>
+      <h2 th:text="${ques.question}" style="font-weight: bold;font-family: sans-serif;"></h2>
+      <label th:for="${ques.questionNo}+a" style="display: block">
+        <div>
+          <li style="padding: 10px;background: aliceblue;border: 1px solid #84c5fe;margin-bottom: 10px;cursor: pointer;font-family: sans-serif;padding-right: 470px;">
+            <input type="radio" th:id="${ques.questionNo}+a" th:name="${ques.questionNo}" th:text="${ques.answerA}" th:value="a">
+          </li>
+        </div>
+      </label>
+      <label th:for="${ques.questionNo}+b" style="display: block">
+        <div>
+          <li style="padding: 10px;background: aliceblue;border: 1px solid #84c5fe;margin-bottom: 10px;cursor: pointer;font-family: sans-serif;padding-right: 470px;">
+            <input type="radio" th:id="${ques.questionNo}+b" th:name="${ques.questionNo}" th:text="${ques.answerB}" th:value="b">
+          </li>
+        </div>
+      </label>
+      <label th:for="${ques.questionNo}+c" style="display: block">
+        <div>
+          <li style="padding: 10px;background: aliceblue;border: 1px solid #84c5fe;margin-bottom: 10px;cursor: pointer;font-family: sans-serif;padding-right: 470px;">
+            <input type="radio" th:id="${ques.questionNo}+c" th:name="${ques.questionNo}" th:text="${ques.answerC}" th:value="c">
+          </li>
+        </div>
+      </label>
+      <label th:for="${ques.questionNo}+d" style="display: block">
+        <div>
+          <li style="padding: 10px;background: aliceblue;border: 1px solid #84c5fe;margin-bottom: 10px;cursor: pointer;font-family: sans-serif;padding-right: 470px;">
+            <input type="radio" th:id="${ques.questionNo}+d" th:name="${ques.questionNo}" th:text="${ques.answerD}" th:value="d">
+          </li>
+        </div>
+      </label>
       <li hidden>
         <input type="radio" th:name="${ques.questionNo}" th:text="${ques.answerD}" value="x" checked>
       </li>
     </ul>
   </div>
 
-
   <form th:object="${result}" th:action="@{submit}" method="post">
     <textarea hidden th:field="*{strResult}" id="result"></textarea>
     <!--    <input type="submit" value="Ket thuc bai thi">-->
-    <input style="margin-left: 325px" type="submit" class="btn btn-success" onclick="displayRadioValue()" value="Submit">
+    <input style="margin-left: 500px; margin-bottom: 15px" type="submit" class="btn btn-success" onclick="displayRadioValue()" value="Submit">
   </form>
 
   <script>
@@ -181,33 +188,4 @@
   </script>
 </div>
 </body>
-<!--<style>-->
-<!--  h1{-->
-<!--    text-align: center;-->
-<!--  }-->
-<!--  .col-6 {-->
-<!--    -ms-flex: 0 0 50%;-->
-<!--    flex: 0 0 50%;-->
-<!--    max-width: 50%;-->
-<!--    border: 0.1rem solid rgb(86,165,235,0.25);-->
-<!--    padding-right: 50px;-->
-<!--    margin-top: 20px;-->
-<!--  }-->
-<!--  container{color: #9fcdff}-->
-<!--  h2 {-->
-<!--    color: #0f69c6;-->
-<!--    background: lightskyblue;-->
-<!--  }-->
-<!--  li{-->
-<!--    color: #0b0b0b;-->
-<!--    display: flex;-->
-<!--    margin-bottom: 0.5rem;-->
-<!--    font-size: 1rem;-->
-<!--    border: 0.1rem solid rgb(86,165,235,0.25);-->
-<!--    background: white;-->
-<!--  }-->
-<!--  a{-->
-<!--    margin-left: 350px;-->
-<!--  }-->
-<!--</style>-->
 </html>
