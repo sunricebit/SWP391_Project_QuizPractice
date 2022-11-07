@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <!-- fevicon -->
+    <link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif"/>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+          media="screen">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <style>
       html, body {
       min-height: 100%;
@@ -186,7 +199,45 @@
 </head>
 <body>
 <div>
-    <form th:action="@{addQuiz}" id="quizListForm" method="POST">
+    <div class="row">
+        <div class="col-md-9 col-sm-7">
+            <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+                        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/home}"> Home </a>
+                        </li>
+                        <!--              Manage quiz here-->
+                        <li class="nav-item">
+                            <a class="nav-link signin-btn" th:href="@{/QuizManager/?userId={userId}(userId=${session.uid})}">Quiz Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <!--                Profile here-->
+                            <a class="nav-link signup-btn" th:text="${session.currentUser.get().getEmail()}" th:href="@{/profile}"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link signup-btn" th:href="@{/logout}">LogOut</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-3 col-sm-5 d_none">
+            <ul class="sign">
+                <div class="chakra-inputgroup css-mt5xj9" style="display: flex; flex-direction: row">
+                    <input placeholder="Search by author, title, name" class="chakra-input css-1sovewm" style="">
+                    <button class="chakra-inputright-element css-ur97uj" style="padding: .5em;">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <form th:action="@{addQuiz}" id="quizListForm" method="POST" onSubmit="anyAction">
         <div class="banner">
             <h1>Add Quiz</h1>
         </div>
@@ -216,7 +267,7 @@
                 <div>
                     <div style="display:inline-block">
                         <p>Question:</p>
-                        <textarea th:name="Question"></textarea>
+                        <textarea th:name="Question" required></textarea>
                     </div>
                     <div style="display:inline-block">
                         <p>Answer A:</p>

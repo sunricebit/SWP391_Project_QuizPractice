@@ -16,7 +16,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/QuizManager")
 public class QuizManagerController {
-    private long uid = 1;
+    private long uid=1;
     @Autowired
     private ICategoryService ICategoryService;
     @Autowired
@@ -25,50 +25,47 @@ public class QuizManagerController {
     private IQuestionDetailService iQuestionDetailService;
 
     @RequestMapping("/")
-    public String showAllQuizList(Model model, @RequestParam long userId) {
+    public String showAllQuizList(Model model, @RequestParam long userId){
         List<QuizList> qList = IQuizListService.getQuizByUserID(userId);
-        model.addAttribute("qList", qList);
+        model.addAttribute("qList",qList);
         //Set model cho category
         return "QuizManager";
     }
-
     //Delete button
     @RequestMapping("/delete")
-    public String deleteQuiz(Model model, @RequestParam("id") long quizListId, HttpSession session) {
+    public String deleteQuiz(Model model, @RequestParam("id") long quizListId, HttpSession session){
         IQuizListService.deleteQuizList(quizListId);
-        model.addAttribute("RetMessage", "Delete success!");
-        return "redirect:/QuizManager/?userId=" + session.getAttribute("uid");
+        model.addAttribute("RetMessage","Delete success!");
+        return "redirect:/QuizManager/?userId=" +session.getAttribute("uid");
     }
-
     //Add button
     @RequestMapping("/add")
-    public String redirectToCreateQuizPage(Model model, @RequestParam("id") long userId) {
+    public String redirectToCreateQuizPage(Model model,@RequestParam("id") long userId){
         List<Category> list = ICategoryService.getAllCategory();
-        model.addAttribute("cList", list);
+        model.addAttribute("cList",list);
         List<QuizState> sList = iStateService.getAllState();
-        model.addAttribute("sList", sList);
+        model.addAttribute("sList",sList);
 
         return "createQuiz";
     }
-
     @RequestMapping("/edit")
-    public String redirectToEditQuizPage(Model model, @RequestParam long id) {
+    public String redirectToEditQuizPage(Model model,@RequestParam long id){
         List<Category> list = ICategoryService.getAllCategory();
-        model.addAttribute("cList", list);
+        model.addAttribute("cList",list);
         List<QuizState> sList = iStateService.getAllState();
-        model.addAttribute("sList", sList);
+        model.addAttribute("sList",sList);
         QuizList quiz = IQuizListService.getQuizListById(id);
-        model.addAttribute("quizName", quiz.getName());
-        model.addAttribute("quizCate", quiz.getCategory());
-        model.addAttribute("quizState", quiz.getState());
-        model.addAttribute("quizId", id);
+        model.addAttribute("quizName",quiz.getName()    );
+        model.addAttribute("quizCate",quiz.getCategory());
+        model.addAttribute("quizState", quiz.getState() );
+        model.addAttribute("quizId", id                 );
         List<QuestionDetail> qDList = iQuestionDetailService.getQuestionByQuizId(id);
-        model.addAttribute("qDList", qDList);
+        model.addAttribute("qDList",qDList);
         return "editQuiz";
     }
 
     @Autowired
-    private IUserService iUserService;
+    private  IUserService iUserService;
     @Autowired
     private IStateService iStateService;
 

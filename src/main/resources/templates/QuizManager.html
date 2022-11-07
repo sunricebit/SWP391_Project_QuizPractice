@@ -2,27 +2,69 @@
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>QuizManager</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
     <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <!-- fevicon -->
+    <link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif"/>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+          media="screen">
 </head>
 <body style="background-color:aquamarine">
 
-<div class="form-popup" style="display:none;" id="popupForm">
-    <div>
-        <div style="background-color:gray;
-            position: fixed;
-            z-index: 3;">
-            <input id="clipboard" type="text">
-            <button type="button" class="btn`" onclick="copyToClipboard()" id="copyBtn" value="Copy">Copy</button><br>
-            <button type="button" onclick="popupForm_Close()" class="btn">Close</button>
-        </div>
-    </div>
-
-</div>
 <div style="z-index:1">
     <p th:text="${RetMessage}"></p>
+    <div class="row">
+        <div class="col-md-9 col-sm-7">
+            <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+                        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/home}"> Home </a>
+                        </li>
+                        <!--              Manage quiz here-->
+                        <li class="nav-item">
+                            <a class="nav-link signin-btn" th:href="@{/QuizManager/?userId={userId}(userId=${session.uid})}">Quiz Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <!--                Profile here-->
+                            <a class="nav-link signup-btn" th:text="${session.currentUser.get().getEmail()}" th:href="@{/profile}"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link signup-btn" th:href="@{/logout}">LogOut</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-3 col-sm-5 d_none">
+            <ul class="sign">
+                <div class="chakra-inputgroup css-mt5xj9" style="display: flex; flex-direction: row">
+                    <input placeholder="Search by author, title, name" class="chakra-input css-1sovewm" style="">
+                    <button class="chakra-inputright-element css-ur97uj" style="padding: .5em;">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </ul>
+        </div>
+    </div>
     <h2>Quiz management</h2>
     <table class="table align-middle mb-0 bg-white">
         <tr>
@@ -103,7 +145,7 @@
 <script>
 
     function shareForm(p1) {
-        document.getElementById("popupForm").setAttribute("style", "position: fixed;display: block;width: 100%;padding:30%; height: 100%;top:0;left: 0;right:0;bottom: 0;z-index: 2;");
+        document.getElementById("popupForm").setAttribute("style", "position: fixed;display: block;z-index: 2;");
         document.getElementById("clipboard").value=p1;
 
     }
